@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class CameraControler : MonoBehaviour
 {
     [SerializeField] private GameObject cameraPivot = null;
@@ -29,8 +29,8 @@ public class CameraControler : MonoBehaviour
     void FixedUpdate()
     {
         //capturing mouse inputs
-        xAngle += (Input.GetAxis("Mouse X") * xSensitivity * Time.deltaTime) % 180;
-        yAngle -= (Input.GetAxis("Mouse Y") * ySensitivity   * Time.deltaTime) % 180;
+        xAngle += (Mouse.current.delta.x.ReadValue() * xSensitivity * Time.deltaTime) % 180;
+        yAngle -= (Mouse.current.delta.y.ReadValue() * ySensitivity   * Time.deltaTime) % 180;
         //limiting vertical range to avoid inversion
         if(yAngle > 90-yLimit) yAngle = 90-yLimit;
         else if(yAngle < (-90)+yLimit) yAngle = (-90)+yLimit;
@@ -53,5 +53,14 @@ public class CameraControler : MonoBehaviour
         //positioning and orienting camera according to look direction
         transform.position = cameraPivot.transform.position - currentZoomLevel*lookDirection;
         transform.LookAt(cameraPivot.transform.position + lookDirection,Vector3.up);
+    }
+
+    public Vector3 GetLateral()
+    {
+        return lateralDirection;
+    }
+    public Vector3 GetVertical()
+    {
+        return lookDirection;
     }
 }
