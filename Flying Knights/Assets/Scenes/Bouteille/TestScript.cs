@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class TestScript : MonoBehaviour
 {
@@ -15,11 +14,9 @@ public class TestScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    
-    public void OnShotGrappling()
-    {
-        GPCD.isReady = false;
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GPCD.isReady = false;
+        }
     }
 }
