@@ -31,7 +31,6 @@ public class GrapplingCooldown : MonoBehaviour
     {
         if (!isReady)
         {
-            Debug.Log("Enter !isReady boucle");
             //All reticle became in cooldownColor
             firstRenderer.color = cooldownColor;
             secondRenderer.color = cooldownColor;
@@ -39,25 +38,22 @@ public class GrapplingCooldown : MonoBehaviour
 
             //Initialize and start the cooldown
             inactiveTime += Time.deltaTime;
-            Debug.Log("inactive time  : " + inactiveTime);
             //first third of cooldown
             if(inactiveTime > grapplingCooldown / 3f)
             {
-                Debug.Log("firstThird is passed");
                 firstRenderer.color = readyColor;
             }
 
             //second third of cooldown
             if(inactiveTime > 2 * grapplingCooldown / 3f)
             {
-                Debug.Log("secondThird is passed");
                 secondRenderer.color = readyColor;
             }
 
             //cooldown is passed
             if(inactiveTime > grapplingCooldown)
             {
-                Debug.Log("thirdThird is passed");
+            
                 thirdRenderer.color = readyColor;
                 inactiveTime = 0f;
                 isReady = true;
