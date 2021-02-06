@@ -9,7 +9,7 @@ public class Hookshot : MonoBehaviour
 
     private Camera cam;      // Reference to the main camera
 
-    private GameObject hook; // Extremity of the hook
+    private Hook hook;       // Extremity of the hook
     private Vector3 dir;     // Direction in which the hook travel
 
     private float maxStep;   // Initial speed of the hook
@@ -21,7 +21,7 @@ public class Hookshot : MonoBehaviour
     void Start()
     {
         cam = FindObjectOfType<Camera>();
-        hook = GameObject.Find("Hook");
+        hook = GameObject.FindObjectOfType<Hook>();
 
         maxStep = 0.1f;
         step = maxStep;
@@ -91,6 +91,6 @@ public class Hookshot : MonoBehaviour
     // Once something is hooked, the player is pulled toward the collision point
     private void Traction()
     {
-
+        transform.position += dir * step / 2;
     }
 }
