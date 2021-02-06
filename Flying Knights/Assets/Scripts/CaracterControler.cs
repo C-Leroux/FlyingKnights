@@ -12,12 +12,18 @@ public class CaracterControler : MonoBehaviour
     private Vector3 heading = new Vector3(1,0,0);
     private Rigidbody localRigidBody;
     private RaycastHit nearGround;
+    private RaycastHit impact;
+    private bool rayDrawn = false;
+    private LineRenderer lnRd = null;
 
     // Start is called before the first frame update
     void Start()
     {
         heading = this.transform.forward;
         localRigidBody = GetComponent<Rigidbody>();
+        lnRd = GetComponent<LineRenderer>();
+        lnRd.SetPosition(0,transform.position);
+        lnRd.enabled = false;
     }
 
     // Update is called once per frame
@@ -64,6 +70,27 @@ public class CaracterControler : MonoBehaviour
             {
                 multiplied = true;
             }
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(Physics.Raycast(transform.position,localCamera.transform.forward,out impact,50f))
+            {
+                rayDrawn = true;
+                lnRd.enabled = true;
+                lnRd.SetPosition(1,impact.point);
+            }
+        }
+
+        if(Input.GetMouseButtonUp(0))
+        {
+            rayDrawn = false;
+            lnRd.enabled = false;
+        }
+
+        if(rayDrawn)
+        {
+            lnRd.SetPosition(0,transform.position);
         }
 
         if(changed)
