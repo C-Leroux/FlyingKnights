@@ -52,7 +52,7 @@ public class ReticleChanger : MonoBehaviour
         else
         {
             Instantiate(DebugObject, camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, maxRange)), new Quaternion(0,0,0,0));
-            return camera.transform.forward * maxRange;
+            return camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, maxRange));
         }
     }
 }

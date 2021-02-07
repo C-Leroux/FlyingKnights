@@ -56,7 +56,7 @@ public class Hookshot : MonoBehaviour
 
     public void LaunchHook()
     {
-
+        hook.transform.parent = null;
 
         // Get reticle point here
         Vector3 target = reticleChanger.GetRaycastHit();
@@ -76,6 +76,8 @@ public class Hookshot : MonoBehaviour
         if (!isActive) return;
         isActive = false;
         isHooked = false;
+
+        hook.transform.parent = transform;
         hook.transform.localPosition = new Vector3();
         step = maxStep;
     }

@@ -10,6 +10,9 @@ public class Hook : MonoBehaviour
     void Start()
     {
         hookshot = GameObject.FindObjectOfType<Hookshot>();
+
+        GameObject player = FindObjectOfType<PlayerController>().gameObject;
+        Physics.IgnoreCollision(GetComponent<Collider>(), player.GetComponent<Collider>());
     }
 
     private void OnCollisionEnter(Collision collision)
