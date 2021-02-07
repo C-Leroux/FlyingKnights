@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hookshot : MonoBehaviour
 {
+    private ReticleChanger reticleChanger;
+
     private bool isActive;   // True while the player hold the button
     private bool isHooked;   // True if the hook touch an obstacle
 
@@ -22,13 +24,13 @@ public class Hookshot : MonoBehaviour
     {
         cam = FindObjectOfType<Camera>();
         hook = GameObject.FindObjectOfType<Hook>();
+        reticleChanger = GameObject.FindObjectOfType<ReticleChanger>();
 
         maxStep = 0.1f;
         step = maxStep;
 
-        maxDist = 30;
+        maxDist = 60;
 
-        LaunchHook();
     }
 
     // Update is called once per frame
@@ -54,9 +56,11 @@ public class Hookshot : MonoBehaviour
 
     public void LaunchHook()
     {
+
+
         // Get reticle point here
-        Vector3 target = new Vector3(0, 10, 10);
-        dir = target.normalized;
+        Vector3 target = reticleChanger.GetRaycastHit();
+        dir = (target - transform.position).normalized;
 
         isHooked = false;
         isActive = true;
@@ -69,9 +73,9 @@ public class Hookshot : MonoBehaviour
 
     public void StopHook()
     {
+        if (!isActive) return;
         isActive = false;
         isHooked = false;
-
         hook.transform.localPosition = new Vector3();
         step = maxStep;
     }
@@ -91,6 +95,11 @@ public class Hookshot : MonoBehaviour
     // Once something is hooked, the player is pulled toward the collision point
     private void Traction()
     {
-        transform.position += dir * step / 2;
+        //transform.position += dir * step / 2;
+    }
+
+    public bool GetisHooked()
+    {
+        return isHooked;
     }
 }

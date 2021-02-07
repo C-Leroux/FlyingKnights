@@ -43,7 +43,15 @@
                     "id": "80b118b0-3fd7-495b-810a-9115faa7fae6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
+                },
+                {
+                    "name": "StopGrappling",
+                    "type": "Button",
+                    "id": "c56c5192-3d46-404e-a101-eb5d407825d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -143,6 +151,17 @@
                     "processors": "",
                     "groups": "Player_K/M",
                     "action": "ShotGrappling",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae93c2a4-88e2-4fbb-a2d2-67fd57c5de0f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Player_K/M",
+                    "action": "StopGrappling",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

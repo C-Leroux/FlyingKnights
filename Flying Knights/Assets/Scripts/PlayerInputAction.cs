@@ -56,7 +56,15 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""id"": ""80b118b0-3fd7-495b-810a-9115faa7fae6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""StopGrappling"",
+                    ""type"": ""Button"",
+                    ""id"": ""c56c5192-3d46-404e-a101-eb5d407825d6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -158,6 +166,17 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""action"": ""ShotGrappling"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae93c2a4-88e2-4fbb-a2d2-67fd57c5de0f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Player_K/M"",
+                    ""action"": ""StopGrappling"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +207,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         m_PlayerGrounded_Jump = m_PlayerGrounded.FindAction("Jump", throwIfNotFound: true);
         m_PlayerGrounded_Dash = m_PlayerGrounded.FindAction("Dash", throwIfNotFound: true);
         m_PlayerGrounded_ShotGrappling = m_PlayerGrounded.FindAction("ShotGrappling", throwIfNotFound: true);
+        m_PlayerGrounded_StopGrappling = m_PlayerGrounded.FindAction("StopGrappling", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -242,6 +262,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerGrounded_Jump;
     private readonly InputAction m_PlayerGrounded_Dash;
     private readonly InputAction m_PlayerGrounded_ShotGrappling;
+    private readonly InputAction m_PlayerGrounded_StopGrappling;
     public struct PlayerGroundedActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -251,6 +272,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerGrounded_Jump;
         public InputAction @Dash => m_Wrapper.m_PlayerGrounded_Dash;
         public InputAction @ShotGrappling => m_Wrapper.m_PlayerGrounded_ShotGrappling;
+        public InputAction @StopGrappling => m_Wrapper.m_PlayerGrounded_StopGrappling;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGrounded; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -275,6 +297,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @ShotGrappling.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnShotGrappling;
                 @ShotGrappling.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnShotGrappling;
                 @ShotGrappling.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnShotGrappling;
+                @StopGrappling.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnStopGrappling;
+                @StopGrappling.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnStopGrappling;
+                @StopGrappling.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnStopGrappling;
             }
             m_Wrapper.m_PlayerGroundedActionsCallbackInterface = instance;
             if (instance != null)
@@ -294,6 +319,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @ShotGrappling.started += instance.OnShotGrappling;
                 @ShotGrappling.performed += instance.OnShotGrappling;
                 @ShotGrappling.canceled += instance.OnShotGrappling;
+                @StopGrappling.started += instance.OnStopGrappling;
+                @StopGrappling.performed += instance.OnStopGrappling;
+                @StopGrappling.canceled += instance.OnStopGrappling;
             }
         }
     }
@@ -314,5 +342,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnShotGrappling(InputAction.CallbackContext context);
+        void OnStopGrappling(InputAction.CallbackContext context);
     }
 }

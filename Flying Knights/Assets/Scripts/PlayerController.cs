@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public GrapplingCooldown GPCD;
+    public Hookshot hs;
     public Rigidbody rb;
     float AxisX, AxisY;
     public CameraControler cam;
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
         {
             onGround = true;
         }
+        
     }
 
     public void FixedUpdate()
@@ -60,5 +64,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 dir = cam.GetLateral() * AxisX + cam.GetVertical() * AxisY;
         rb.AddForce(dir * 300f);
+    }
+
+    public void OnShotGrappling()
+    {
+        GPCD.isReady = false;
+        hs.LaunchHook();
+    }
+
+    public void OnStopGrappling()
+    {
+        hs.StopHook();
     }
 }
