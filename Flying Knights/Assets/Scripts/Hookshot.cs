@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class Hookshot : MonoBehaviour
 {
-    private ReticleChanger reticleChanger;
+    private bool isActive;     // True while the player hold the button
+    private bool isHooked;     // True if the hook touch an obstacle
 
-    private bool isActive;   // True while the player hold the button
-    private bool isHooked;   // True if the hook touch an obstacle
+    private Camera cam;        // Reference to the main camera
+    private ReticleChanger rc; // Reference to the reticle
 
-    private Camera cam;      // Reference to the main camera
+    private Hook hook;         // Extremity of the hook
+    private Vector3 dir;       // Direction in which the hook travel
+    private Collider target;   // Collider of the hooked object
 
-    private Hook hook;       // Extremity of the hook
-    private Vector3 dir;     // Direction in which the hook travel
+    private float maxStep;     // Initial speed of the hook
+    private float step;        // Current speed of the hook, decrease with time of travel
 
-    private float maxStep;   // Initial speed of the hook
-    private float step;      // Current speed of the hook, decrease with time of travel
-
-    private float maxDist;   // Maximal distance of the hook
+    private float maxDist;     // Maximal distance of the hook
 
     // Start is called before the first frame update
     void Start()
     {
         cam = FindObjectOfType<Camera>();
-        hook = GameObject.FindObjectOfType<Hook>();
-        reticleChanger = GameObject.FindObjectOfType<ReticleChanger>();
+        hook = FindObjectOfType<Hook>();
+        rc = FindObjectOfType<ReticleChanger>();
 
         maxStep = 0.1f;
         step = maxStep;
@@ -59,27 +59,37 @@ public class Hookshot : MonoBehaviour
         hook.transform.parent = null;
 
         // Get reticle point here
-        Vector3 target = reticleChanger.GetRaycastHit();
+        Vector3 target = rc.GetRaycastHit();
         dir = (target - transform.position).normalized;
 
         isHooked = false;
         isActive = true;
     }
 
-    public void Hooked()
+    public void Hooked(Collider targetCollider)
     {
         isHooked = true;
+        target = targetCollider;
+        hook.transform.parent = target.transform;
+        Physics.IgnoreCollision(hook.GetComponent<Collider>(), target);
     }
 
     public void StopHook()
     {
-        if (!isActive) return;
+        if (!isActive)
+            return;
+        if (isHooked)
+        {
+            Physics.IgnoreCollision(hook.GetComponent<Collider>(), target, false);
+            target = null;
+        }
         isActive = false;
         isHooked = false;
 
         hook.transform.parent = transform;
         hook.transform.localPosition = new Vector3();
         step = maxStep;
+
     }
 
     // Once the hook is launched, this method is called each frame to move it

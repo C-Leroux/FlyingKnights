@@ -9,7 +9,7 @@ public class Hook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hookshot = GameObject.FindObjectOfType<Hookshot>();
+        hookshot = FindObjectOfType<Hookshot>();
 
         GameObject player = FindObjectOfType<PlayerController>().gameObject;
         Physics.IgnoreCollision(GetComponent<Collider>(), player.GetComponent<Collider>());
@@ -19,6 +19,8 @@ public class Hook : MonoBehaviour
     {
         // Test if the collider hit is valid
         if (collision.collider.name != "Hookshot")
-            hookshot.Hooked();
+        {
+            hookshot.Hooked(collision.collider);
+        }
     }
 }
