@@ -20,4 +20,19 @@ public class HealthBar : MonoBehaviour
 
 	}
 
+	public void Damage(int damageNumber)
+    {
+		float oldValue = slider.value;
+		if (oldValue <= damageNumber)
+        {
+			slider.value = 0;
+			//déclencher mort
+        }
+        else
+        {
+			slider.value = oldValue - damageNumber;
+        }
+
+    }
+
 }
