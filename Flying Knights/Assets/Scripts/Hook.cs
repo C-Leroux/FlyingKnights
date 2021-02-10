@@ -17,10 +17,9 @@ public class Hook : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Test if the collider hit is valid
-        if (collision.collider.name != "Hookshot")
-        {
-            hookshot.Hooked(collision.collider);
-        }
+        //TODO : test to see if 
+        hookshot.Hooked(collision.collider);
+
     }
+
 }

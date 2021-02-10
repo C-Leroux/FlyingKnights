@@ -21,24 +21,21 @@ public class PlayerController : MonoBehaviour
         rb.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        rb.transform.Translate(cam.GetLateral() * AxisX * Time.deltaTime);
-        rb.transform.Translate(cam.GetVertical() * AxisY * Time.deltaTime);
-        if(rb.velocity.y == 0)
-        {
-            onGround = true;
-        }
-        
-    }
-
     public void FixedUpdate()
     {
         if (isJumping)
         {
             isJumping = false;
             rb.AddForce(Vector3.up * jumpForce);
+        }
+        //rb.transform.Translate(cam.GetLateral() * AxisX * Time.deltaTime);
+        //rb.transform.Translate(cam.GetVertical() * AxisY * Time.deltaTime);
+        //rb.MovePosition(transform.position+cam.GetLateral() * 10f * AxisX * Time.deltaTime + cam.GetVertical() * AxisY *10f* Time.deltaTime);
+        rb.AddForce(cam.GetLateral() * 1000f * AxisX * Time.deltaTime + cam.GetVertical() * AxisY *1000f* Time.deltaTime);
+        //rb.MovePosition(transform.position+cam.GetVertical() * AxisY * Time.deltaTime);
+        if(rb.velocity.y == 0)
+        {
+            onGround = true;
         }
     }
 

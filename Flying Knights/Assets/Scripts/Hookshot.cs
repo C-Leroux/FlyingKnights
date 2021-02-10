@@ -4,63 +4,65 @@ using UnityEngine;
 
 public class Hookshot : MonoBehaviour
 {
+    [SerializeField] private float hookSpeed = 1f;     // Initial speed of the hook
+    [SerializeField] private GameObject hookObject = null;         // Extremity of the hook
+    [SerializeField] private ReticleChanger reticle = null; // Reference to the reticle
+    [SerializeField] public float maxDist = 60;     // Maximal distance of the hook
+    [SerializeField] private GameObject hookSpawn = null;
+    [SerializeField] private GameObject playerJointObject = null;
+    [SerializeField] private PlayerJoint jointScript = null;
+    [SerializeField] private float tractionForce = 5000f;
+    private LineRenderer lineRend = null;
+    private CharacterJoint playerJoint = null; //the joint between the rope and the player
     private bool isActive;     // True while the player hold the button
     private bool isHooked;     // True if the hook touch an obstacle
 
-    private Camera cam;        // Reference to the main camera
-    private ReticleChanger rc; // Reference to the reticle
 
-    private Hook hook;         // Extremity of the hook
     private Vector3 dir;       // Direction in which the hook travel
     private Collider target;   // Collider of the hooked object
-
-    private float maxStep;     // Initial speed of the hook
     private float step;        // Current speed of the hook, decrease with time of travel
-
-    private float maxDist;     // Maximal distance of the hook
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        cam = FindObjectOfType<Camera>();
-        hook = FindObjectOfType<Hook>();
-        rc = FindObjectOfType<ReticleChanger>();
-
-        maxStep = 0.1f;
-        step = maxStep;
-
-        maxDist = 60;
-
+        step = hookSpeed;
+        hookObject.transform.position = hookSpawn.transform.position;
+        hookObject.SetActive(false);
+        lineRend = GetComponent<LineRenderer>();
+        lineRend.enabled = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        lineRend.SetPosition(0,hookSpawn.transform.position);
+        lineRend.SetPosition(1,hookObject.transform.position);
         // While hook is launched but hasn't encountered an obstacle
         if (isActive && !isHooked)
         {
             // Continue forward
             MoveForward();
-
-            // Progressively decrease speed
-            // step =
         }
 
         // While the player hold the button and is hooked to something
-        if (isActive && isHooked)
-        {
+        //if (isActive && isHooked)
+        //{
             // Traction toward the hook point
-            Traction();
-        }
+        //    Traction();
+        //}
     }
 
     public void LaunchHook()
     {
-        hook.transform.parent = null;
+        hookObject.SetActive(true);
+        hookObject.transform.parent = null;
+
+        lineRend.enabled = true;
 
         // Get reticle point here
-        Vector3 target = rc.GetRaycastHit();
-        dir = (target - transform.position).normalized;
+        Vector3 target = reticle.GetRaycastHit();
+        dir = (target - hookSpawn.transform.position).normalized;
 
         isHooked = false;
         isActive = true;
@@ -70,8 +72,37 @@ public class Hookshot : MonoBehaviour
     {
         isHooked = true;
         target = targetCollider;
-        hook.transform.parent = target.transform;
-        Physics.IgnoreCollision(hook.GetComponent<Collider>(), target);
+        hookObject.transform.parent = target.transform;
+        Physics.IgnoreCollision(hookObject.GetComponent<Collider>(), target);
+        hookObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+
+        //traction force
+        GetComponent<Rigidbody>().AddForce((hookObject.transform.position-transform.position)*Time.deltaTime*tractionForce);
+
+        //we sort out the joints
+        playerJointObject.transform.parent = null;
+        playerJointObject.transform.position = transform.position;
+        transform.parent = playerJointObject.transform;
+
+        //first the joint betweeen the rope and the player
+        playerJoint = gameObject.AddComponent<CharacterJoint>() as CharacterJoint;
+        SoftJointLimit limits = new SoftJointLimit();
+        limits.limit = 177;
+        SoftJointLimitSpring springLimits = new SoftJointLimitSpring();
+        springLimits.spring = 1;
+        springLimits.damper = 1;
+        SoftJointLimit limits2 = new SoftJointLimit();
+        limits2.limit = 0;
+        playerJoint.twistLimitSpring = springLimits;
+        playerJoint.highTwistLimit = limits;
+        playerJoint.swing1Limit = limits;
+        playerJoint.swing2Limit = limits;
+        playerJoint.lowTwistLimit = limits2;
+        playerJoint.connectedBody = playerJointObject.GetComponent<Rigidbody>();
+        
+        //second the joint between the rope and the hook
+        jointScript.hook(hookObject.GetComponent<Rigidbody>(),(hookObject.transform.position - hookSpawn.transform.position).magnitude,hookSpawn.transform.position);
+
     }
 
     public void StopHook()
@@ -80,25 +111,31 @@ public class Hookshot : MonoBehaviour
             return;
         if (isHooked)
         {
-            Physics.IgnoreCollision(hook.GetComponent<Collider>(), target, false);
+            Physics.IgnoreCollision(hookObject.GetComponent<Collider>(), target, false);
             target = null;
         }
         isActive = false;
         isHooked = false;
 
-        hook.transform.parent = transform;
-        hook.transform.localPosition = new Vector3();
-        step = maxStep;
-
+        hookObject.transform.parent = transform;
+        hookObject.transform.position = hookSpawn.transform.position;
+        hookObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        step = hookSpeed;
+        jointScript.unHook();
+        hookObject.SetActive(false);
+        Destroy(playerJoint);
+        transform.parent = null;
+        playerJointObject.transform.parent = transform;
+        lineRend.enabled = false;
     }
 
     // Once the hook is launched, this method is called each frame to move it
     private void MoveForward()
     {
-        hook.transform.localPosition += dir * step;
+        hookObject.transform.localPosition += dir * step;
 
         // If max distance is reached, the hook stop
-        if (Vector3.Distance(hook.transform.position, transform.position) >= maxDist)
+        if (Vector3.Distance(hookObject.transform.position, transform.position) >= maxDist)
         {
             StopHook();
         }

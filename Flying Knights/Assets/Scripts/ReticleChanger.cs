@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 public class ReticleChanger : MonoBehaviour
 {
 
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera localCamera;
+    [SerializeField] private Hookshot hook = null;
     public SpriteRenderer firstRenderer;
     public SpriteRenderer secondRenderer;
     public SpriteRenderer thirdRenderer;
@@ -13,7 +14,7 @@ public class ReticleChanger : MonoBehaviour
     public Sprite untargettingSprite;
     public Sprite targettingSprite;
 
-    public GameObject DebugObject;
+    //public GameObject DebugObject;
 
     public float maxRange;
     private RaycastHit raycastHit;
@@ -21,13 +22,13 @@ public class ReticleChanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxRange = 60f;
+        maxRange = hook.maxDist;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out raycastHit, maxRange))
+        if (Physics.Raycast(localCamera.transform.position, localCamera.transform.forward, out raycastHit, maxRange))
         {
             raycast = true;
             firstRenderer.sprite = targettingSprite;
@@ -51,8 +52,8 @@ public class ReticleChanger : MonoBehaviour
         }
         else
         {
-            Instantiate(DebugObject, camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, maxRange)), new Quaternion(0,0,0,0));
-            return camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, maxRange));
+            //Instantiate(DebugObject, localCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, maxRange)), new Quaternion(0,0,0,0));
+            return localCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, maxRange));
         }
     }
 }
