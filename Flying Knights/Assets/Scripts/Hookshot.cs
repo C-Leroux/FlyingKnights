@@ -101,7 +101,7 @@ public class Hookshot : MonoBehaviour
         playerJoint.connectedBody = playerJointObject.GetComponent<Rigidbody>();
         
         //second the joint between the rope and the hook
-        jointScript.hook(hookObject.GetComponent<Rigidbody>(),(hookObject.transform.position - hookSpawn.transform.position).magnitude,hookSpawn.transform.position);
+        jointScript.hook(hookObject.GetComponent<Rigidbody>(),(hookObject.transform.position - hookSpawn.transform.position).magnitude,hookSpawn);
 
     }
 

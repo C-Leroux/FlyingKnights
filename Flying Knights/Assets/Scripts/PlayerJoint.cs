@@ -6,6 +6,8 @@ public class PlayerJoint : MonoBehaviour
 {
     [SerializeField] float limitDistance = 15;
     private ConfigurableJoint hookJoint = null;
+
+    private GameObject localAnchor = null; 
     bool hooked = false;
 
     private float calculateDistance()
@@ -20,8 +22,12 @@ public class PlayerJoint : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(hooked){
+            hookJoint.anchor = transform.InverseTransformPoint(localAnchor.transform.position); 
+        }
         if(hooked && calculateDistance() > limitDistance + 0.001 )
         {
+            
             //setting correct position
             transform.position = hookJoint.connectedBody.transform.position + (transform.position - hookJoint.connectedBody.transform.position).normalized*limitDistance;
             //straigthening the speed
@@ -29,14 +35,16 @@ public class PlayerJoint : MonoBehaviour
         }
     }
 
-    public void hook(Rigidbody toConnect,float distance,Vector3 localAnchor)
+    public void hook(Rigidbody toConnect,float distance,GameObject anchor)
     {
+        hooked = true;
         hookJoint = gameObject.AddComponent<ConfigurableJoint>() as ConfigurableJoint;
         hookJoint.connectedBody = toConnect;
         hookJoint.xMotion = ConfigurableJointMotion.Limited;
         hookJoint.yMotion = ConfigurableJointMotion.Locked;
         hookJoint.zMotion = ConfigurableJointMotion.Locked;
-        hookJoint.anchor = transform.InverseTransformPoint(localAnchor); 
+        localAnchor = anchor;
+        hookJoint.anchor = transform.InverseTransformPoint(localAnchor.transform.position); 
         hookJoint.autoConfigureConnectedAnchor = false;
         hookJoint.connectedAnchor = transform.InverseTransformPoint(toConnect.transform.position);
         
@@ -48,6 +56,7 @@ public class PlayerJoint : MonoBehaviour
 
     public void unHook()
     {
+        hooked = false;
         Destroy(hookJoint);
     }
 }
