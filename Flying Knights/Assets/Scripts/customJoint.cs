@@ -9,6 +9,7 @@ public class customJoint : MonoBehaviour
     private Rigidbody mRigidBody = null;
     private float thetaPrime;
     private Vector3 rValue;
+    private bool active = false;
 
     // Start is called before the first frame update
     void Start()
@@ -16,18 +17,27 @@ public class customJoint : MonoBehaviour
         mRigidBody = GetComponent<Rigidbody>();
     }
 
+    public void SetActive(bool activeValue)
+    {
+        active = activeValue;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(jointBase != null)
+        if(active && jointBase != null)
         {
             rValue = jointBase.transform.position-transform.position;
-            if(rValue.magnitude > maxDistance)
+            if(rValue.magnitude >= maxDistance)
             {
-                thetaPrime = (Vector3.ProjectOnPlane(mRigidBody.velocity,rValue)).magnitude;
-                mRigidBody.AddForce((thetaPrime*thetaPrime*rValue - Vector3.Dot(rValue.normalized,Physics.gravity)*rValue.normalized)*Time.deltaTime*mRigidBody.mass);
+                mRigidBody.velocity = (Vector3.ProjectOnPlane(mRigidBody.velocity,rValue));
+                thetaPrime = mRigidBody.velocity.magnitude;
+                //mRigidBody.AddForce((thetaPrime*thetaPrime*rValue)*mRigidBody.mass*Time.deltaTime );
+                if(transform.position.y < jointBase.transform.position.y)
+                {
+                    mRigidBody.AddForce(Vector3.Dot(Physics.gravity,-rValue.normalized) * rValue.normalized *mRigidBody.mass *Time.deltaTime);
+                }
             }
-
         }
         
     }

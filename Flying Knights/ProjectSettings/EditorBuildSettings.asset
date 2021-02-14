@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Altarick/Level2.unity
+    guid: f3a21b56fa9feff489dc3a0ef60c4acd
   m_configObjects: {}

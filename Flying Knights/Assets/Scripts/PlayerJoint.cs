@@ -28,6 +28,7 @@ public class PlayerJoint : MonoBehaviour
 
     public void hook(Rigidbody toConnect,float distance,GameObject anchor)
     {
+        /*
         hooked = true;
         hookJoint = gameObject.AddComponent<ConfigurableJoint>() as ConfigurableJoint;
         hookJoint.connectedBody = toConnect;
@@ -44,6 +45,7 @@ public class PlayerJoint : MonoBehaviour
         //limits.limit = distance;
         //limits.contactDistance = 4;
         //hookJoint.linearLimit = limits;
+        */
     }
 
     public void unHook()
