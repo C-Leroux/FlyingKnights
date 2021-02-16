@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     float AxisX, AxisY;
     public CameraControler cam;
+    public Pause pause;
 
     public float jumpForce;
     bool isJumping = false;
@@ -71,4 +72,19 @@ public class PlayerController : MonoBehaviour
     {
         hs.StopHook();
     }
+
+    public void OnPause()
+    {
+        //Time.timeScale = 0f;
+        if (pause.Paused)
+        {
+            pause.Resume();
+        }
+        else
+        {
+            
+            pause.ActivatePause();
+        }
+    }
+    
 }
