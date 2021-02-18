@@ -443,6 +443,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8d2da6ca9e41b4ebc5b287dbff7e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hookSpeed: 1
+  hookObject: {fileID: 107174892}
+  reticle: {fileID: 240983758800952550}
+  maxDist: 60
+  hookSpawn: {fileID: 107174892}
+  playerJointObject: {fileID: 0}
+  jointScript: {fileID: 0}
+  tractionForce: 5000
 --- !u!1 &1236415897
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,13 +817,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39f0af471da431479dcf1dd2d9e1de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 5378382046569375525}
+  localCamera: {fileID: 5378382046569375525}
+  hook: {fileID: 1100078071}
   firstRenderer: {fileID: 240983760119842881}
   secondRenderer: {fileID: 240983760196892147}
   thirdRenderer: {fileID: 240983760037433347}
   untargettingSprite: {fileID: 21300000, guid: 651fece48186c194289618cee4007188, type: 3}
   targettingSprite: {fileID: 21300000, guid: c8582c711e70b8d4aae251d5e6a0d4a9, type: 3}
-  DebugObject: {fileID: 427240529}
   maxRange: 10
 --- !u!4 &240983760037433346
 Transform:

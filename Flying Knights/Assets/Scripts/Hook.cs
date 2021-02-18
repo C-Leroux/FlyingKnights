@@ -17,9 +17,8 @@ public class Hook : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //TODO : test to see if 
-        hookshot.Hooked(collision.collider);
-
+        hookshot.Hooked(collision);
+        
     }
 
 }

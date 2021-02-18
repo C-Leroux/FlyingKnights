@@ -6,11 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
+    [SerializeField] float playerGroundAcceleration = 20000f;
+    [SerializeField] float playerMaxGroundSpeed = 10f;
     public GrapplingCooldown GPCD;
     public Hookshot hs;
     public Rigidbody rb;
     float AxisX, AxisY;
     public CameraControler cam;
+    public Pause pause;
 
     public float jumpForce;
     bool isJumping = false;
@@ -28,11 +31,7 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
             rb.AddForce(Vector3.up * jumpForce);
         }
-        //rb.transform.Translate(cam.GetLateral() * AxisX * Time.deltaTime);
-        //rb.transform.Translate(cam.GetVertical() * AxisY * Time.deltaTime);
-        //rb.MovePosition(transform.position+cam.GetLateral() * 10f * AxisX * Time.deltaTime + cam.GetVertical() * AxisY *10f* Time.deltaTime);
-        rb.AddForce(cam.GetLateral() * 1000f * AxisX * Time.deltaTime + cam.GetVertical() * AxisY *1000f* Time.deltaTime);
-        //rb.MovePosition(transform.position+cam.GetVertical() * AxisY * Time.deltaTime);
+        rb.AddForce( Vector3.ProjectOnPlane(cam.GetLateral(),Vector3.up).normalized * playerGroundAcceleration * AxisX * Time.deltaTime + Vector3.ProjectOnPlane(cam.GetVertical(),Vector3.up).normalized * AxisY *playerGroundAcceleration* Time.deltaTime);
         if(rb.velocity.y == 0)
         {
             onGround = true;
@@ -73,4 +72,19 @@ public class PlayerController : MonoBehaviour
     {
         hs.StopHook();
     }
+
+    public void OnPause()
+    {
+        //Time.timeScale = 0f;
+        if (pause.Paused)
+        {
+            pause.Resume();
+        }
+        else
+        {
+            
+            pause.ActivatePause();
+        }
+    }
+    
 }
