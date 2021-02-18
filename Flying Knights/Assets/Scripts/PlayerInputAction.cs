@@ -65,6 +65,14 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""08c21490-9f0c-4ba9-88ad-a06eb25536ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -177,6 +185,17 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""action"": ""StopGrappling"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e01549f-fc8b-4531-abc6-a02d1064d92b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player_K/M"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -197,6 +216,17 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""New control scheme"",
+            ""bindingGroup"": ""New control scheme"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -208,6 +238,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         m_PlayerGrounded_Dash = m_PlayerGrounded.FindAction("Dash", throwIfNotFound: true);
         m_PlayerGrounded_ShotGrappling = m_PlayerGrounded.FindAction("ShotGrappling", throwIfNotFound: true);
         m_PlayerGrounded_StopGrappling = m_PlayerGrounded.FindAction("StopGrappling", throwIfNotFound: true);
+        m_PlayerGrounded_Pause = m_PlayerGrounded.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -263,6 +294,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerGrounded_Dash;
     private readonly InputAction m_PlayerGrounded_ShotGrappling;
     private readonly InputAction m_PlayerGrounded_StopGrappling;
+    private readonly InputAction m_PlayerGrounded_Pause;
     public struct PlayerGroundedActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -273,6 +305,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         public InputAction @Dash => m_Wrapper.m_PlayerGrounded_Dash;
         public InputAction @ShotGrappling => m_Wrapper.m_PlayerGrounded_ShotGrappling;
         public InputAction @StopGrappling => m_Wrapper.m_PlayerGrounded_StopGrappling;
+        public InputAction @Pause => m_Wrapper.m_PlayerGrounded_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGrounded; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,6 +333,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @StopGrappling.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnStopGrappling;
                 @StopGrappling.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnStopGrappling;
                 @StopGrappling.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnStopGrappling;
+                @Pause.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerGroundedActionsCallbackInterface = instance;
             if (instance != null)
@@ -322,6 +358,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @StopGrappling.started += instance.OnStopGrappling;
                 @StopGrappling.performed += instance.OnStopGrappling;
                 @StopGrappling.canceled += instance.OnStopGrappling;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -335,6 +374,15 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
             return asset.controlSchemes[m_Player_KMSchemeIndex];
         }
     }
+    private int m_NewcontrolschemeSchemeIndex = -1;
+    public InputControlScheme NewcontrolschemeScheme
+    {
+        get
+        {
+            if (m_NewcontrolschemeSchemeIndex == -1) m_NewcontrolschemeSchemeIndex = asset.FindControlSchemeIndex("New control scheme");
+            return asset.controlSchemes[m_NewcontrolschemeSchemeIndex];
+        }
+    }
     public interface IPlayerGroundedActions
     {
         void OnMoveHorizontal(InputAction.CallbackContext context);
@@ -343,5 +391,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnShotGrappling(InputAction.CallbackContext context);
         void OnStopGrappling(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
