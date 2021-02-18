@@ -11,7 +11,7 @@ public class Wondering : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        walkSpeed = navmeshAgent.speed;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class Wondering : MonoBehaviour
     IEnumerator wonder()
     {
         isWondering = true;
-        float walkingTime = Random.Range(0, 5);
+        float walkingTime = Random.Range(0, 15);
         navmeshAgent.SetDestination(RandomNavmeshLocation(walkingTime * walkSpeed));
         yield return new WaitForSeconds(walkingTime);
         isWondering = false;
