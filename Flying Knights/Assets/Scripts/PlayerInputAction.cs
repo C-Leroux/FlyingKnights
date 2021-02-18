@@ -189,7 +189,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5e01549f-fc8b-4531-abc6-a02d1064d92b"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player_K/M"",
@@ -210,6 +210,17 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""isOptional"": false,
                     ""isOR"": false
                 },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""New control scheme"",
+            ""bindingGroup"": ""New control scheme"",
+            ""devices"": [
                 {
                     ""devicePath"": ""<Mouse>"",
                     ""isOptional"": false,
@@ -361,6 +372,15 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         {
             if (m_Player_KMSchemeIndex == -1) m_Player_KMSchemeIndex = asset.FindControlSchemeIndex("Player_K/M");
             return asset.controlSchemes[m_Player_KMSchemeIndex];
+        }
+    }
+    private int m_NewcontrolschemeSchemeIndex = -1;
+    public InputControlScheme NewcontrolschemeScheme
+    {
+        get
+        {
+            if (m_NewcontrolschemeSchemeIndex == -1) m_NewcontrolschemeSchemeIndex = asset.FindControlSchemeIndex("New control scheme");
+            return asset.controlSchemes[m_NewcontrolschemeSchemeIndex];
         }
     }
     public interface IPlayerGroundedActions

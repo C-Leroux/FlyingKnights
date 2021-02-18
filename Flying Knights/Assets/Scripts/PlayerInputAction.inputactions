@@ -176,7 +176,7 @@
                 {
                     "name": "",
                     "id": "5e01549f-fc8b-4531-abc6-a02d1064d92b",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "Player_K/M",
@@ -197,6 +197,17 @@
                     "isOptional": false,
                     "isOR": false
                 },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
                 {
                     "devicePath": "<Mouse>",
                     "isOptional": false,
