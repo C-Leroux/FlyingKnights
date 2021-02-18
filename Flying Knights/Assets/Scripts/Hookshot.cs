@@ -77,7 +77,7 @@ public class Hookshot : MonoBehaviour
         hookRigidBody.velocity = Vector3.zero;
 
         //traction force
-        GetComponent<Rigidbody>().AddForce((hookObject.transform.position-transform.position)*Time.deltaTime*tractionForce);
+        //GetComponent<Rigidbody>().AddForce((hookObject.transform.position-transform.position)*Time.deltaTime*tractionForce);
         joint.SetActive(true);
         joint.maxDistance = (transform.position - hookObject.transform.position).magnitude + 1;
     }
@@ -98,6 +98,7 @@ public class Hookshot : MonoBehaviour
         hookObject.transform.parent = transform;
         hookObject.transform.position = hookSpawn.transform.position;
         hookObject.SetActive(false);
+        joint.SetActive(false);
         transform.parent = null;
         lineRend.enabled = false;
     }

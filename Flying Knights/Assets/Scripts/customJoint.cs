@@ -6,6 +6,7 @@ public class customJoint : MonoBehaviour
 {
     [SerializeField] public GameObject jointBase = null;
     [SerializeField] public float maxDistance = 10;
+    [SerializeField] public float TractionForce = 500f; //test
     private Rigidbody mRigidBody = null;
     private float thetaPrime;
     private Vector3 rValue;
@@ -27,6 +28,10 @@ public class customJoint : MonoBehaviour
     {
         if(active && jointBase != null)
         {
+            rValue = (jointBase.transform.position-transform.position);
+            if(rValue.magnitude >= maxDistance) mRigidBody.AddForce(rValue.normalized*Time.deltaTime*TractionForce);
+            
+            /*
             rValue = jointBase.transform.position-transform.position;
             if(rValue.magnitude >= maxDistance)
             {
@@ -38,6 +43,7 @@ public class customJoint : MonoBehaviour
                     mRigidBody.AddForce(Vector3.Dot(Physics.gravity,-rValue.normalized) * rValue.normalized *mRigidBody.mass *Time.deltaTime);
                 }
             }
+            */
         }
         
     }
