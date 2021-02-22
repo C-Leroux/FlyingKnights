@@ -43,7 +43,7 @@ public class WanderState : State<Colossus>
     public void Exit(Colossus colossus)
     {
         // Stop Wandering
-        colossus.StopWandering();
+        colossus.StopWander();
     }
 
     // public bool OnMessage(Colossus colossus, const Telegram& msg);

@@ -33,11 +33,12 @@ public class Colossus : MonoBehaviour
     // Return true if the player is within the sphere detection of the colossus
     public bool DetectPlayer()
     {
-        if (Physics.OverlapSphere(transform.position, rangeDetection, LayerMask.GetMask("Player"))[0])
+        Collider[] colliders = Physics.OverlapSphere(transform.position, rangeDetection);
+        foreach(Collider col in colliders)
         {
-            return true;
+            if (col.tag == "Player")
+                return true;
         }
-
         return false;
     }
 
@@ -46,7 +47,7 @@ public class Colossus : MonoBehaviour
         wandering.StartWandering();
     }
 
-    public void StopWandering()
+    public void StopWander()
     {
         wandering.StopWandering();
     }
