@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Wondering : MonoBehaviour
+public class Wandering : MonoBehaviour
 {
     float walkSpeed = 5f;
-    bool isWondering = false;
+    bool isWandering = false;
     public NavMeshAgent navmeshAgent;
     // Start is called before the first frame update
     void Start()
@@ -17,19 +17,19 @@ public class Wondering : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isWondering)
+        if (!isWandering)
         {
-            StartCoroutine(wonder());
+            StartCoroutine(Wander());
         }
     }
 
-    IEnumerator wonder()
+    IEnumerator Wander()
     {
-        isWondering = true;
+        isWandering = true;
         float walkingTime = Random.Range(0, 15);
         navmeshAgent.SetDestination(RandomNavmeshLocation(walkingTime * walkSpeed));
         yield return new WaitForSeconds(walkingTime);
-        isWondering = false;
+        isWandering = false;
     }
 
     Vector3 RandomNavmeshLocation(float radius)

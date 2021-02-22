@@ -10,7 +10,7 @@ using UnityEngine;
 public class Wander : State<Colossus>
 {
     private static Wander instance = null;
-
+    private bool isWandering;
     public static Wander Instance
     {
         get
