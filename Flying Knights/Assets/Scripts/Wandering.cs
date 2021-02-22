@@ -6,8 +6,10 @@ using UnityEngine.AI;
 public class Wandering : MonoBehaviour
 {
     float walkSpeed = 5f;
+    bool enable = false;
     bool isWandering = false;
     public NavMeshAgent navmeshAgent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class Wandering : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isWandering)
+        if (!isWandering && enable)
         {
             StartCoroutine(Wander());
         }
@@ -43,5 +45,17 @@ public class Wandering : MonoBehaviour
             finalPosition = hit.position;
         }
         return finalPosition;
+    }
+
+    public void StartWandering()
+    {
+        enable = true;
+    }
+
+    public void StopWandering()
+    {
+        enable = false;
+        isWandering = false;
+        StopCoroutine(Wander());
     }
 }
