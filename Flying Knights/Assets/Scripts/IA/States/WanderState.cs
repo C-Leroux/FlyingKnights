@@ -28,7 +28,7 @@ public class WanderState : State<Colossus>
         // Return to a valid point on the navmesh if necessary
 
         // Start Wandering
-        colossus.StartWander();
+        colossus.StartWandering();
     }
 
     public void Execute(Colossus colossus)
@@ -43,7 +43,7 @@ public class WanderState : State<Colossus>
     public void Exit(Colossus colossus)
     {
         // Stop Wandering
-        colossus.StopWander();
+        colossus.StopWandering();
     }
 
     // public bool OnMessage(Colossus colossus, const Telegram& msg);

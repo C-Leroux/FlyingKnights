@@ -27,6 +27,7 @@ public class AttackState : State<Colossus>
     public void Enter(Colossus colossus)
     {
         // Animation indicating that the colossus has detected the player
+        colossus.StartAttacking();
     }
 
     public void Execute(Colossus colossus)
@@ -43,6 +44,7 @@ public class AttackState : State<Colossus>
     public void Exit(Colossus colossus)
     {
         // Animation indicating that the colossus has lost track of the player
+        colossus.StopAttacking();
     }
 
     // public bool OnMessage(Colossus colossus, const Telegram& msg);

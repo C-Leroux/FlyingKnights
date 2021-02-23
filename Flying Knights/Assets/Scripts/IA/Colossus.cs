@@ -8,10 +8,13 @@ public class Colossus : MonoBehaviour
 
     [SerializeField]
     private Wandering wandering;
-
+    [SerializeField]
+    private Attacking attacking;
     [SerializeField]
     private float rangeDetection;
 
+    [HideInInspector]
+    public bool isAttacking = false;
     public StateMachine<Colossus> FSM
     {
         get
@@ -29,7 +32,6 @@ public class Colossus : MonoBehaviour
         fsm = new StateMachine<Colossus>(this); ;
         fsm.ChangeState(WanderState.Instance);
     }
-
     // Return true if the player is within the sphere detection of the colossus
     public bool DetectPlayer()
     {
@@ -37,18 +39,37 @@ public class Colossus : MonoBehaviour
         foreach(Collider col in colliders)
         {
             if (col.tag == "Player")
+            {
+                attacking.target = col.gameObject;
                 return true;
+            }
         }
         return false;
     }
 
-    public void StartWander()
+    #region Wandering
+    public void StartWandering()
     {
         wandering.StartWandering();
     }
 
-    public void StopWander()
+    public void StopWandering()
     {
         wandering.StopWandering();
     }
+
+    #endregion
+
+    #region Attacking
+
+    public void StartAttacking()
+    {
+        attacking.EnterAttackMode();
+    }
+
+    public void StopAttacking()
+    {
+        attacking.QuitAttackMode();
+    }
+    #endregion
 }
