@@ -991,9 +991,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ef43b05e93869409a7a35a8f2bddef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navmeshAgent: {fileID: 0}
+  navmeshAgent: {fileID: 9154712549547794667}
   target: {fileID: 0}
-  attackRange: 0
+  attackRange: 5
 --- !u!1 &1315224913767900
 GameObject:
   m_ObjectHideFlags: 0
