@@ -59,8 +59,9 @@ public class Hookshot : MonoBehaviour
         // Get reticle point here
         Vector3 target = reticle.GetRaycastHit();
         Debug.Log("ha");
-        Debug.Log(target);
         dir = (target - hookSpawn.transform.position).normalized;
+        
+        Debug.Log(dir);
         
         // Set the hook active
         isHooked = false;

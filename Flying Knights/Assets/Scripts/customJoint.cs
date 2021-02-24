@@ -29,9 +29,9 @@ public class customJoint : MonoBehaviour
         if(active && jointBase != null)
         {
             rValue = (jointBase.transform.position-transform.position);
-            if(rValue.magnitude >= maxDistance) mRigidBody.AddForce(rValue.normalized*Time.deltaTime*TractionForce);
+            mRigidBody.AddForce(rValue.normalized*Time.deltaTime*TractionForce);
             
-            /*
+            
             rValue = jointBase.transform.position-transform.position;
             if(rValue.magnitude >= maxDistance)
             {
@@ -43,7 +43,7 @@ public class customJoint : MonoBehaviour
                     mRigidBody.AddForce(Vector3.Dot(Physics.gravity,-rValue.normalized) * rValue.normalized *mRigidBody.mass *Time.deltaTime);
                 }
             }
-            */
+            
         }
         
     }

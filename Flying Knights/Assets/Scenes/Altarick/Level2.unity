@@ -395,7 +395,7 @@ Transform:
   m_GameObject: {fileID: 13302589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 28, y: -39, z: -26.6}
-  m_LocalScale: {x: 1000, y: 0.2, z: 1000}
+  m_LocalScale: {x: 1000, y: 1, z: 1000}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -10687,6 +10687,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8075642648633141347, guid: 6a5092fbab3deb843ba1de0ae97c00a7,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8075642648633141347, guid: 6a5092fbab3deb843ba1de0ae97c00a7,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8075642648633141347, guid: 6a5092fbab3deb843ba1de0ae97c00a7,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8075642649203132852, guid: 6a5092fbab3deb843ba1de0ae97c00a7,
         type: 3}
       propertyPath: m_RootOrder
@@ -10700,7 +10715,7 @@ PrefabInstance:
     - target: {fileID: 8075642649203132852, guid: 6a5092fbab3deb843ba1de0ae97c00a7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.25
+      value: -37.2
       objectReference: {fileID: 0}
     - target: {fileID: 8075642649203132852, guid: 6a5092fbab3deb843ba1de0ae97c00a7,
         type: 3}
@@ -10751,6 +10766,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerHook
+      objectReference: {fileID: 0}
+    - target: {fileID: 8075642649203132877, guid: 6a5092fbab3deb843ba1de0ae97c00a7,
+        type: 3}
+      propertyPath: maxDist
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5092fbab3deb843ba1de0ae97c00a7, type: 3}
@@ -10934,6 +10954,7 @@ MonoBehaviour:
   hs: {fileID: 7638606472906610755}
   rb: {fileID: 7591359703844879353}
   cam: {fileID: 2351461627684185247}
+  pause: {fileID: 0}
   jumpForce: 300
 --- !u!114 &7591359703844879352
 MonoBehaviour:
