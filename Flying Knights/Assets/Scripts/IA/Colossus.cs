@@ -32,6 +32,12 @@ public class Colossus : MonoBehaviour
         fsm = new StateMachine<Colossus>(this); ;
         fsm.ChangeState(WanderState.Instance);
     }
+
+    private void FixedUpdate()
+    {
+        FSM.UpdateFSM();
+    }
+
     // Return true if the player is within the sphere detection of the colossus
     public bool DetectPlayer()
     {
