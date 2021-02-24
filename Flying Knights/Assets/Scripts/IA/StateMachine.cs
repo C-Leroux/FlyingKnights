@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine<Agent_Type> : MonoBehaviour
+public class StateMachine<Agent_Type>
 {
     // The agent that owns this instance
     [SerializeField]
@@ -27,6 +27,11 @@ public class StateMachine<Agent_Type> : MonoBehaviour
         get; set;
     }
 
+    public StateMachine(Agent_Type Owner)
+    {
+        this.Owner = Owner;
+    }
+
     // Called in order to update the FSM
     public void UpdateFSM()
     {
@@ -39,11 +44,26 @@ public class StateMachine<Agent_Type> : MonoBehaviour
             CurrentState.Execute(Owner);
     }
 
+    private void InitState(State<Agent_Type> pNewState)
+    {
+        // Set the new state
+        CurrentState = pNewState;
+
+        // Enter the new state
+        CurrentState.Enter(Owner);
+    }
+
     // Change the current state
     public void ChangeState(State<Agent_Type> pNewState)
     {
         if (pNewState == null)
             return;
+
+        if (CurrentState == null)
+        {
+            InitState(pNewState);
+            return;
+        }
 
         // Record the previous state
         PreviousState = CurrentState;
@@ -51,11 +71,7 @@ public class StateMachine<Agent_Type> : MonoBehaviour
         // Exit the previous state
         PreviousState.Exit(Owner);
 
-        // Set the new state
-        CurrentState = pNewState;
-
-        // Enter the new state
-        CurrentState.Enter(Owner);
+        InitState(pNewState);
     }
 
     // Return to the previous state

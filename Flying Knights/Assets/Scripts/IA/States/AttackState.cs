@@ -8,17 +8,17 @@ using UnityEngine;
 //  colossus stop moving and analysing the player's position.
 //  If the colossus lost track of the player, it'll enter in Wander state.
 //------------------------------------------------------------------------
-public class Attack : State<Colossus>
+public class AttackState : State<Colossus>
 {
-    private static Attack instance = null;
+    private static AttackState instance = null;
 
-    public static Attack Instance
+    public static AttackState Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = new Attack();
+                instance = new AttackState();
             }
             return instance;
         }
@@ -27,6 +27,7 @@ public class Attack : State<Colossus>
     public void Enter(Colossus colossus)
     {
         // Animation indicating that the colossus has detected the player
+        colossus.StartAttacking();
     }
 
     public void Execute(Colossus colossus)
@@ -35,7 +36,7 @@ public class Attack : State<Colossus>
 
         // If player no longer detected, enter Wander state
         if (!colossus.DetectPlayer())
-            colossus.StateMachine.ChangeState(Wander.Instance);
+            colossus.FSM.ChangeState(WanderState.Instance);
 
         // If the player enter a collider, initiate an attack
     }
@@ -43,6 +44,7 @@ public class Attack : State<Colossus>
     public void Exit(Colossus colossus)
     {
         // Animation indicating that the colossus has lost track of the player
+        colossus.StopAttacking();
     }
 
     // public bool OnMessage(Colossus colossus, const Telegram& msg);

@@ -7,17 +7,17 @@ using UnityEngine;
 //  If it senses the player around, it'll become agressive and enter in
 //  Attack state.
 //------------------------------------------------------------------------
-public class Wander : State<Colossus>
+public class WanderState : State<Colossus>
 {
-    private static Wander instance = null;
+    private static WanderState instance = null;
 
-    public static Wander Instance
+    public static WanderState Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = new Wander();
+                instance = new WanderState();
             }
             return instance;
         }
@@ -26,6 +26,9 @@ public class Wander : State<Colossus>
     public void Enter(Colossus colossus)
     {
         // Return to a valid point on the navmesh if necessary
+
+        // Start Wandering
+        colossus.StartWandering();
     }
 
     public void Execute(Colossus colossus)
@@ -34,12 +37,13 @@ public class Wander : State<Colossus>
 
         // If a player is detected nearby, enter Attack state
         if (colossus.DetectPlayer())
-            colossus.StateMachine.ChangeState(Attack.Instance);
+            colossus.FSM.ChangeState(AttackState.Instance);
     }
 
     public void Exit(Colossus colossus)
     {
-
+        // Stop Wandering
+        colossus.StopWandering();
     }
 
     // public bool OnMessage(Colossus colossus, const Telegram& msg);
