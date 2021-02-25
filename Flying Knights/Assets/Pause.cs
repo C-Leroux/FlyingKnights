@@ -8,6 +8,7 @@ public class Pause : MonoBehaviour
     
     public  bool Paused=false;
     public GameObject MenuPause;
+    public GameObject Settings;
     void Start()
     {
         Paused = false;
@@ -24,6 +25,7 @@ public class Pause : MonoBehaviour
     public void Resume()
     {
         MenuPause.SetActive(false);
+        Settings.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         Paused = false;
@@ -34,9 +36,18 @@ public class Pause : MonoBehaviour
         return this.Paused;
     }
 
+    public void SettingsMenu()
+    {
+
+        MenuPause.SetActive(false);
+        Settings.SetActive(true);
+
+    }
+
     public void Menu()
     {
         Debug.Log("Menu");
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 
@@ -49,6 +60,7 @@ public class Pause : MonoBehaviour
     public void Retry()
     {
         Debug.Log("Retry");
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Preload");
     }
 }
