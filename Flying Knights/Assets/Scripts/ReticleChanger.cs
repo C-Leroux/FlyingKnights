@@ -10,6 +10,7 @@ public class ReticleChanger : MonoBehaviour
     public SpriteRenderer firstRenderer;
     public SpriteRenderer secondRenderer;
     public SpriteRenderer thirdRenderer;
+    public LayerMask IgnoreInRaycast;
 
     public Sprite untargettingSprite;
     public Sprite targettingSprite;
@@ -28,7 +29,7 @@ public class ReticleChanger : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Physics.Raycast(localCamera.transform.position, localCamera.transform.forward, out raycastHit, maxRange))
+        if (Physics.Raycast(localCamera.transform.position, localCamera.transform.forward, out raycastHit, maxRange,~IgnoreInRaycast))
         {
             raycast = true;
             firstRenderer.sprite = targettingSprite;
@@ -52,8 +53,14 @@ public class ReticleChanger : MonoBehaviour
         }
         else
         {
-            //Instantiate(DebugObject, localCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, maxRange)), new Quaternion(0,0,0,0));
-            return localCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, maxRange));
+            if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward, out raycastHit, maxRange,~IgnoreInRaycast))
+            {
+                return raycastHit.point;
+            }
+            else
+            {
+                return localCamera.transform.position + 100*(localCamera.transform.forward);
+            }
         }
     }
 }

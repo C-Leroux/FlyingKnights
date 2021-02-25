@@ -26,7 +26,7 @@ public class CameraControler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //capturing mouse inputs
         xAngle += (Mouse.current.delta.x.ReadValue() * xSensitivity * Time.deltaTime) % 180;
