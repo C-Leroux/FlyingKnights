@@ -21,6 +21,7 @@ public class WeakPoint : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             Debug.Log("Critical hit !");
+
         }
     }
 }
