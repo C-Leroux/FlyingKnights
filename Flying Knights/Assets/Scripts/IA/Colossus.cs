@@ -15,6 +15,17 @@ public class Colossus : MonoBehaviour
 
     [HideInInspector]
     public bool isAttacking = false;
+
+    #region Statistiques
+    [SerializeField]
+    private float HP;
+    [SerializeField]
+    private float Attack;
+    [SerializeField]
+    private float mouvementSpeed;
+    [SerializeField]
+    private float reactionTime;
+    #endregion
     public StateMachine<Colossus> FSM
     {
         get
