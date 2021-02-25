@@ -15,6 +15,17 @@ public class Colossus : MonoBehaviour
 
     [HideInInspector]
     public bool isAttacking = false;
+
+    #region Statistiques
+    [SerializeField]
+    private float HP;
+    [SerializeField]
+    private float Attack;
+    [SerializeField]
+    private float mouvementSpeed;
+    [SerializeField]
+    private float reactionTime;
+    #endregion
     public StateMachine<Colossus> FSM
     {
         get
@@ -32,6 +43,12 @@ public class Colossus : MonoBehaviour
         fsm = new StateMachine<Colossus>(this); ;
         fsm.ChangeState(WanderState.Instance);
     }
+
+    private void FixedUpdate()
+    {
+        FSM.UpdateFSM();
+    }
+
     // Return true if the player is within the sphere detection of the colossus
     public bool DetectPlayer()
     {

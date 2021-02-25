@@ -8,11 +8,13 @@ public class Wandering : MonoBehaviour
     float walkSpeed = 5f;
     bool enable = false;
     bool isWandering = false;
-    public NavMeshAgent navmeshAgent;
+    private NavMeshAgent navmeshAgent;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        navmeshAgent = GetComponent<NavMeshAgent>();
         walkSpeed = navmeshAgent.speed;
     }
 
