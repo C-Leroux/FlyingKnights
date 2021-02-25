@@ -6,7 +6,7 @@
             "id": "d2001e69-bb4f-4fc1-99df-5a78bd5cfefa",
             "actions": [
                 {
-                    "name": "MoveHorizontal",
+                    "name": "MoveRight",
                     "type": "Value",
                     "id": "927d4de5-6498-47c0-95dc-30617ef99557",
                     "expectedControlType": "Axis",
@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "MoveVertical",
+                    "name": "MoveForward",
                     "type": "Value",
                     "id": "05ab3830-5ed8-4ea1-8262-5c4fb31cd38f",
                     "expectedControlType": "Axis",
@@ -22,20 +22,20 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Jump",
+                    "name": "SpaceToggle",
                     "type": "Button",
                     "id": "8f99510c-9a69-4209-992d-2f056371cc10",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "Dash",
+                    "name": "Evade",
                     "type": "Button",
                     "id": "736e9071-5358-4274-ba0b-91315110731e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "ShotGrappling",
@@ -60,17 +60,33 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "Attack1",
+                    "type": "Button",
+                    "id": "e2942aea-337e-48b6-ae94-5d9fd84f9643",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "5231bcc5-4b54-47ef-b40c-84919315cb58",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
                 {
-                    "name": "Horizontal",
+                    "name": "Right",
                     "id": "4bcafa20-fe8d-4c73-a8f8-a57367a7b900",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MoveHorizontal",
+                    "action": "MoveRight",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -81,7 +97,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Player_K/M",
-                    "action": "MoveHorizontal",
+                    "action": "MoveRight",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -92,18 +108,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Player_K/M",
-                    "action": "MoveHorizontal",
+                    "action": "MoveRight",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Vetrical",
+                    "name": "Forward",
                     "id": "459eeb60-d505-4045-beb5-3fc97dc40574",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MoveVertical",
+                    "action": "MoveForward",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -113,8 +129,8 @@
                     "path": "<Keyboard>/#(S)",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player_K/M",
-                    "action": "MoveVertical",
+                    "groups": "",
+                    "action": "MoveForward",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -125,7 +141,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Player_K/M",
-                    "action": "MoveVertical",
+                    "action": "MoveForward",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -136,7 +152,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Player_K/M",
-                    "action": "Jump",
+                    "action": "SpaceToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -147,14 +163,14 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Player_K/M",
-                    "action": "Dash",
+                    "action": "Evade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "aab9ca4a-5bac-4a2b-a3ec-b93988002c13",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Player_K/M",
@@ -165,7 +181,7 @@
                 {
                     "name": "",
                     "id": "ae93c2a4-88e2-4fbb-a2d2-67fd57c5de0f",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Player_K/M",
@@ -181,6 +197,28 @@
                     "processors": "",
                     "groups": "Player_K/M",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19b1c1f7-2549-4362-92cc-07a99be20e67",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d884234e-c3b3-41eb-8825-912d3dd4dea2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

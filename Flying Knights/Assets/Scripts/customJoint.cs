@@ -2,46 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class customJoint : MonoBehaviour
+public class CustomJoint : MonoBehaviour
 {
-    [SerializeField] public GameObject jointBase = null;
-    [SerializeField] public float maxDistance = 10;
-    [SerializeField] public float TractionForce = 500f; //test
-    private Rigidbody mRigidBody = null;
-    private float thetaPrime;
-    private Vector3 rValue;
-    private bool active = false;
+    [Tooltip("The other end of the joint, this is the 'rope' base")]
+    [SerializeField] private GameObject jointBase = null;
+
+    [Tooltip("This is the traction force that will continuously be applied in the direction of the joint base")]
+    [SerializeField] private float TractionForce = 8000f; 
+    
+    [Tooltip("This drag will be used when the joint is active to provide some damping")]
+    [SerializeField] private float airDrag = 0.3f; 
+    private float maxDistance; //the distance where the hard limit lies from the joint base, se
+    private Rigidbody mRigidBody = null; //rigidbody to use for physic
+    private Vector3 rValue; //direction toward the base
+    private bool active = false; // whether the joint is active
+    private float defaultDrag; //the drag that will be restored when the joint is off
 
     // Start is called before the first frame update
     void Start()
     {
         mRigidBody = GetComponent<Rigidbody>();
+        defaultDrag = mRigidBody.drag;
     }
 
-    public void SetActive(bool activeValue)
+    //setter for activating the joint, distance is the hard limit distance
+    public void SetActive(bool activeValue,float distance)
     {
         active = activeValue;
+        maxDistance = distance;
+        if(active)
+        {
+            mRigidBody.drag = airDrag;
+        }
+        else
+        {
+            mRigidBody.drag = defaultDrag;
+        }
     }
 
-    // Update is called once per frame
+    //setter for activating the joint
+    public void SetActive(bool activeValue)
+    {
+        SetActive(activeValue,0);
+    }
+
     void FixedUpdate()
     {
         if(active && jointBase != null)
         {
-            rValue = (jointBase.transform.position-transform.position);
-            mRigidBody.AddForce(rValue.normalized*Time.deltaTime*TractionForce);
-            
-            
             rValue = jointBase.transform.position-transform.position;
+            mRigidBody.AddForce(rValue.normalized*TractionForce);
+
+            
+            //shamelessly changing velocity to make it look like there is a limit
             if(rValue.magnitude >= maxDistance)
             {
                 mRigidBody.velocity = (Vector3.ProjectOnPlane(mRigidBody.velocity,rValue));
-                thetaPrime = mRigidBody.velocity.magnitude;
-                //mRigidBody.AddForce((thetaPrime*thetaPrime*rValue)*mRigidBody.mass*Time.deltaTime );
-                if(transform.position.y < jointBase.transform.position.y)
-                {
-                    mRigidBody.AddForce(Vector3.Dot(Physics.gravity,-rValue.normalized) * rValue.normalized *mRigidBody.mass *Time.deltaTime);
-                }
             }
             
         }

@@ -19,7 +19,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
             ""id"": ""d2001e69-bb4f-4fc1-99df-5a78bd5cfefa"",
             ""actions"": [
                 {
-                    ""name"": ""MoveHorizontal"",
+                    ""name"": ""MoveRight"",
                     ""type"": ""Value"",
                     ""id"": ""927d4de5-6498-47c0-95dc-30617ef99557"",
                     ""expectedControlType"": ""Axis"",
@@ -27,7 +27,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""MoveVertical"",
+                    ""name"": ""MoveForward"",
                     ""type"": ""Value"",
                     ""id"": ""05ab3830-5ed8-4ea1-8262-5c4fb31cd38f"",
                     ""expectedControlType"": ""Axis"",
@@ -35,20 +35,20 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""SpaceToggle"",
                     ""type"": ""Button"",
                     ""id"": ""8f99510c-9a69-4209-992d-2f056371cc10"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""Evade"",
                     ""type"": ""Button"",
                     ""id"": ""736e9071-5358-4274-ba0b-91315110731e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""ShotGrappling"",
@@ -73,17 +73,33 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Attack1"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2942aea-337e-48b6-ae94-5d9fd84f9643"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""5231bcc5-4b54-47ef-b40c-84919315cb58"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Horizontal"",
+                    ""name"": ""Right"",
                     ""id"": ""4bcafa20-fe8d-4c73-a8f8-a57367a7b900"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveHorizontal"",
+                    ""action"": ""MoveRight"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -94,7 +110,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player_K/M"",
-                    ""action"": ""MoveHorizontal"",
+                    ""action"": ""MoveRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -105,18 +121,18 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player_K/M"",
-                    ""action"": ""MoveHorizontal"",
+                    ""action"": ""MoveRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Vetrical"",
+                    ""name"": ""Forward"",
                     ""id"": ""459eeb60-d505-4045-beb5-3fc97dc40574"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveVertical"",
+                    ""action"": ""MoveForward"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -126,8 +142,8 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/#(S)"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Player_K/M"",
-                    ""action"": ""MoveVertical"",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -138,7 +154,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player_K/M"",
-                    ""action"": ""MoveVertical"",
+                    ""action"": ""MoveForward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -149,7 +165,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player_K/M"",
-                    ""action"": ""Jump"",
+                    ""action"": ""SpaceToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -160,14 +176,14 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player_K/M"",
-                    ""action"": ""Dash"",
+                    ""action"": ""Evade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""aab9ca4a-5bac-4a2b-a3ec-b93988002c13"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player_K/M"",
@@ -178,7 +194,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ae93c2a4-88e2-4fbb-a2d2-67fd57c5de0f"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": ""Player_K/M"",
@@ -194,6 +210,28 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Player_K/M"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19b1c1f7-2549-4362-92cc-07a99be20e67"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d884234e-c3b3-41eb-8825-912d3dd4dea2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -232,13 +270,15 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
 }");
         // PlayerGrounded
         m_PlayerGrounded = asset.FindActionMap("PlayerGrounded", throwIfNotFound: true);
-        m_PlayerGrounded_MoveHorizontal = m_PlayerGrounded.FindAction("MoveHorizontal", throwIfNotFound: true);
-        m_PlayerGrounded_MoveVertical = m_PlayerGrounded.FindAction("MoveVertical", throwIfNotFound: true);
-        m_PlayerGrounded_Jump = m_PlayerGrounded.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerGrounded_Dash = m_PlayerGrounded.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerGrounded_MoveRight = m_PlayerGrounded.FindAction("MoveRight", throwIfNotFound: true);
+        m_PlayerGrounded_MoveForward = m_PlayerGrounded.FindAction("MoveForward", throwIfNotFound: true);
+        m_PlayerGrounded_SpaceToggle = m_PlayerGrounded.FindAction("SpaceToggle", throwIfNotFound: true);
+        m_PlayerGrounded_Evade = m_PlayerGrounded.FindAction("Evade", throwIfNotFound: true);
         m_PlayerGrounded_ShotGrappling = m_PlayerGrounded.FindAction("ShotGrappling", throwIfNotFound: true);
         m_PlayerGrounded_StopGrappling = m_PlayerGrounded.FindAction("StopGrappling", throwIfNotFound: true);
         m_PlayerGrounded_Pause = m_PlayerGrounded.FindAction("Pause", throwIfNotFound: true);
+        m_PlayerGrounded_Attack1 = m_PlayerGrounded.FindAction("Attack1", throwIfNotFound: true);
+        m_PlayerGrounded_Attack = m_PlayerGrounded.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,24 +328,28 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     // PlayerGrounded
     private readonly InputActionMap m_PlayerGrounded;
     private IPlayerGroundedActions m_PlayerGroundedActionsCallbackInterface;
-    private readonly InputAction m_PlayerGrounded_MoveHorizontal;
-    private readonly InputAction m_PlayerGrounded_MoveVertical;
-    private readonly InputAction m_PlayerGrounded_Jump;
-    private readonly InputAction m_PlayerGrounded_Dash;
+    private readonly InputAction m_PlayerGrounded_MoveRight;
+    private readonly InputAction m_PlayerGrounded_MoveForward;
+    private readonly InputAction m_PlayerGrounded_SpaceToggle;
+    private readonly InputAction m_PlayerGrounded_Evade;
     private readonly InputAction m_PlayerGrounded_ShotGrappling;
     private readonly InputAction m_PlayerGrounded_StopGrappling;
     private readonly InputAction m_PlayerGrounded_Pause;
+    private readonly InputAction m_PlayerGrounded_Attack1;
+    private readonly InputAction m_PlayerGrounded_Attack;
     public struct PlayerGroundedActions
     {
         private @PlayerInputAction m_Wrapper;
         public PlayerGroundedActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MoveHorizontal => m_Wrapper.m_PlayerGrounded_MoveHorizontal;
-        public InputAction @MoveVertical => m_Wrapper.m_PlayerGrounded_MoveVertical;
-        public InputAction @Jump => m_Wrapper.m_PlayerGrounded_Jump;
-        public InputAction @Dash => m_Wrapper.m_PlayerGrounded_Dash;
+        public InputAction @MoveRight => m_Wrapper.m_PlayerGrounded_MoveRight;
+        public InputAction @MoveForward => m_Wrapper.m_PlayerGrounded_MoveForward;
+        public InputAction @SpaceToggle => m_Wrapper.m_PlayerGrounded_SpaceToggle;
+        public InputAction @Evade => m_Wrapper.m_PlayerGrounded_Evade;
         public InputAction @ShotGrappling => m_Wrapper.m_PlayerGrounded_ShotGrappling;
         public InputAction @StopGrappling => m_Wrapper.m_PlayerGrounded_StopGrappling;
         public InputAction @Pause => m_Wrapper.m_PlayerGrounded_Pause;
+        public InputAction @Attack1 => m_Wrapper.m_PlayerGrounded_Attack1;
+        public InputAction @Attack => m_Wrapper.m_PlayerGrounded_Attack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGrounded; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -315,18 +359,18 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerGroundedActionsCallbackInterface != null)
             {
-                @MoveHorizontal.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveHorizontal;
-                @MoveHorizontal.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveHorizontal;
-                @MoveHorizontal.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveHorizontal;
-                @MoveVertical.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveVertical;
-                @MoveVertical.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveVertical;
-                @MoveVertical.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveVertical;
-                @Jump.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnJump;
-                @Dash.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnDash;
+                @MoveRight.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveRight;
+                @MoveRight.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveRight;
+                @MoveRight.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveRight;
+                @MoveForward.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveForward;
+                @MoveForward.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveForward;
+                @MoveForward.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnMoveForward;
+                @SpaceToggle.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnSpaceToggle;
+                @SpaceToggle.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnSpaceToggle;
+                @SpaceToggle.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnSpaceToggle;
+                @Evade.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnEvade;
+                @Evade.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnEvade;
+                @Evade.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnEvade;
                 @ShotGrappling.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnShotGrappling;
                 @ShotGrappling.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnShotGrappling;
                 @ShotGrappling.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnShotGrappling;
@@ -336,22 +380,28 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnPause;
+                @Attack1.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack1;
+                @Attack1.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack1;
+                @Attack1.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack1;
+                @Attack.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_PlayerGroundedActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @MoveHorizontal.started += instance.OnMoveHorizontal;
-                @MoveHorizontal.performed += instance.OnMoveHorizontal;
-                @MoveHorizontal.canceled += instance.OnMoveHorizontal;
-                @MoveVertical.started += instance.OnMoveVertical;
-                @MoveVertical.performed += instance.OnMoveVertical;
-                @MoveVertical.canceled += instance.OnMoveVertical;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
+                @MoveRight.started += instance.OnMoveRight;
+                @MoveRight.performed += instance.OnMoveRight;
+                @MoveRight.canceled += instance.OnMoveRight;
+                @MoveForward.started += instance.OnMoveForward;
+                @MoveForward.performed += instance.OnMoveForward;
+                @MoveForward.canceled += instance.OnMoveForward;
+                @SpaceToggle.started += instance.OnSpaceToggle;
+                @SpaceToggle.performed += instance.OnSpaceToggle;
+                @SpaceToggle.canceled += instance.OnSpaceToggle;
+                @Evade.started += instance.OnEvade;
+                @Evade.performed += instance.OnEvade;
+                @Evade.canceled += instance.OnEvade;
                 @ShotGrappling.started += instance.OnShotGrappling;
                 @ShotGrappling.performed += instance.OnShotGrappling;
                 @ShotGrappling.canceled += instance.OnShotGrappling;
@@ -361,6 +411,12 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Attack1.started += instance.OnAttack1;
+                @Attack1.performed += instance.OnAttack1;
+                @Attack1.canceled += instance.OnAttack1;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -385,12 +441,14 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     }
     public interface IPlayerGroundedActions
     {
-        void OnMoveHorizontal(InputAction.CallbackContext context);
-        void OnMoveVertical(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
+        void OnMoveRight(InputAction.CallbackContext context);
+        void OnMoveForward(InputAction.CallbackContext context);
+        void OnSpaceToggle(InputAction.CallbackContext context);
+        void OnEvade(InputAction.CallbackContext context);
         void OnShotGrappling(InputAction.CallbackContext context);
         void OnStopGrappling(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnAttack1(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }
