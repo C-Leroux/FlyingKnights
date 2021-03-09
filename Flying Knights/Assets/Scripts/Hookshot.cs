@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Hookshot : MonoBehaviour
 {
-    [SerializeField] private float hookSpeed = 450f;     // Initial speed of the hook
-    [SerializeField] private float hookAcceleration = 200f;     // Initial speed of the hook
+    [SerializeField] private float hookSpeed = 2000f;     // Initial speed of the hook
+    [SerializeField] private float hookAcceleration = 1500f;     // Initial speed of the hook
     [SerializeField] private GameObject hookObject = null;         // Extremity of the hook
     [SerializeField] private ReticleChanger reticle = null; // Reference to the reticle
-    [SerializeField] public float maxDist = 2500;     // Maximal distance of the hook
+    [SerializeField] public float maxDist = 250;     // Maximal distance of the hook
     [SerializeField] private GameObject hookSpawn = null;
-    [SerializeField] private float tractionForce = 15000f;
+    [SerializeField] private LayerMask IgnoreInRaycast;
 
     private LineRenderer lineRend = null;
     private bool isActive;     // True while the player hold the button
@@ -19,16 +19,17 @@ public class Hookshot : MonoBehaviour
     private CustomJoint joint = null;
     private Rigidbody hookRigidBody = null;
     private Vector3 dir = Vector3.zero;
-    
     private Vector3 originalHookScale;
-    private RaycastHit predictedHit;
+    private RaycastHit collisionDetector;
+    private Vector3 previousPos;
+    private Vector3 currentHookSpeed = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
         joint = GetComponent<CustomJoint>();
-        joint.SetActive(false);
         hookObject.transform.position = hookSpawn.transform.position;
+        previousPos = hookObject.transform.position;
         hookObject.SetActive(false);
         lineRend = GetComponent<LineRenderer>();
         lineRend.enabled = false;
@@ -36,46 +37,54 @@ public class Hookshot : MonoBehaviour
         originalHookScale = hookObject.transform.lossyScale;
     }
 
+    //This fixes the scale change when the hook object changes parent
     private void setHookGlobalScale()
     {
         hookObject.transform.localScale = Vector3.one;
         hookObject.transform.localScale = new Vector3(originalHookScale.x/hookObject.transform.lossyScale.x,originalHookScale.y/hookObject.transform.lossyScale.y,originalHookScale.z/hookObject.transform.lossyScale.z);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        
+        // Moving the hook object
         // While hook is launched but hasn't encountered an obstacle
         if (isActive && !isHooked)
         {
             // Continue forward
             MoveForward();
-            Physics.Raycast(hookObject.transform.position, dir, out predictedHit, 100);
-        }
-    }
 
-    void Update()
-    {
-        // updates the display positions of the line renderer
+            //we check for collision on the last frame
+            if(Physics.Raycast(previousPos, dir, out collisionDetector,(hookObject.transform.position-previousPos).magnitude,~IgnoreInRaycast))
+            {
+                Hooked(collisionDetector.collider);
+            }
+            
+        }
+        
+        // Updates the display positions of the line renderer
         lineRend.SetPosition(0,hookSpawn.transform.position);
         lineRend.SetPosition(1,hookObject.transform.position);
+
+        // This is needed to manually find collisions
+        previousPos = hookObject.transform.position;
     }
 
     public void LaunchHook()
     {
+        // Setting up the hookObject
         hookObject.SetActive(true);
         hookObject.transform.SetParent(null,true);
         setHookGlobalScale();
         hookObject.transform.position = hookSpawn.transform.position;
+        previousPos = hookObject.transform.position;
         hookRigidBody.velocity = Vector3.zero;
 
-
+        // Setting up the renderer for the line
         lineRend.enabled = true;
 
         // Get reticle point here
-        Vector3 target = reticle.GetRaycastHit();
-        dir = (target - hookSpawn.transform.position).normalized;
+        Vector3 targetVect = reticle.GetRaycastHit();
+        dir = (targetVect - hookSpawn.transform.position).normalized;
 
         
         // Set the hook active
@@ -83,18 +92,14 @@ public class Hookshot : MonoBehaviour
         isActive = true;
     }
 
-    public void Hooked(Collision col)
+    public void Hooked(Collider col)
     {
         isHooked = true;
-        target = col.collider;
+        target = col;
         hookObject.transform.SetParent(target.transform,true);
         setHookGlobalScale();
         Physics.IgnoreCollision(hookObject.GetComponent<Collider>(), target);
-        //this allows us to have perfect accuraty for the hooking point using hitscan technique
-        if(target==predictedHit.collider)
-        {
-            hookObject.transform.position = predictedHit.point;
-        }
+        hookObject.transform.position = collisionDetector.point;
         hookRigidBody.velocity = Vector3.zero;
 
         //traction force/rope
@@ -103,8 +108,7 @@ public class Hookshot : MonoBehaviour
 
     public void StopHook()
     {
-        if (!isActive)
-            return;
+        if (!isActive) return;
         if (isHooked)
         {
             Physics.IgnoreCollision(hookObject.GetComponent<Collider>(), target, false);
@@ -121,12 +125,16 @@ public class Hookshot : MonoBehaviour
         joint.SetActive(false);
 
         lineRend.enabled = false;
+        currentHookSpeed = Vector3.zero;
     }
 
     // Once the hook is launched, this method is called each frame to move it
     private void MoveForward()
     {
-        hookRigidBody.MovePosition(hookObject.transform.position + dir*hookAcceleration*Time.deltaTime);
+        currentHookSpeed += dir*hookAcceleration*Time.deltaTime;
+        if(currentHookSpeed.magnitude > hookSpeed) currentHookSpeed = hookSpeed*currentHookSpeed.normalized;
+
+        hookObject.transform.position += currentHookSpeed*Time.deltaTime;
         // If max distance is reached, the hook stop
         if (Vector3.Distance(hookObject.transform.position, transform.position) >= maxDist)
         {

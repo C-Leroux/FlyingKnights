@@ -38,22 +38,13 @@ public class GrapplingCooldown : MonoBehaviour
 
             //Initialize and start the cooldown
             inactiveTime += Time.deltaTime;
-            //first third of cooldown
-            if(inactiveTime > grapplingCooldown / 3f)
-            {
-                firstRenderer.color = readyColor;
-            }
-
-            //second third of cooldown
-            if(inactiveTime > 2 * grapplingCooldown / 3f)
-            {
-                secondRenderer.color = readyColor;
-            }
+            
 
             //cooldown is passed
             if(inactiveTime > grapplingCooldown)
             {
-            
+                firstRenderer.color = readyColor;
+                secondRenderer.color = readyColor;
                 thirdRenderer.color = readyColor;
                 inactiveTime = 0f;
                 isReady = true;

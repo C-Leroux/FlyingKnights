@@ -12,6 +12,7 @@ public class Pause : MonoBehaviour
     void Start()
     {
         Paused = false;
+        
 
     }
     public void ActivatePause()
@@ -19,6 +20,7 @@ public class Pause : MonoBehaviour
         
         MenuPause.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Time.timeScale = 0f;
         Paused = true;
     }
@@ -27,6 +29,7 @@ public class Pause : MonoBehaviour
         MenuPause.SetActive(false);
         Settings.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Time.timeScale = 1f;
         Paused = false;
     }
@@ -46,21 +49,18 @@ public class Pause : MonoBehaviour
 
     public void Menu()
     {
-        Debug.Log("Menu");
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 
     public void Quit()
     {
-        Debug.Log("Quit");
         Application.Quit();
     }
 
     public void Retry()
     {
-        Debug.Log("Retry");
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Preload");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

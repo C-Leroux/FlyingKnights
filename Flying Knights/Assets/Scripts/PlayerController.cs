@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     bool onGround = true; //are we currently on the ground
     private Rigidbody localRigidBody;
     private Hookshot hookShootScript;
-    private bool airAssisting = false; //air assist by pressing space when in the air
+    //private bool airAssisting = false; //air assist by pressing space when in the air
     private bool evadingTrigger = false; //evading can be done on the ground only, this is the trigger
     private float evadingTimeBegin ;
     private bool evading = false; //this means we are in the evading animation (locked)
@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
         hookShootScript = GetComponent<Hookshot>();
         raycastLayerToExclude = LayerMask.GetMask("Player");
         trailParticleEmitter.SetActive(false);
+        Cursor.visible = false;
     }
 
     public void FixedUpdate()
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
             {
                 if(onGround == false) impactCloudParticleEmitter.Play();
                 onGround = true;
-                airAssisting = false;
+                //airAssisting = false;
                 trailParticleEmitter.SetActive(false);
             }
             else
@@ -98,14 +99,14 @@ public class PlayerController : MonoBehaviour
             if(onGround&&spaceDown)
             {
                 trailParticleEmitter.SetActive(true);
-                airAssisting = true;
+                //airAssisting = true;
                 onGround = false;
                 localRigidBody.AddForce(Vector3.up * jumpForce * Physics.gravity.magnitude);
             }
             else
             {
-                trailParticleEmitter.SetActive(!airAssisting);
-                airAssisting = !airAssisting;
+                //trailParticleEmitter.SetActive(!airAssisting);
+                //airAssisting = !airAssisting;
             }
             
         }
@@ -144,7 +145,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    if(airAssisting)
+                    if(spaceDown)
                     {
                         localRigidBody.AddForce(desiredHeading * playerAirAccelerationAssisted);
                         localRigidBody.AddForce(Vector3.up * playerAirAssistVerticalForce * Physics.gravity.magnitude);
@@ -178,6 +179,7 @@ public class PlayerController : MonoBehaviour
     {
         spaceTrigger = !spaceTrigger;
         spaceDown = !spaceDown;
+        trailParticleEmitter.SetActive(spaceDown);
     }
 
     public void OnEvade()
@@ -187,8 +189,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnShotGrappling()
     {
-        GrapplingHookCooldownScript.isReady = false;
-        hookShootScript.LaunchHook();
+        if(GrapplingHookCooldownScript.isReady )
+        {
+            GrapplingHookCooldownScript.isReady = false;
+            hookShootScript.LaunchHook();
+        }
     }
 
     public void OnStopGrappling()

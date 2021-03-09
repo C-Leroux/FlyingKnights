@@ -47,20 +47,13 @@ public class ReticleChanger : MonoBehaviour
 
     public Vector3 GetRaycastHit()
     {
-        if (raycast)
+        if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward, out raycastHit, maxRange,~IgnoreInRaycast))
         {
             return raycastHit.point;
         }
         else
         {
-            if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward, out raycastHit, maxRange,~IgnoreInRaycast))
-            {
-                return raycastHit.point;
-            }
-            else
-            {
-                return localCamera.transform.position + 100*(localCamera.transform.forward);
-            }
+            return localCamera.transform.position + 100*(localCamera.transform.forward);
         }
     }
 }
