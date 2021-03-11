@@ -47,6 +47,10 @@ public class Colossus : MonoBehaviour
     private void FixedUpdate()
     {
         FSM.UpdateFSM();
+        if(HP == 0)
+        {
+            Die();
+        }
     }
 
     // Return true if the player is within the sphere detection of the colossus
@@ -88,5 +92,26 @@ public class Colossus : MonoBehaviour
     {
         attacking.QuitAttackMode();
     }
+    #endregion
+
+    #region Setters
+
+    //Fonction appelee quand le colosse recoit une attaque
+    public void TakeDamage(float v)
+    {
+        HP -= v;
+        if(HP < 0)
+        {
+            HP = 0;
+        }
+    }
+
+    //Fonction appelee a la mort du colosse
+    public void Die()
+    {
+        //TODO Apply Death function
+        Destroy(this.gameObject);
+    }
+
     #endregion
 }
