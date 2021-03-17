@@ -12,6 +12,11 @@ public class Colossus : MonoBehaviour
     private Attacking attacking;
     [SerializeField]
     private float rangeDetection;
+    [SerializeField]
+    private DetectPlayer leftDetect;
+    [SerializeField]
+    private DetectPlayer rightDetect;
+
 
     [HideInInspector]
     public bool isAttacking = false;
@@ -26,6 +31,7 @@ public class Colossus : MonoBehaviour
     [SerializeField]
     private float reactionTime;
     #endregion
+
     public StateMachine<Colossus> FSM
     {
         get
@@ -53,6 +59,7 @@ public class Colossus : MonoBehaviour
         }
     }
 
+    #region Detection
     // Return true if the player is within the sphere detection of the colossus
     public bool DetectPlayer()
     {
@@ -67,6 +74,19 @@ public class Colossus : MonoBehaviour
         }
         return false;
     }
+
+    // Return true if the player enter the left collider
+    public bool DetectLeft()
+    {
+        return leftDetect.IsPlayerDetected();
+    }
+
+    // Return true if the player enter the left collider
+    public bool DetectRight()
+    {
+        return rightDetect.IsPlayerDetected();
+    }
+    #endregion
 
     #region Wandering
     public void StartWandering()
@@ -91,6 +111,17 @@ public class Colossus : MonoBehaviour
     public void StopAttacking()
     {
         attacking.QuitAttackMode();
+    }
+
+    // If the colossus is not in an attack animation, start a new one
+    // If dir == 0 : left
+    // If dir == 1 : right
+    public void TryAttack(int dir)
+    {
+        if (dir == 0)
+            Debug.Log("Attack left");
+        if (dir == 1)
+            Debug.Log("Attack right");
     }
     #endregion
 

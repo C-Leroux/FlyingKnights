@@ -33,12 +33,24 @@ public class AttackState : State<Colossus>
     public void Execute(Colossus colossus)
     {
         // If not attacking, move in direction of the player
-
         // If player no longer detected, enter Wander state
         if (!colossus.DetectPlayer())
             colossus.FSM.ChangeState(WanderState.Instance);
+        else
+        {
+            // If the player enter a collider, initiate an attack
+            if (colossus.DetectLeft())
+            {
+                // Attack left
+                colossus.TryAttack(0);
+            }
+            else if (colossus.DetectRight())
+            {
+                // Attack right
+                colossus.TryAttack(1);
+            }
 
-        // If the player enter a collider, initiate an attack
+        }
     }
 
     public void Exit(Colossus colossus)
