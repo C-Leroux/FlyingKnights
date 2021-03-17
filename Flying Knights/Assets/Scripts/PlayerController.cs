@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The force when evading the player")]
     [SerializeField] private float playerEvadeForce = 200000f;
 
-    [Tooltip("The time for which we are lock during evasion")]
+    [Tooltip("The time for which we are locked during evasion")]
     [SerializeField] private float evasionTime = 1f;
 
     [Tooltip("The reticle script")]
@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("The particle system that makes the impact cloud")]
     [SerializeField] private ParticleSystem impactCloudParticleEmitter;
+
+    [Tooltip("The animator for the player model")]
+    [SerializeField] private Animator playerAnimator;
+
+    
 
     [SerializeField] private Pause pause;
     
@@ -59,6 +64,8 @@ public class PlayerController : MonoBehaviour
     private bool evading = false; //this means we are in the evading animation (locked)
     private LayerMask raycastLayerToExclude;
     private RaycastHit groundHit;
+    private float directionFactor = 0f;
+    private float velocityFactor = 0f;
 
     void Start()
     {
@@ -74,7 +81,6 @@ public class PlayerController : MonoBehaviour
         //are we in the air or on the ground ?
         if(Physics.Raycast(transform.position, -transform.up, out groundHit, 1.4f,~raycastLayerToExclude))
         {
-            Debug.DrawLine(transform.position,transform.position-transform.up*1.4f,Color.cyan,0.2f);
             if(localRigidBody.velocity.y*localRigidBody.velocity.y <= 0.0001 && !hookShootScript.GetisHooked() )
             {
                 if(onGround == false) impactCloudParticleEmitter.Play();
@@ -102,11 +108,7 @@ public class PlayerController : MonoBehaviour
                 //airAssisting = true;
                 onGround = false;
                 localRigidBody.AddForce(Vector3.up * jumpForce * Physics.gravity.magnitude);
-            }
-            else
-            {
-                //trailParticleEmitter.SetActive(!airAssisting);
-                //airAssisting = !airAssisting;
+                playerAnimator.SetTrigger("JumpTrigger");
             }
             
         }
@@ -154,17 +156,60 @@ public class PlayerController : MonoBehaviour
                     {
                         localRigidBody.AddForce(desiredHeading * playerAirAccelerationBase);
                     }
+                    
+                    //here we are hooked, which will override the heading and rotation to get a realistic effect
+                    if(hookShootScript.GetisHooked())
+                    {
+                        desiredHeading = Vector3.ProjectOnPlane(localRigidBody.velocity,Vector3.up).normalized;
+                    }
                 }
+
+                //setting the forward animation
+                if(onGround)
+                {
+                    velocityFactor = localRigidBody.velocity.magnitude*1.3f;
+                    if(velocityFactor > playerMaxGroundSpeed*0.8f) velocityFactor = playerMaxGroundSpeed*0.8f;
+                    velocityFactor /= playerMaxGroundSpeed*0.8f;
+                }
+            }
+            else
+            {
+                //setting the forward animation
+                velocityFactor = 0;
             }
         }
         
-        
-        
 
         //rotating toward heading
-        transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,desiredHeading,rotationSpeed*Time.deltaTime,0),Vector3.up).normalized,Vector3.up);
+        if(hookShootScript.GetisHooked())
+        {
+            transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,desiredHeading,rotationSpeed*8*Time.deltaTime,0),Vector3.up).normalized,Vector3.up);
+        }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,desiredHeading,rotationSpeed*Time.deltaTime,0),Vector3.up).normalized,Vector3.up);
+        }
+        
+        //setting the direction of the animation
+        if(onGround)
+        {
+            directionFactor = Vector3.SignedAngle(desiredHeading,transform.forward,-Vector3.up)*1.5f;
+            if(directionFactor<-90f) directionFactor = -90f;
+            if(directionFactor>90f) directionFactor = 90f;
+            directionFactor/=90f;
+        }
 
     }
+
+    public void Update()
+    {
+        playerAnimator.SetFloat("Direction",directionFactor);
+        playerAnimator.SetFloat("Velocity",velocityFactor);
+        playerAnimator.SetBool("OnGround",onGround);
+
+        
+    }
+
 
     public void OnMoveRight(InputValue val)
     {
@@ -203,7 +248,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause()
     {
-        //Time.timeScale = 0f;
         if (pause.Paused)
         {
             pause.Resume();
