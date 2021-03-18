@@ -14,7 +14,7 @@ public class WeakPoint : MonoBehaviour
         if(collision.tag == "PlayerAttack")
         {
             Debug.Log("Critical hit !");
-            //colossus.TakeDamage(collision.gameObject.GetComponent<Player>().Atk);
+            colossus.TakeDamage(600);
 
         }
     }
