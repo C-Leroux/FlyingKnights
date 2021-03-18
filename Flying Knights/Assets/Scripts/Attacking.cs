@@ -13,6 +13,8 @@ public class Attacking : MonoBehaviour
     [SerializeField]
     private float attackRange;
 
+    [SerializeField] private Animator colossAnim;
+
     bool isChasing = false;
     // Start is called before the first frame update
     void Start()

@@ -19,6 +19,8 @@ public class Colossus : MonoBehaviour
     [SerializeField]
     private ParticleSystem HitFX;
 
+    [SerializeField] 
+    private Animator colossusAnim;
 
     [HideInInspector]
     public bool isAttacking = false;
@@ -50,6 +52,7 @@ public class Colossus : MonoBehaviour
     {
         fsm = new StateMachine<Colossus>(this); ;
         fsm.ChangeState(WanderState.Instance);
+        colossusAnim = this.GetComponent<Animator>();    // bool: Walk; trigger: Die, Attack;
     }
 
     private void FixedUpdate()
@@ -93,11 +96,13 @@ public class Colossus : MonoBehaviour
     #region Wandering
     public void StartWandering()
     {
+        colossusAnim.SetBool("Walk", true);
         wandering.StartWandering();
     }
 
     public void StopWandering()
     {
+        colossusAnim.SetBool("Walk", false);
         wandering.StopWandering();
     }
 
