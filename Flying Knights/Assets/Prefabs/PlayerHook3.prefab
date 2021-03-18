@@ -1064,21 +1064,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4841815246613613068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5760381557821301422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e45d71043f53fe84e82e5005003eeba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HookObject: {fileID: 6531588636547594803}
-  hookShootScript: {fileID: 6531588637113392028}
-  armReturnSpeed: 2
 --- !u!1 &4841815246756179904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,6 +1108,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4841815246613613068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5760381557821301422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45d71043f53fe84e82e5005003eeba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HookObject: {fileID: 6531588636547594803}
+  hookShootScript: {fileID: 6531588637113392028}
+  armReturnSpeed: 2
 --- !u!1 &6531588635231789267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,7 +1357,7 @@ MonoBehaviour:
   thirdRenderer: {fileID: 6531588636915653375}
   IgnoreInRaycast:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   untargettingSprite: {fileID: 21300000, guid: 651fece48186c194289618cee4007188, type: 3}
   targettingSprite: {fileID: 21300000, guid: c8582c711e70b8d4aae251d5e6a0d4a9, type: 3}
   maxRange: 10
