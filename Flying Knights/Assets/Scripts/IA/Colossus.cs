@@ -158,6 +158,7 @@ public class Colossus : MonoBehaviour
         //Destroy(this.gameObject);     
         colossusAnim.SetTrigger("Die");
         scoreCounter.addScore(500);
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 
     public bool IsDead()
