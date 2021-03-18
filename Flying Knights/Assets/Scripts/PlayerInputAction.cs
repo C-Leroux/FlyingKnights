@@ -75,20 +75,12 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Attack1"",
-                    ""type"": ""Button"",
-                    ""id"": ""e2942aea-337e-48b6-ae94-5d9fd84f9643"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""5231bcc5-4b54-47ef-b40c-84919315cb58"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -215,17 +207,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""19b1c1f7-2549-4362-92cc-07a99be20e67"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d884234e-c3b3-41eb-8825-912d3dd4dea2"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -277,7 +258,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         m_PlayerGrounded_ShotGrappling = m_PlayerGrounded.FindAction("ShotGrappling", throwIfNotFound: true);
         m_PlayerGrounded_StopGrappling = m_PlayerGrounded.FindAction("StopGrappling", throwIfNotFound: true);
         m_PlayerGrounded_Pause = m_PlayerGrounded.FindAction("Pause", throwIfNotFound: true);
-        m_PlayerGrounded_Attack1 = m_PlayerGrounded.FindAction("Attack1", throwIfNotFound: true);
         m_PlayerGrounded_Attack = m_PlayerGrounded.FindAction("Attack", throwIfNotFound: true);
     }
 
@@ -335,7 +315,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerGrounded_ShotGrappling;
     private readonly InputAction m_PlayerGrounded_StopGrappling;
     private readonly InputAction m_PlayerGrounded_Pause;
-    private readonly InputAction m_PlayerGrounded_Attack1;
     private readonly InputAction m_PlayerGrounded_Attack;
     public struct PlayerGroundedActions
     {
@@ -348,7 +327,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         public InputAction @ShotGrappling => m_Wrapper.m_PlayerGrounded_ShotGrappling;
         public InputAction @StopGrappling => m_Wrapper.m_PlayerGrounded_StopGrappling;
         public InputAction @Pause => m_Wrapper.m_PlayerGrounded_Pause;
-        public InputAction @Attack1 => m_Wrapper.m_PlayerGrounded_Attack1;
         public InputAction @Attack => m_Wrapper.m_PlayerGrounded_Attack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGrounded; }
         public void Enable() { Get().Enable(); }
@@ -380,9 +358,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnPause;
-                @Attack1.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack1;
-                @Attack1.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack1;
-                @Attack1.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack1;
                 @Attack.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack;
@@ -411,9 +386,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
-                @Attack1.started += instance.OnAttack1;
-                @Attack1.performed += instance.OnAttack1;
-                @Attack1.canceled += instance.OnAttack1;
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
@@ -448,7 +420,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         void OnShotGrappling(InputAction.CallbackContext context);
         void OnStopGrappling(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnAttack1(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
     }
 }

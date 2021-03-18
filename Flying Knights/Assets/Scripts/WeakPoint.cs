@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WeakPoint : MonoBehaviour
 {
-    [SerializeField]
-    Colossus colossus;
+    [SerializeField] Colossus colossus;
     private void Start()
     {
         colossus = GetComponentInParent<Colossus>();
