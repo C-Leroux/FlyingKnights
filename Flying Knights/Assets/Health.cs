@@ -22,13 +22,6 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TakeDamage(1);
-       
-    }
-
-    void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
 
         healthBar.SetHealth(currentHealth);
         if (healthBar.getHealth() <= 0)
@@ -39,6 +32,12 @@ public class Health : MonoBehaviour
             Time.timeScale = 0f;
             endText.text = "Game Over ! \n votre score est de " + score.scoreValue;
         }
+       
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
     }
 }
 

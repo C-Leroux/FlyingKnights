@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class timer : MonoBehaviour
 {
-    public  float timeStart = 60;
+    [SerializeField] private float timeStart = 60;
     public Text textScore;
     public GameObject endScreen;
     public Score score;
@@ -14,7 +14,6 @@ public class timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeStart = 60;
         textScore.text = timeStart.ToString();
         Time.timeScale = 1f;
     }
@@ -22,10 +21,6 @@ public class timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeStart < 30 && timeStart>0)
-        {
-            score.addScore(10);
-        }
         timeStart = timeStart - Time.deltaTime;
         int currentTime= (int)Mathf.Round(timeStart);
         int min = currentTime / 60;
