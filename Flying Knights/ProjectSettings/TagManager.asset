@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Colossus
   - PlayerAttack
+  - ColossusAttack
   layers:
   - Default
   - TransparentFX
