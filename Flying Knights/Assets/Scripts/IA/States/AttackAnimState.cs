@@ -25,6 +25,8 @@ public class AttackAnimState : State<Colossus>
     public void Enter(Colossus colossus)
     {
         colossus.AttackAnim();
+        colossus.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
     }
 
     public void Execute(Colossus colossus)
@@ -35,6 +37,7 @@ public class AttackAnimState : State<Colossus>
 
     public void Exit(Colossus colossus)
     {
+        colossus.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
     }
 

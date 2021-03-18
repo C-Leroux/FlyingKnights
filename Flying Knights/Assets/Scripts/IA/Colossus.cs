@@ -16,6 +16,9 @@ public class Colossus : MonoBehaviour
     [SerializeField] private Animator colossusAnim;
 
     [SerializeField] private Score scoreCounter;
+    [SerializeField] private GameObject attackAOE = null;
+    [SerializeField] private float attackDelay = 0f;
+    [SerializeField] private float attackEndDelay = 0f;
 
     private float curReaction = 0;
     private StateMachine<Colossus> fsm;
@@ -119,7 +122,20 @@ public class Colossus : MonoBehaviour
     public void AttackAnim()
     {
         colossusAnim.SetTrigger("Attack");
+        Invoke("activateAOE",attackDelay);
+        Invoke("deActivateAOE",attackEndDelay);
         curReaction = reactionTime;
+    }
+
+    private void activateAOE()
+    {
+        attackAOE.SetActive(true);
+        
+    }
+    private void deActivateAOE()
+    {
+        attackAOE.SetActive(false);
+
     }
 
     public bool IsRecovered()
