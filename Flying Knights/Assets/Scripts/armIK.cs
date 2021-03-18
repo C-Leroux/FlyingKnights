@@ -41,7 +41,6 @@ public class armIK : MonoBehaviour
                 weight -= armReturnSpeed*Time.deltaTime;
                 if(weight < 0) weight = 0;
             }
-            Debug.Log(Time.deltaTime);
         }
 
         
