@@ -4,27 +4,21 @@ using UnityEngine;
 using UnityEngine.VFX;
 public class Colossus : MonoBehaviour
 {
-    private StateMachine<Colossus> fsm;
 
-    [SerializeField]
-    private Wandering wandering;
-    [SerializeField]
-    private Attacking attacking;
-    [SerializeField]
-    private float rangeDetection;
-    [SerializeField]
-    private DetectPlayer leftDetect;
-    [SerializeField]
-    private DetectPlayer rightDetect;
-    [SerializeField]
-    private ParticleSystem HitFX;
-    [SerializeField] 
-    private Animator colossusAnim;
+    [SerializeField] private Wandering wandering;
+    [SerializeField] private Attacking attacking;
+    [SerializeField] private float rangeDetection;
+    [SerializeField] private DetectPlayer leftDetect;
+    [SerializeField] private DetectPlayer rightDetect;
+    [SerializeField] private ParticleSystem HitFX;
+
+    [HideInInspector] public bool isAttacking = false;
+    [SerializeField] private Animator colossusAnim;
+
+    [SerializeField] private Score scoreCounter;
 
     private float curReaction = 0;
-
-    [HideInInspector]
-    public bool isAttacking = false;
+    private StateMachine<Colossus> fsm;
 
     #region Statistiques
     [SerializeField]
@@ -62,6 +56,7 @@ public class Colossus : MonoBehaviour
         if(HP == 0)
         {
             Die();
+            HP = -1;
         }
 
         if (curReaction > 0)
@@ -116,11 +111,13 @@ public class Colossus : MonoBehaviour
 
     public void StartAttacking()
     {
+        colossusAnim.SetBool("Walk", true);
         attacking.EnterAttackMode();
     }
 
     public void StopAttacking()
     {
+        colossusAnim.SetBool("Walk", false);
         attacking.QuitAttackMode();
     }
 
@@ -163,7 +160,9 @@ public class Colossus : MonoBehaviour
     public void Die()
     {
         //TODO Apply Death function
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);     
+        colossusAnim.SetTrigger("Die");
+        scoreCounter.addScore(500);
     }
 
     #endregion

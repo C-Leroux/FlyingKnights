@@ -62,20 +62,12 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Attack1",
-                    "type": "Button",
-                    "id": "e2942aea-337e-48b6-ae94-5d9fd84f9643",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "5231bcc5-4b54-47ef-b40c-84919315cb58",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -197,17 +189,6 @@
                     "processors": "",
                     "groups": "Player_K/M",
                     "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "19b1c1f7-2549-4362-92cc-07a99be20e67",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
