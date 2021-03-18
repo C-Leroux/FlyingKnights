@@ -116,25 +116,15 @@ public class Colossus : MonoBehaviour
         attacking.QuitAttackMode();
     }
 
-    // If the colossus is not in an attack animation, start a new one
-    // If dir == 0 : left
-    // If dir == 1 : right
-    public void TryAttack(int dir)
+    public void AttackAnim()
     {
-        if (curReaction > 0)
-            return;
-        if (dir == 0)
-        {
-            Debug.Log("Attack left");
-            colossusAnim.SetTrigger("Attack");
-            curReaction = reactionTime;
-        }
-        if (dir == 1)
-        {
-            Debug.Log("Attack right");
-            colossusAnim.SetTrigger("Attack");
-            curReaction = reactionTime;
-        }
+        colossusAnim.SetTrigger("Attack");
+        curReaction = reactionTime;
+    }
+
+    public bool IsRecovered()
+    {
+        return curReaction < 0;
     }
     #endregion
 
