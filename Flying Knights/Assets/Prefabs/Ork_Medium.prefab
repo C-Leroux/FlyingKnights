@@ -936,7 +936,7 @@ Animator:
   m_GameObject: {fileID: 1293356793197548}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a50cd06a0668d1a418d586a2944e3ed5, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 910bce7c5c5c28a4990a26a20d53b1bf, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -996,12 +996,13 @@ MonoBehaviour:
   rangeDetection: 60
   leftDetect: {fileID: 6150264856880329046}
   rightDetect: {fileID: 1403942303206574741}
-  HitFX: {fileID: 0}
+  HitFX: {fileID: 4243666066669088224}
+  colossusAnim: {fileID: 95824196730489130}
   isAttacking: 0
   HP: 500
   Attack: 60
   mouvementSpeed: 0
-  reactionTime: 0
+  reactionTime: 4
 --- !u!114 &7752859564174443227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,6 +1018,7 @@ MonoBehaviour:
   navmeshAgent: {fileID: 9154712549547794667}
   target: {fileID: 0}
   attackRange: 5
+  colossAnim: {fileID: 0}
 --- !u!54 &1642975216
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3862,6 +3864,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d31a5b9b348544439d8079453188ecc, type: 3}
+--- !u!198 &4243666066669088224 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198694231397964106, guid: 5d31a5b9b348544439d8079453188ecc,
+    type: 3}
+  m_PrefabInstance: {fileID: 4045746029173519530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4050387557149443756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4713133681390086, guid: 5d31a5b9b348544439d8079453188ecc,

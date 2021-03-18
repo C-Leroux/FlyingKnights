@@ -18,9 +18,10 @@ public class Colossus : MonoBehaviour
     private DetectPlayer rightDetect;
     [SerializeField]
     private ParticleSystem HitFX;
-
     [SerializeField] 
     private Animator colossusAnim;
+
+    private float curReaction = 0;
 
     [HideInInspector]
     public bool isAttacking = false;
@@ -62,6 +63,9 @@ public class Colossus : MonoBehaviour
         {
             Die();
         }
+
+        if (curReaction > 0)
+            curReaction -= Time.deltaTime;
     }
 
     #region Detection
@@ -125,10 +129,20 @@ public class Colossus : MonoBehaviour
     // If dir == 1 : right
     public void TryAttack(int dir)
     {
+        if (curReaction > 0)
+            return;
         if (dir == 0)
+        {
             Debug.Log("Attack left");
+            colossusAnim.SetTrigger("Attack");
+            curReaction = reactionTime;
+        }
         if (dir == 1)
+        {
             Debug.Log("Attack right");
+            colossusAnim.SetTrigger("Attack");
+            curReaction = reactionTime;
+        }
     }
     #endregion
 
