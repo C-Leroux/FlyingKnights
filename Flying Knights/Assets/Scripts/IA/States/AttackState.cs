@@ -50,6 +50,9 @@ public class AttackState : State<Colossus>
                 colossus.TryAttack(1);
             }
 
+            // Check if colossus is dead
+            if (colossus.IsDead())
+                colossus.FSM.ChangeState(DeathState.Instance);
         }
     }
 

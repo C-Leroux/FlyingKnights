@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathState : MonoBehaviour
+public class DeathState : State<Colossus>
 {
     private static DeathState instance = null;
 
