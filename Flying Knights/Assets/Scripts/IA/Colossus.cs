@@ -53,11 +53,6 @@ public class Colossus : MonoBehaviour
     private void FixedUpdate()
     {
         FSM.UpdateFSM();
-        if(HP == 0)
-        {
-            Die();
-            HP = -1;
-        }
 
         if (curReaction > 0)
             curReaction -= Time.deltaTime;
@@ -163,6 +158,11 @@ public class Colossus : MonoBehaviour
         //Destroy(this.gameObject);     
         colossusAnim.SetTrigger("Die");
         scoreCounter.addScore(500);
+    }
+
+    public bool IsDead()
+    {
+        return HP == 0;
     }
 
     #endregion
