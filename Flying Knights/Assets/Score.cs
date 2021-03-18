@@ -29,6 +29,6 @@ public class Score : MonoBehaviour
 
     public void subScore(int adding)
     {
-        scoreValue += adding;
+        scoreValue -= adding;
     }
 }
