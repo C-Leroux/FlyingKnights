@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.VFX;
 public class Colossus : MonoBehaviour
 {
     private StateMachine<Colossus> fsm;
@@ -16,6 +16,8 @@ public class Colossus : MonoBehaviour
     private DetectPlayer leftDetect;
     [SerializeField]
     private DetectPlayer rightDetect;
+    [SerializeField]
+    private ParticleSystem HitFX;
 
 
     [HideInInspector]
@@ -131,6 +133,7 @@ public class Colossus : MonoBehaviour
     public void TakeDamage(float v)
     {
         HP -= v;
+        HitFX.Play();
         if(HP < 0)
         {
             HP = 0;
