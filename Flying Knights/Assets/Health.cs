@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
-    public GameObject DeathScreen;
-    public Text endText;
-    public HealthBar healthBar;
-    public Score score;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private float invincibilityLength = 1.5f;
+    [SerializeField] private GameObject DeathScreen;
+    [SerializeField] private Text endText;
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private Score score;
+    private int currentHealth;
+    private bool invincible = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +40,25 @@ public class Health : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        if(!invincible)
+        {
+            currentHealth -= damage;
+            invincible = true;
+            Invoke("DisableInvincibility",invincibilityLength);
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if(collider.gameObject.tag == "ColossusAttack")
+        {
+            TakeDamage(maxHealth/2);
+        }
+    }
+
+    void DisableInvincibility()
+    {
+        invincible = false;
     }
 }
 

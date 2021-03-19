@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
         //rotating toward heading
         if(hookShootScript.GetisHooked())
         {
-            transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,desiredHeading,rotationSpeed*8*Time.deltaTime,0),Vector3.up).normalized,Vector3.up);
+            transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,localRigidBody.velocity,rotationSpeed*12*Time.deltaTime,0),Vector3.up).normalized,Vector3.up);
         }
         else
         {

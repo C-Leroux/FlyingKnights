@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WeakPoint : MonoBehaviour
 {
-    [SerializeField]
-    Colossus colossus;
+    [SerializeField] Colossus colossus;
     private void Start()
     {
         colossus = GetComponentInParent<Colossus>();
@@ -15,7 +14,7 @@ public class WeakPoint : MonoBehaviour
         if(collision.tag == "PlayerAttack")
         {
             Debug.Log("Critical hit !");
-            //colossus.TakeDamage(collision.gameObject.GetComponent<Player>().Atk);
+            colossus.TakeDamage(600);
 
         }
     }
