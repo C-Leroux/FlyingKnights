@@ -81,28 +81,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5963089778839192207, guid: 51c1c04146bac56469780953edd2418c,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.4095906
-      objectReference: {fileID: 0}
-    - target: {fileID: 5963089778839192207, guid: 51c1c04146bac56469780953edd2418c,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1.4575454
-      objectReference: {fileID: 0}
-    - target: {fileID: 5963089778839192207, guid: 51c1c04146bac56469780953edd2418c,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.07673645
-      objectReference: {fileID: 0}
-    - target: {fileID: 5963089778839192207, guid: 51c1c04146bac56469780953edd2418c,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.037002563
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5963089778839192207, guid: 51c1c04146bac56469780953edd2418c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51c1c04146bac56469780953edd2418c, type: 3}
 --- !u!1 &4261294864667901204 stripped
 GameObject:

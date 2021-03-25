@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Wandering : MonoBehaviour
 {
-    float walkSpeed = 5f;
+    [SerializeField] float walkSpeed = 5f;
     bool enable = false;
     bool isWandering = false;
     private NavMeshAgent navmeshAgent;
@@ -15,7 +15,7 @@ public class Wandering : MonoBehaviour
     void Start()
     {
         navmeshAgent = GetComponent<NavMeshAgent>();
-        walkSpeed = navmeshAgent.speed;
+        navmeshAgent.speed = walkSpeed;
     }
 
     // Update is called once per frame

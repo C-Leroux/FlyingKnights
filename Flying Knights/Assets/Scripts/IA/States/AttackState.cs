@@ -42,15 +42,27 @@ public class AttackState : State<Colossus>
             if (colossus.DetectLeft())
             {
                 // Attack left
-                colossus.TryAttack(0);
+                Attack(colossus);
             }
             else if (colossus.DetectRight())
             {
                 // Attack right
-                colossus.TryAttack(1);
+                Attack(colossus);
             }
 
+            // Check if colossus is dead
+            if (colossus.IsDead())
+                colossus.FSM.ChangeState(DeathState.Instance);
         }
+    }
+
+
+    // If the colossus is not in an attack animation, start a new one
+    // If dir == 0 : left
+    // If dir == 1 : right
+    public void Attack(Colossus colossus)
+    {
+        colossus.FSM.ChangeState(AttackAnimState.Instance);
     }
 
     public void Exit(Colossus colossus)

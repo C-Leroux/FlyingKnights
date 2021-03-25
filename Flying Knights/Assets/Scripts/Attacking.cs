@@ -13,8 +13,6 @@ public class Attacking : MonoBehaviour
     [SerializeField]
     private float attackRange;
 
-    [SerializeField] private Animator colossAnim;
-
     bool isChasing = false;
     // Start is called before the first frame update
     void Start()
@@ -39,5 +37,6 @@ public class Attacking : MonoBehaviour
     public void QuitAttackMode()
     {
         isChasing = false;
+        navmeshAgent.SetDestination(transform.position);
     }
 }

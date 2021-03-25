@@ -4,27 +4,24 @@ using UnityEngine;
 using UnityEngine.VFX;
 public class Colossus : MonoBehaviour
 {
-    private StateMachine<Colossus> fsm;
 
-    [SerializeField]
-    private Wandering wandering;
-    [SerializeField]
-    private Attacking attacking;
-    [SerializeField]
-    private float rangeDetection;
-    [SerializeField]
-    private DetectPlayer leftDetect;
-    [SerializeField]
-    private DetectPlayer rightDetect;
-    [SerializeField]
-    private ParticleSystem HitFX;
-    [SerializeField] 
-    private Animator colossusAnim;
+    [SerializeField] private Wandering wandering;
+    [SerializeField] private Attacking attacking;
+    [SerializeField] private float rangeDetection;
+    [SerializeField] private DetectPlayer leftDetect;
+    [SerializeField] private DetectPlayer rightDetect;
+    [SerializeField] private ParticleSystem HitFX;
+
+    [HideInInspector] public bool isAttacking = false;
+    [SerializeField] private Animator colossusAnim;
+
+    [SerializeField] private Score scoreCounter;
+    [SerializeField] private GameObject attackAOE = null;
+    [SerializeField] private float attackDelay = 0f;
+    [SerializeField] private float attackEndDelay = 0f;
 
     private float curReaction = 0;
-
-    [HideInInspector]
-    public bool isAttacking = false;
+    private StateMachine<Colossus> fsm;
 
     #region Statistiques
     [SerializeField]
@@ -59,10 +56,6 @@ public class Colossus : MonoBehaviour
     private void FixedUpdate()
     {
         FSM.UpdateFSM();
-        if(HP == 0)
-        {
-            Die();
-        }
 
         if (curReaction > 0)
             curReaction -= Time.deltaTime;
@@ -116,33 +109,38 @@ public class Colossus : MonoBehaviour
 
     public void StartAttacking()
     {
+        colossusAnim.SetBool("Walk", true);
         attacking.EnterAttackMode();
     }
 
     public void StopAttacking()
     {
+        colossusAnim.SetBool("Walk", false);
         attacking.QuitAttackMode();
     }
 
-    // If the colossus is not in an attack animation, start a new one
-    // If dir == 0 : left
-    // If dir == 1 : right
-    public void TryAttack(int dir)
+    public void AttackAnim()
     {
-        if (curReaction > 0)
-            return;
-        if (dir == 0)
-        {
-            Debug.Log("Attack left");
-            colossusAnim.SetTrigger("Attack");
-            curReaction = reactionTime;
-        }
-        if (dir == 1)
-        {
-            Debug.Log("Attack right");
-            colossusAnim.SetTrigger("Attack");
-            curReaction = reactionTime;
-        }
+        colossusAnim.SetTrigger("Attack");
+        Invoke("activateAOE",attackDelay);
+        Invoke("deActivateAOE",attackEndDelay);
+        curReaction = reactionTime;
+    }
+
+    private void activateAOE()
+    {
+        attackAOE.SetActive(true);
+        
+    }
+    private void deActivateAOE()
+    {
+        attackAOE.SetActive(false);
+
+    }
+
+    public bool IsRecovered()
+    {
+        return curReaction < 0;
     }
     #endregion
 
@@ -163,7 +161,15 @@ public class Colossus : MonoBehaviour
     public void Die()
     {
         //TODO Apply Death function
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);     
+        colossusAnim.SetTrigger("Die");
+        scoreCounter.addScore(500);
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public bool IsDead()
+    {
+        return HP == 0;
     }
 
     #endregion
