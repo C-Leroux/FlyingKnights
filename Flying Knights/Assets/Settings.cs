@@ -11,11 +11,11 @@ public class Settings : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        AudioMixer.SetFloat("MusicVolume", volume * 100 - 80);
+        AudioMixer.SetFloat("MusicVolume", volume);
     }
     public void SetEffectVolume(float volume)
     {
-        AudioMixer.SetFloat("EffectVolume", volume * 100 - 80);
+        AudioMixer.SetFloat("EffectVolume", volume);
     }
 
     public void setQuality (int quality)
