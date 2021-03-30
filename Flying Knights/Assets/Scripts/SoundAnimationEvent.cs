@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FootStepEvent : MonoBehaviour
+public class SoundAnimationEvent : MonoBehaviour
 {
     [SerializeField] AudioSource audio;
     // Start is called before the first frame update
