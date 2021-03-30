@@ -620,7 +620,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2313180210201162848}
-        m_MethodName: SetVolume
+        m_MethodName: SetMusicVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1242,7 +1242,7 @@ GameObject:
   - component: {fileID: 2313180210089350407}
   - component: {fileID: 2313180210089350403}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1567,7 +1567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 2313180210681186721}
   SettingMenu: {fileID: 2313180210201162854}
-  AudioMixer: {fileID: 24100000, guid: f7c7a1a296981214fb2373ec91cf7e7c, type: 2}
+  AudioMixer: {fileID: 24100000, guid: cc83cca36f6407847b00c922f8039ead, type: 2}
 --- !u!1 &2313180210222315696
 GameObject:
   m_ObjectHideFlags: 0

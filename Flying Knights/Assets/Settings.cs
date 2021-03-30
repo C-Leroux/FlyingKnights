@@ -9,9 +9,13 @@ public class Settings : MonoBehaviour
     public GameObject SettingMenu;
     public AudioMixer AudioMixer;
 
-    public void SetVolume(float Volume)
+    public void SetMusicVolume(float volume)
     {
-        AudioMixer.SetFloat("volume", Volume*100-80);
+        AudioMixer.SetFloat("MusicVolume", volume * 100 - 80);
+    }
+    public void SetEffectVolume(float volume)
+    {
+        AudioMixer.SetFloat("EffectVolume", volume * 100 - 80);
     }
 
     public void setQuality (int quality)
