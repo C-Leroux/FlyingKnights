@@ -32686,14 +32686,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.36666667
-    functionName: PlaySource
+    functionName: PlayStepColosse
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.93333334
-    functionName: PlaySource
+    functionName: PlayStepColosse
     data: 
     objectReferenceParameter: {fileID: 1293356793197548, guid: 0d42bc61d684259409d481c6f5dd5d5c,
       type: 3}
