@@ -23,6 +23,7 @@ public class Hookshot : MonoBehaviour
     private RaycastHit collisionDetector;
     private Vector3 previousPos;
     private Vector3 currentHookSpeed = Vector3.zero;
+    private AudioSource hookSource;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class Hookshot : MonoBehaviour
         lineRend.enabled = false;
         hookRigidBody = hookObject.GetComponent<Rigidbody>();
         originalHookScale = hookObject.transform.lossyScale;
+        hookSource = hookObject.GetComponent<AudioSource>();
     }
 
     //This fixes the scale change when the hook object changes parent
@@ -101,7 +103,7 @@ public class Hookshot : MonoBehaviour
         Physics.IgnoreCollision(hookObject.GetComponent<Collider>(), target);
         hookObject.transform.position = collisionDetector.point;
         hookRigidBody.velocity = Vector3.zero;
-
+        hookSource.Play();
         //traction force/rope
         joint.SetActive(true,(transform.position - hookObject.transform.position).magnitude + 1);
     }

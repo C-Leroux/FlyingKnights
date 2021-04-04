@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     private float directionFactor = 0f;
     private float velocityFactor = 0f;
 
-    private AudioSource audioSource;
+    private AudioSource sfxSource;
 
     void Start()
     {
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         hookShootScript = GetComponent<Hookshot>();
         raycastLayerToExclude = LayerMask.GetMask("Player");
         trailParticleEmitter.SetActive(false);
-        audioSource = impactCloudParticleEmitter.GetComponent<AudioSource>();
+        sfxSource = impactCloudParticleEmitter.GetComponent<AudioSource>();
         Cursor.visible = false;
     }
 
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
                 if (onGround == false)
                 {
                     impactCloudParticleEmitter.Play();
-                    audioSource.Play();
+                    sfxSource.Play();
                 }
 
                 onGround = true;
