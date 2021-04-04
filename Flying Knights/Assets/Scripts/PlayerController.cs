@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
     private float velocityFactor = 0f;
 
     private AudioSource sfxSource;
+    [SerializeField] private AudioSource GrapplingSource;
 
     void Start()
     {
@@ -246,6 +247,7 @@ public class PlayerController : MonoBehaviour
         {
             GrapplingHookCooldownScript.isReady = false;
             hookShootScript.LaunchHook();
+            GrapplingSource.Play();
         }
     }
 
