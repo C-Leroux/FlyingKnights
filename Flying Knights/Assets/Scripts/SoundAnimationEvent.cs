@@ -40,6 +40,8 @@ public class SoundAnimationEvent : MonoBehaviour
 
     //Sources du colosse possede 2 source : 0 - Bruit de pas
     //                                      1 - Cri de mort
+    //                                      2 - Coup de Poing
+    //                                      3 - Cri d'attaque
     public void PlayStepColosse()
     {
         audio = Sources[0];
@@ -52,5 +54,15 @@ public class SoundAnimationEvent : MonoBehaviour
         audio.Play();
     }
 
+    public void PlayAttackColosse()
+    {
+        audio = Sources[2];
+        audio.Play();
+    }
     
+    public void PlayAttackGrowlColosse()
+    {
+        audio = Sources[3];
+        audio.Play();
+    }
 }
