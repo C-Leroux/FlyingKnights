@@ -10,6 +10,7 @@ public class DetectPlayer : MonoBehaviour
     {
         if (other.tag == "Player")
             isPlayerIn = true;
+       
     }
 
     private void OnTriggerExit(Collider other)

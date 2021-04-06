@@ -14,6 +14,13 @@ public class Colossus : MonoBehaviour
 
     [HideInInspector] public bool isAttacking = false;
     [SerializeField] private Animator colossusAnim;
+   
+
+    [HideInInspector] private bool frozen = false;
+    [HideInInspector] private float frozenTimer = 0;
+    [SerializeField] private Animator anim;
+    [HideInInspector] private State<Colossus> OldState;
+    Rigidbody rb;
 
     [SerializeField] private Score scoreCounter;
     [SerializeField] private GameObject attackAOE = null;
@@ -51,12 +58,25 @@ public class Colossus : MonoBehaviour
         fsm = new StateMachine<Colossus>(this); ;
         fsm.ChangeState(WanderState.Instance);
         colossusAnim = this.GetComponent<Animator>();    // bool: Walk; trigger: Die, Attack;
+        
     }
 
     private void FixedUpdate()
     {
-        FSM.UpdateFSM();
+       
 
+        if (frozen)
+        {
+            frozenTimer += Time.deltaTime;
+            if (frozenTimer > 5)
+            {
+                Unfreeze();
+            }
+        }
+        else
+        {
+            FSM.UpdateFSM();
+        }
         if (curReaction > 0)
             curReaction -= Time.deltaTime;
     }
@@ -111,6 +131,8 @@ public class Colossus : MonoBehaviour
     {
         colossusAnim.SetBool("Walk", true);
         attacking.EnterAttackMode();
+        Debug.Log(FSM.CurrentState);
+        
     }
 
     public void StopAttacking()
@@ -173,4 +195,48 @@ public class Colossus : MonoBehaviour
     }
 
     #endregion
+
+    public void Freeze()
+    {
+        if (!frozen)
+        {
+            frozen = true;
+            anim.enabled = false;
+           
+            OldState = fsm.CurrentState;
+            if (OldState == WanderState.Instance)
+            {
+                StopWandering();
+                wandering.StopComplete();
+            }
+            if (OldState == AttackState.Instance)
+            {
+                StopAttacking();
+            }
+
+            frozenTimer = 0;
+            Rigidbody m_Rigidbody = GetComponent<Rigidbody>();
+            m_Rigidbody.freezeRotation = true;
+            m_Rigidbody.velocity = Vector3.zero;
+            //Debug.Log(FSM.CurrentState);
+        }   
+    }
+
+    private void Unfreeze()
+    {
+        frozen = false;
+
+        anim.enabled = true;
+        if (OldState == WanderState.Instance)
+        {
+            StartWandering();
+        }
+        if (OldState == AttackState.Instance)
+        {
+            StartAttacking();
+        }
+        OldState = null;
+        frozenTimer = 0;
+    }
 }
+

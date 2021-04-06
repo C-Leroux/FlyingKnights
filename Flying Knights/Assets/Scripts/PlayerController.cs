@@ -47,7 +47,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The animator for the player model")]
     [SerializeField] private Animator playerAnimator;
 
-    
+    [Tooltip("The script to shoot a spell")]
+    [SerializeField] private spell Spell;
 
     [SerializeField] private Pause pause;
     
@@ -267,5 +268,9 @@ public class PlayerController : MonoBehaviour
             pause.ActivatePause();
         }
     }
-    
+    public void OnSpell()
+    {
+        Spell.Shoot();
+    }
+
 }

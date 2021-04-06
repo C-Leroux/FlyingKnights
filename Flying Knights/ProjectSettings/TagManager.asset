@@ -7,6 +7,8 @@ TagManager:
   - Colossus
   - PlayerAttack
   - ColossusAttack
+  - Detection
+  - Spell
   layers:
   - Default
   - TransparentFX

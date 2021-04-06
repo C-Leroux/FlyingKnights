@@ -81,6 +81,14 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Spell"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb703495-5ab4-4c47-867f-dd631b104807"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -215,6 +223,17 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64f6cfd4-8dc7-4635-be55-f121fbe10c67"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player_K/M"",
+                    ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -259,6 +278,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         m_PlayerGrounded_StopGrappling = m_PlayerGrounded.FindAction("StopGrappling", throwIfNotFound: true);
         m_PlayerGrounded_Pause = m_PlayerGrounded.FindAction("Pause", throwIfNotFound: true);
         m_PlayerGrounded_Attack = m_PlayerGrounded.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerGrounded_Spell = m_PlayerGrounded.FindAction("Spell", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -316,6 +336,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerGrounded_StopGrappling;
     private readonly InputAction m_PlayerGrounded_Pause;
     private readonly InputAction m_PlayerGrounded_Attack;
+    private readonly InputAction m_PlayerGrounded_Spell;
     public struct PlayerGroundedActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -328,6 +349,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         public InputAction @StopGrappling => m_Wrapper.m_PlayerGrounded_StopGrappling;
         public InputAction @Pause => m_Wrapper.m_PlayerGrounded_Pause;
         public InputAction @Attack => m_Wrapper.m_PlayerGrounded_Attack;
+        public InputAction @Spell => m_Wrapper.m_PlayerGrounded_Spell;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGrounded; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -361,6 +383,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Attack.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnAttack;
+                @Spell.started -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnSpell;
+                @Spell.performed -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnSpell;
+                @Spell.canceled -= m_Wrapper.m_PlayerGroundedActionsCallbackInterface.OnSpell;
             }
             m_Wrapper.m_PlayerGroundedActionsCallbackInterface = instance;
             if (instance != null)
@@ -389,6 +414,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Spell.started += instance.OnSpell;
+                @Spell.performed += instance.OnSpell;
+                @Spell.canceled += instance.OnSpell;
             }
         }
     }
@@ -421,5 +449,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         void OnStopGrappling(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnSpell(InputAction.CallbackContext context);
     }
 }

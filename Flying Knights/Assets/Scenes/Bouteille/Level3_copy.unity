@@ -4650,6 +4650,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6432799301075030615, guid: 0d42bc61d684259409d481c6f5dd5d5c,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1809017948}
+    - target: {fileID: 6432799301075030615, guid: 0d42bc61d684259409d481c6f5dd5d5c,
+        type: 3}
+      propertyPath: attackAOE
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: d3f77ea4a0380554bb21f3575bc647c4,
+        type: 3}
+    - target: {fileID: 6432799301075030615, guid: 0d42bc61d684259409d481c6f5dd5d5c,
+        type: 3}
+      propertyPath: scoreCounter
+      value: 
+      objectReference: {fileID: 921055650}
     - target: {fileID: 8735187024258223341, guid: 0d42bc61d684259409d481c6f5dd5d5c,
         type: 3}
       propertyPath: m_IsActive
@@ -4669,6 +4685,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1071688408}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &921055650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8286772124191946289, guid: 167fa4244a6b3654c9ac36d86d957d98,
+    type: 3}
+  m_PrefabInstance: {fileID: 485135859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23680acbad2db8e448f70934b4a7d869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &943478045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1133593027853415262, guid: a6f1c64e32f1ab547aeb2e8e1e10721f,
@@ -8207,6 +8235,12 @@ Transform:
   m_Father: {fileID: 237022897}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1809017948 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95824196730489130, guid: 0d42bc61d684259409d481c6f5dd5d5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 868337373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1817131760 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1457432043024638594, guid: b85632d812f56be4b88ab2d1eae00fe9,
