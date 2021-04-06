@@ -8,6 +8,10 @@ public class spell : MonoBehaviour
     [SerializeField] private ReticleChanger reticle = null; // Reference to the reticle
     [SerializeField] GameObject SpellPrefab;
     [SerializeField] private GameObject fireObject = null;
+    [SerializeField] float cooldownTime = 15;
+    [SerializeField] bool canShoot = true;
+    [SerializeField] float timer = 0;
+
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -18,16 +22,32 @@ public class spell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canShoot)
+        {
+            timer += Time.deltaTime;
+            if (timer >= cooldownTime)
+            {
+                canShoot = true;
+                timer = 0;
+            }
+        }
         
     }
 
     public void Shoot()
     {
-        Vector3 targetVect = reticle.GetRaycastHit();
+        if (canShoot)
+        {
+            Vector3 targetVect = reticle.GetRaycastHit();
 
-        Transform spellT = fireObject.transform;
-        GameObject Spell=Instantiate(SpellPrefab, transform.position, transform.rotation);
-        rb = (Rigidbody)Spell.GetComponent("Rigidbody");
-        rb.AddForce((targetVect - transform.position)*40f);
+            Transform spellT = fireObject.transform;
+            GameObject Spell = Instantiate(SpellPrefab, transform.position, transform.rotation);
+            rb = (Rigidbody)Spell.GetComponent("Rigidbody");
+            rb.AddForce((targetVect - transform.position) * 40f);
+            canShoot = false;
+            timer = 0;
+        }
+        
+
     }
 }
