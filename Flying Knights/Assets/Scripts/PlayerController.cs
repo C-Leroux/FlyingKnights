@@ -81,12 +81,21 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    private bool checkGround()
+    {
+        //this checks wether we have hit the ground
+        return Physics.Raycast(transform.position+0.3f*transform.forward, -transform.up, out groundHit, 1.3f,~raycastLayerToExclude) ||
+        Physics.Raycast(transform.position-0.3f*transform.forward, -transform.up, out groundHit, 1.3f,~raycastLayerToExclude) ||
+        Physics.Raycast(transform.position-0.3f*transform.right, -transform.up, out groundHit, 1.3f,~raycastLayerToExclude) ||
+        Physics.Raycast(transform.position+0.3f*transform.right, -transform.up, out groundHit, 1.3f,~raycastLayerToExclude);
+    }
+
     public void FixedUpdate()
     {
         //are we in the air or on the ground ?
-        if(Physics.Raycast(transform.position, -transform.up, out groundHit, 1.4f,~raycastLayerToExclude))
+        if(checkGround())
         {
-            if(localRigidBody.velocity.y*localRigidBody.velocity.y <= 0.0001 && !hookShootScript.GetisHooked() )
+            if( !hookShootScript.GetisHooked() )
             {
                 if (onGround == false)
                 {

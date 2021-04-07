@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &779707898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 779707899}
+  - component: {fileID: 779707900}
+  - component: {fileID: 779707901}
+  m_Layer: 0
+  m_Name: AttackAOE
+  m_TagString: ColossusAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &779707899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779707898}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.574, z: 0.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4958464907473990}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &779707900
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779707898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7000003, y: 1.248041, z: 0.6}
+  m_Center: {x: 0, y: -0.024020482, z: 0}
+--- !u!65 &779707901
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779707898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.46859667, z: 1.1594481}
+  m_Center: {x: 0, y: -0.392355, z: -0.1805516}
 --- !u!1 &1020066509522814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1304,7 @@ Transform:
   - {fileID: 4785066959759292}
   - {fileID: 4604415163970502}
   - {fileID: 5886624497847553083}
+  - {fileID: 779707899}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1281,7 +1340,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 30
+  m_AngularSpeed: 60
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
@@ -1323,11 +1382,10 @@ MonoBehaviour:
   HitFX: {fileID: 4243666066669088224}
   isAttacking: 0
   colossusAnim: {fileID: 95824196730489130}
-  anim: {fileID: 0}
   scoreCounter: {fileID: 0}
-  attackAOE: {fileID: 0}
-  attackDelay: 0
-  attackEndDelay: 0
+  attackAOE: {fileID: 779707898}
+  attackDelay: 1.3
+  attackEndDelay: 1.8
   HP: 500
   Attack: 60
   mouvementSpeed: 0
@@ -1355,12 +1413,12 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293356793197548}
   serializedVersion: 2
-  m_Mass: 300
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50
+  m_Drag: 0.5
+  m_AngularDrag: 0.5
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &6513933572953993187
@@ -3971,7 +4029,7 @@ GameObject:
   - component: {fileID: 6512410193225142353}
   - component: {fileID: 1215784337945844798}
   - component: {fileID: 6150264856880329046}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftDetect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3986,7 +4044,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994720155165209541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5886624497847553083}
@@ -4003,8 +4061,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20.08339, y: 26.798737, z: 17.179451}
-  m_Center: {x: -10.5, y: 13.771622, z: 8.0897255}
+  m_Size: {x: 9.921497, y: 26.798737, z: 17.179451}
+  m_Center: {x: -5.419054, y: 13.771622, z: 8.0897255}
 --- !u!114 &6150264856880329046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4185,11 +4243,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4174567469029030982}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.23, y: 0.13, z: 0.39}
-  m_Center: {x: 0.1, y: 0.1, z: 0}
+  m_Size: {x: 0.23, y: 0.1795978, z: 0.38999993}
+  m_Center: {x: 0.10000002, y: 0.12479889, z: -0.0000000051614584}
 --- !u!114 &4606794968496074320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4202,7 +4260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac629a5f1ae998644a9b57514c62c487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colossus: {fileID: 0}
+  colossus: {fileID: 6432799301075030615}
 --- !u!1 &7102709312065512538
 GameObject:
   m_ObjectHideFlags: 0
@@ -4214,7 +4272,7 @@ GameObject:
   - component: {fileID: 5850007800671550265}
   - component: {fileID: 8184481742440124500}
   - component: {fileID: 1403942303206574741}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightDetect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4229,7 +4287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7102709312065512538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5886624497847553083}
@@ -4246,8 +4304,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20.08339, y: 27.063576, z: 17.179451}
-  m_Center: {x: 10.5, y: 13.639202, z: 8.0897255}
+  m_Size: {x: 9.819107, y: 27.063576, z: 17.179451}
+  m_Center: {x: 5.367859, y: 13.639202, z: 8.0897255}
 --- !u!114 &1403942303206574741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4270,7 +4328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7513928444083197609}
   - component: {fileID: 1987236552418531639}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DetectionColliderLeft
   m_TagString: Detection
   m_Icon: {fileID: 0}
@@ -4346,7 +4404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4279085351928470557}
   - component: {fileID: 7906184144586158998}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DetectionColliderRight
   m_TagString: Detection
   m_Icon: {fileID: 0}
@@ -4789,15 +4847,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d31a5b9b348544439d8079453188ecc, type: 3}
---- !u!4 &4050387557149443756 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4713133681390086, guid: 5d31a5b9b348544439d8079453188ecc,
-    type: 3}
-  m_PrefabInstance: {fileID: 4045746029173519530}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4243666066669088224 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198694231397964106, guid: 5d31a5b9b348544439d8079453188ecc,
+    type: 3}
+  m_PrefabInstance: {fileID: 4045746029173519530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4050387557149443756 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4713133681390086, guid: 5d31a5b9b348544439d8079453188ecc,
     type: 3}
   m_PrefabInstance: {fileID: 4045746029173519530}
   m_PrefabAsset: {fileID: 0}
