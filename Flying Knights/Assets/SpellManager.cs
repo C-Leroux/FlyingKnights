@@ -9,16 +9,17 @@ public class SpellManager : MonoBehaviour
     [SerializeField] GameObject Impact;
     [SerializeField] double maxTime = 0.7;
     private float Timer = 0;
-
+    [SerializeField] int speed = 2;
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        rb.velocity = speed * (rb.velocity.normalized);
         Timer += Time.deltaTime;
         if (Timer >= maxTime)
         {
