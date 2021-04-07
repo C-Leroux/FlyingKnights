@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class spell : MonoBehaviour
@@ -11,12 +12,13 @@ public class spell : MonoBehaviour
     [SerializeField] float cooldownTime = 15;
     [SerializeField] bool canShoot = true;
     [SerializeField] float timer = 0;
+    [SerializeField] Image coolDownImage;
 
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        coolDownImage.color = new Color32(255, 255, 255, 255);
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class spell : MonoBehaviour
             if (timer >= cooldownTime)
             {
                 canShoot = true;
+                coolDownImage.color = new Color32(255, 255, 255, 255);
                 timer = 0;
             }
         }
@@ -46,6 +49,7 @@ public class spell : MonoBehaviour
             rb.AddForce((targetVect - transform.position) * 40f);
             canShoot = false;
             timer = 0;
+            coolDownImage.color = new Color32(255, 255, 255, 0);
         }
         
 
