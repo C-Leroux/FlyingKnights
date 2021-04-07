@@ -25,6 +25,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_02 (1) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 107988, guid: ad49c548c939c434e8c7700f06099bdd, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 446362, guid: ad49c548c939c434e8c7700f06099bdd, type: 3}
       propertyPath: m_RootOrder
       value: 0

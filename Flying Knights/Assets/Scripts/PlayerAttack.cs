@@ -14,7 +14,6 @@ using UnityEngine.InputSystem;
 
         [Tooltip("The animator for the player model")]
         [SerializeField] private Animator playerAnimator;
-
         private void FixedUpdate()
         {
             
