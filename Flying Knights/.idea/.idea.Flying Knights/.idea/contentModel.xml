@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Kuruya Mishin\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Kuruya Mishin\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Flying Knights.617378550.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Kuruya Mishin\AppData\Roaming\JetBrains\Rider2020.3\scratches" t="IncludeRecursive" />
+    <e p="D:\Unity\Flying Knights\Flying Knights" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="cameraControllerMenu.cs" t="Include" />
+        <e p="Health.cs" t="Include" />
+        <e p="HealthBar.cs" t="Include" />
+        <e p="Levels.cs" t="Include" />
+        <e p="MainMenu.cs" t="Include" />
+        <e p="Pause.cs" t="Include" />
+        <e p="Scenes" t="Include">
+          <e p="Bouteille" t="Include">
+            <e p="TestScript.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Score.cs" t="Include" />
+        <e p="Scripts" t="Include">
+          <e p="armIK.cs" t="Include" />
+          <e p="Attacking.cs" t="Include" />
+          <e p="CameraControler.cs" t="Include" />
+          <e p="CustomJoint.cs" t="Include" />
+          <e p="GrapplingCooldown.cs" t="Include" />
+          <e p="Hookshot.cs" t="Include" />
+          <e p="IA" t="Include">
+            <e p="Colossus.cs" t="Include" />
+            <e p="DetectPlayer.cs" t="Include" />
+            <e p="StateMachine.cs" t="Include" />
+            <e p="States" t="Include">
+              <e p="AttackAnimState.cs" t="Include" />
+              <e p="AttackState.cs" t="Include" />
+              <e p="DeathState.cs" t="Include" />
+              <e p="State.cs" t="Include" />
+              <e p="WanderState.cs" t="Include" />
+            </e>
+          </e>
+          <e p="PAttackBox.cs" t="Include" />
+          <e p="PlayerAttack.cs" t="Include" />
+          <e p="PlayerController.cs" t="Include" />
+          <e p="PlayerInputAction.cs" t="Include" />
+          <e p="ReticleChanger.cs" t="Include" />
+          <e p="SFXPlayerAttack.cs" t="Include" />
+          <e p="Wandering.cs" t="Include" />
+          <e p="WeakPoint.cs" t="Include" />
+        </e>
+        <e p="Settings.cs" t="Include" />
+        <e p="timer.cs" t="Include" />
+      </e>
+      <e p="Flying Knights.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
