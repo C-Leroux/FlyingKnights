@@ -7,17 +7,25 @@ public class SFXPlayerAttack : MonoBehaviour
 {
     [SerializeField] private GameObject woodSFX;
     [SerializeField] private GameObject bloodSfx;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip woodClip;
+    [SerializeField] private AudioClip failClip;
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Wood"))
         {
             StartCoroutine(UseSFX(woodSFX));
+            audioSource.clip = woodClip;
+            audioSource.Play();
         }
         
         else if (other.CompareTag("Colossus"))
         {
             StartCoroutine(UseSFX(bloodSfx));
+            audioSource.clip = failClip;
+            audioSource.Play();
         }
     }
 
