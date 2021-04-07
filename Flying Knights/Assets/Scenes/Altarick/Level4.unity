@@ -1324,6 +1324,11 @@ PrefabInstance:
       objectReference: {fileID: 1541524642}
     - target: {fileID: 6432799301075030615, guid: 0d42bc61d684259409d481c6f5dd5d5c,
         type: 3}
+      propertyPath: attackAOE
+      value: 
+      objectReference: {fileID: 779707898}
+    - target: {fileID: 6432799301075030615, guid: 0d42bc61d684259409d481c6f5dd5d5c,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
