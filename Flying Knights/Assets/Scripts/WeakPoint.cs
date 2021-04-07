@@ -15,7 +15,7 @@ public class WeakPoint : MonoBehaviour
         {
             Debug.Log("Critical hit !");
             colossus.TakeDamage(600);
-
+    
         }
     }
 }

@@ -5,6 +5,7 @@
     <e p="C:\Users\Kuruya Mishin\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Flying Knights.617378550.00" t="ExcludeRecursive" />
     <e p="C:\Users\Kuruya Mishin\AppData\Roaming\JetBrains\Rider2020.3\scratches" t="IncludeRecursive" />
     <e p="D:\Unity\Flying Knights\Flying Knights" t="IncludeRecursive">
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="cameraControllerMenu.cs" t="Include" />
@@ -12,6 +13,24 @@
         <e p="HealthBar.cs" t="Include" />
         <e p="Levels.cs" t="Include" />
         <e p="MainMenu.cs" t="Include" />
+        <e p="NeatWolf" t="Include">
+          <e p="Bundle03-MagicSpells" t="Include">
+            <e p="Documentation" t="Include">
+              <e p="Readme.txt" t="Include" />
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="Rotating.cs" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="NW_Particle AddSmooth.shader" t="Include" />
+              <e p="NW_Particle Rim AddSmooth 2S.shader" t="Include" />
+              <e p="NW_Particle Rim AddSmooth.shader" t="Include" />
+              <e p="NW_Reflective Add.shader" t="Include" />
+              <e p="NW_Reflective Alpha.shader" t="Include" />
+              <e p="NW_Unlit Color.shader" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Pause.cs" t="Include" />
         <e p="Scenes" t="Include">
           <e p="Bouteille" t="Include">
@@ -44,10 +63,23 @@
           <e p="PlayerInputAction.cs" t="Include" />
           <e p="ReticleChanger.cs" t="Include" />
           <e p="SFXPlayerAttack.cs" t="Include" />
+          <e p="SoundAnimationEvent.cs" t="Include" />
           <e p="Wandering.cs" t="Include" />
           <e p="WeakPoint.cs" t="Include" />
         </e>
         <e p="Settings.cs" t="Include" />
+        <e p="spell.cs" t="Include" />
+        <e p="SpellImpact.cs" t="Include" />
+        <e p="SpellManager.cs" t="Include" />
+        <e p="Standard Assets" t="Include">
+          <e p="Character Controllers" t="Include">
+            <e p="Sources" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="MouseLook.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="timer.cs" t="Include" />
       </e>
       <e p="Flying Knights.sln" t="IncludeFlat" />

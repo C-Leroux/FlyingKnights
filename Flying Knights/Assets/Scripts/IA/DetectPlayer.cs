@@ -11,12 +11,8 @@ public class DetectPlayer : MonoBehaviour
         if (other.tag == "Player")
         {
             isPlayerIn = true;
-<<<<<<< HEAD
             // add function in playercontroller script to activate the detection feedback
         }
-=======
-       
->>>>>>> e127a0d0e81965a92392fe772971ac26ff21966f
     }
 
     private void OnTriggerExit(Collider other)
