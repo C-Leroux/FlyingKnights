@@ -47,7 +47,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The animator for the player model")]
     [SerializeField] private Animator playerAnimator;
 
-    
+    [Tooltip("The script to shoot a spell")]
+    [SerializeField] private spell Spell;
 
     [SerializeField] private Pause pause;
     
@@ -67,12 +68,16 @@ public class PlayerController : MonoBehaviour
     private float directionFactor = 0f;
     private float velocityFactor = 0f;
 
+    private AudioSource sfxSource;
+    [SerializeField] private AudioSource GrapplingSource;
+
     void Start()
     {
         localRigidBody = GetComponent<Rigidbody>();
         hookShootScript = GetComponent<Hookshot>();
         raycastLayerToExclude = LayerMask.GetMask("Player");
         trailParticleEmitter.SetActive(false);
+        sfxSource = impactCloudParticleEmitter.GetComponent<AudioSource>();
         Cursor.visible = false;
     }
 
@@ -83,7 +88,12 @@ public class PlayerController : MonoBehaviour
         {
             if(localRigidBody.velocity.y*localRigidBody.velocity.y <= 0.0001 && !hookShootScript.GetisHooked() )
             {
-                if(onGround == false) impactCloudParticleEmitter.Play();
+                if (onGround == false)
+                {
+                    impactCloudParticleEmitter.Play();
+                    sfxSource.Play();
+                }
+
                 onGround = true;
                 //airAssisting = false;
                 trailParticleEmitter.SetActive(false);
@@ -238,6 +248,7 @@ public class PlayerController : MonoBehaviour
         {
             GrapplingHookCooldownScript.isReady = false;
             hookShootScript.LaunchHook();
+            GrapplingSource.Play();
         }
     }
 
@@ -257,5 +268,9 @@ public class PlayerController : MonoBehaviour
             pause.ActivatePause();
         }
     }
-    
+    public void OnSpell()
+    {
+        Spell.Shoot();
+    }
+
 }

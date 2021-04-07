@@ -7,7 +7,12 @@ TagManager:
   - Colossus
   - PlayerAttack
   - ColossusAttack
+<<<<<<< HEAD
   - Wood
+=======
+  - Detection
+  - Spell
+>>>>>>> e127a0d0e81965a92392fe772971ac26ff21966f
   layers:
   - Default
   - TransparentFX

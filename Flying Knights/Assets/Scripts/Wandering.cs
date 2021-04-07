@@ -52,6 +52,7 @@ public class Wandering : MonoBehaviour
     public void StartWandering()
     {
         enable = true;
+        navmeshAgent.isStopped = false;
     }
 
     public void StopWandering()
@@ -59,5 +60,11 @@ public class Wandering : MonoBehaviour
         enable = false;
         isWandering = false;
         StopCoroutine(Wander());
+    }
+
+    public void StopComplete()
+    {
+        navmeshAgent.isStopped = true;
+        navmeshAgent.velocity=Vector3.zero;
     }
 }
