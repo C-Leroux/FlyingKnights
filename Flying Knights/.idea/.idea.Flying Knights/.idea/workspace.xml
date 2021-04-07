@@ -2,12 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af8c7694-705f-4ad8-b1b8-b4ec71bc14c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/POLYGON-Knights-Pack/Synty Studios/3D ModelsEnvironmentsFantasy.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Large.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Jacques/Preload.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Jacques/Preload.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Flying Knights/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Flying Knights/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Flying Knights/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Flying Knights/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/POLYGON-Knights-Pack/Synty Studios/3D ModelsEnvironmentsFantasy/POLYGON - Knights Pack.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Landing/3D ModelsEnvironmentsLandscapes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonKnights/Prefabs/Environments/SM_Env_Tree_01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PolygonKnights/Prefabs/Environments/SM_Env_Tree_01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonKnights/Prefabs/Environments/SM_Env_Tree_03.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PolygonKnights/Prefabs/Environments/SM_Env_Tree_03.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonKnights/Prefabs/Environments/SM_Env_Tree_Twisted_02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PolygonKnights/Prefabs/Environments/SM_Env_Tree_Twisted_02.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonKnights/Prefabs/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Medium/SM_Env_Tree_02 (1) Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Medium/SM_Env_Tree_02 (1) Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Medium/SM_Env_Tree_Twisted_01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Medium/SM_Env_Tree_Twisted_01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_01 (1) Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_01 (1) Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_02 (2) Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_02 (2) Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_03 (1).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_03 (1).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_Twisted_01 (1) Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_Twisted_01 (1) Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_Twisted_02 (1).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Small/SM_Env_Tree_Twisted_02 (1).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Jacques/Lvl 4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Jacques/Lvl 4.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Tristan/Level.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/IA/DetectPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/IA/DetectPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PAttackBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PAttackBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Synty Studios/3D ModelsCharactersHumanoidsFantasy/POLYGON - Fantasy Rivals.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeakPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WeakPoint.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +36,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/PAttackBox.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SFXPlayerAttack.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/IA/DetectPlayer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/WeakPoint.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1qFk3ayDBw75cVn0RblzpxZme4v" />
