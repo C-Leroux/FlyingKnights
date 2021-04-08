@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
     {
 	/* Attacher ce script sur le player et créer un empty avec un boxcollider et un tag "PlayerAttack"
 	   Mettre cet empty en enfant du joueur et ensuite le drag&drop dans la var attackCollider du script*/
-        [SerializeField] private GameObject attackCollider;
+        [SerializeField] private SFXPlayerAttack attackCollider;
         [SerializeField] private bool isAttacking;
         [SerializeField] private float attackCooldownTime = 0.8f;
 
@@ -19,7 +19,7 @@ using UnityEngine.InputSystem;
             
             if (isAttacking)
             {
-                if(!attackCollider.activeSelf)
+                if(!attackCollider.isActive())
                 {
                     playerAnimator.SetTrigger("AttackTrigger");
                     attackCollider.SetActive(true);

@@ -10,6 +10,8 @@ TagManager:
   - ColossusAttack
   - Detection
   - ColossusPart
+  - Spell
+  - WeakPoint
   layers:
   - Default
   - TransparentFX
