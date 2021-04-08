@@ -31,8 +31,6 @@ public class Colossus : MonoBehaviour
     [SerializeField]
     private float Attack;
     [SerializeField]
-    private float mouvementSpeed;
-    [SerializeField]
     private float reactionTime;
     #endregion
 

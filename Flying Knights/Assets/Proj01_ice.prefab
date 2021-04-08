@@ -4753,7 +4753,7 @@ MonoBehaviour:
   rb: {fileID: -6270003215515978897}
   c: {fileID: 5116116648094060523}
   Impact: {fileID: 100004, guid: 2d93b2f3c4dcfb94d9b93ef4889fc7d6, type: 3}
-  maxTime: 0.6
+  maxTime: 2.5
   speed: 8
 --- !u!82 &1197781435453555852
 AudioSource:

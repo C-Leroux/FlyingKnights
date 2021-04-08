@@ -12567,6 +12567,21 @@ PrefabInstance:
       propertyPath: scoreCounter
       value: 
       objectReference: {fileID: 8286772124084265180}
+    - target: {fileID: 424444127927629078, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
+        type: 3}
+      propertyPath: mouvementSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 465198977960142458, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569897053703260074, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
+        type: 3}
+      propertyPath: m_Speed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6675057041329673389, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
         type: 3}
       propertyPath: m_Name
@@ -19361,6 +19376,21 @@ PrefabInstance:
       propertyPath: scoreCounter
       value: 
       objectReference: {fileID: 8286772124084265180}
+    - target: {fileID: 424444127927629078, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
+        type: 3}
+      propertyPath: mouvementSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 465198977960142458, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569897053703260074, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
+        type: 3}
+      propertyPath: m_Speed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6675057041329673389, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
         type: 3}
       propertyPath: m_Name
@@ -21744,6 +21774,21 @@ PrefabInstance:
       propertyPath: scoreCounter
       value: 
       objectReference: {fileID: 8286772124084265180}
+    - target: {fileID: 424444127927629078, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
+        type: 3}
+      propertyPath: mouvementSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 465198977960142458, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569897053703260074, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
+        type: 3}
+      propertyPath: m_Speed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6675057041329673389, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
         type: 3}
       propertyPath: m_Name

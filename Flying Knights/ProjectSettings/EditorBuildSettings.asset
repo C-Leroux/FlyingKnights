@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tristan/Menu.unity
     guid: 7785d30c23161d14199941439784d84a
   - enabled: 0
@@ -14,12 +14,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Tristan/Preload.unity
     guid: 8a16d715a12b8f84bbf18c55d71c4e63
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Altarick/Level4.unity
     guid: ef943b230b0a0f64d983f109f049eb4e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Altarick/Level6.unity
     guid: 813407feb81c502408509494b31a1170
+  - enabled: 1
+    path: Assets/Scenes/Merge/Menu.unity
+    guid: 0a2de13c58f0d3e4394dbe50af5d6154
+  - enabled: 1
+    path: Assets/Scenes/Merge/Level6.unity
+    guid: 8c266ade1ff89844db1c7892e5fa2cad
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a835bea1ca35b59428edea28afaa29e8,
       type: 2}
