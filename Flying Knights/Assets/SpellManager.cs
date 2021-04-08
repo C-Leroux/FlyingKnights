@@ -23,7 +23,7 @@ public class SpellManager : MonoBehaviour
         Timer += Time.deltaTime;
         if (Timer >= maxTime)
         {
-            Explosion();
+            Destroy(gameObject);
         }
     }
 

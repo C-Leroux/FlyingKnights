@@ -948,7 +948,7 @@ MonoBehaviour:
   reticle: {fileID: 202657175}
   SpellPrefab: {fileID: 100000, guid: 6d8faf2cc55b5ce45854bf89bebeb62d, type: 3}
   fireObject: {fileID: 1561007331}
-  cooldownTime: 0
+  cooldownTime: 15
   canShoot: 1
   timer: 0
   coolDownImage: {fileID: 636364772}
@@ -1266,6 +1266,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 779707899, guid: 0d42bc61d684259409d481c6f5dd5d5c, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 907941598, guid: 0d42bc61d684259409d481c6f5dd5d5c, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1299,8 +1303,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1642975216, guid: 0d42bc61d684259409d481c6f5dd5d5c, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642975216, guid: 0d42bc61d684259409d481c6f5dd5d5c, type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2126831076, guid: 0d42bc61d684259409d481c6f5dd5d5c, type: 3}
       propertyPath: m_Enabled
