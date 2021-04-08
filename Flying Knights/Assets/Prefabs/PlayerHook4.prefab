@@ -2361,7 +2361,6 @@ MonoBehaviour:
   trailParticleEmitter: {fileID: 8696152421215396740}
   impactCloudParticleEmitter: {fileID: 8696152423169925266}
   playerAnimator: {fileID: 973776213883460151}
-  Spell: {fileID: 0}
   pause: {fileID: 4594407821088839753}
   GrapplingSource: {fileID: 2294738729195124418}
 --- !u!114 &5006966998476481477
@@ -2536,7 +2535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270e8d21d59ec8d40b221a04cfa52b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 6694910801774155673}
+  attackCollider: {fileID: 6694910801774155653}
   isAttacking: 0
   attackCooldownTime: 0.8
   playerAnimator: {fileID: 973776213883460151}

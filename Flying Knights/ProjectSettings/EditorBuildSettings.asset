@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Altarick/Level4.unity
     guid: ef943b230b0a0f64d983f109f049eb4e
+  - enabled: 1
+    path: Assets/Scenes/Altarick/Level6.unity
+    guid: 813407feb81c502408509494b31a1170
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a835bea1ca35b59428edea28afaa29e8,
       type: 2}
