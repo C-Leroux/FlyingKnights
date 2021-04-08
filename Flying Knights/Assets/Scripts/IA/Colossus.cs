@@ -27,7 +27,7 @@ public class Colossus : MonoBehaviour
 
     #region Statistiques
     [SerializeField]
-    private float HP;
+    private float maxHP;
     [SerializeField]
     private float Attack;
     [SerializeField]
@@ -39,6 +39,9 @@ public class Colossus : MonoBehaviour
     private Animator colossusAnim = null;
     private Wandering wandering;
     private Attacking attacking;
+    private EnnemySpawn spawner;
+    private float HP;
+    [SerializeField] public readonly float despawnDistance = 250f;
 
     public StateMachine<Colossus> FSM
     {
@@ -57,6 +60,8 @@ public class Colossus : MonoBehaviour
         colossusAnim = this.GetComponent<Animator>();  
         wandering = this.GetComponent<Wandering>();  
         attacking = this.GetComponent<Attacking>();
+        spawner = this.GetComponent<EnnemySpawn>();
+        HP = maxHP;
 
         ///
         fsm = new StateMachine<Colossus>(this);
@@ -183,12 +188,20 @@ public class Colossus : MonoBehaviour
 
     //Fonction appelee a la mort du colosse
     public void Die()
-    {
-        //TODO Apply Death function
-        //Destroy(this.gameObject);     
+    {    
         colossusAnim.SetTrigger("Die");
+        colossusAnim.SetBool("Dead",true);
         scoreCounter.addScore(500);
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void Ressurect()
+    {
+        HP = maxHP;
+        colossusAnim.ResetTrigger("Die");
+        colossusAnim.SetBool("Dead",false);
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        spawner.Spawn();
     }
 
     public bool IsDead()
