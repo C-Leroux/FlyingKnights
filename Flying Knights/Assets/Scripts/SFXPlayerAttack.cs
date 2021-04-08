@@ -7,10 +7,16 @@ public class SFXPlayerAttack : MonoBehaviour
 {
     [SerializeField] private GameObject woodSFX;
     [SerializeField] private GameObject bloodSfx;
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip woodClip;
     [SerializeField] private AudioClip failClip;
+    
+    private AudioSource audioSource;
 
+    void Start()
+    {
+        
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,8 +26,7 @@ public class SFXPlayerAttack : MonoBehaviour
             audioSource.clip = woodClip;
             audioSource.Play();
         }
-        
-        else if (other.CompareTag("Colossus"))
+        else if ( other.CompareTag("ColossusPart") ||other.CompareTag("Colossus"))
         {
             StartCoroutine(UseSFX(bloodSfx));
             audioSource.clip = failClip;

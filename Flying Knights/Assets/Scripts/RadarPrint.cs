@@ -81,7 +81,6 @@ public class RadarPrint : MonoBehaviour
 
         Vector3 viewportPos = cam.WorldToViewportPoint(radar.GetColossusPos());
 
-        Debug.Log(viewportPos);
 
         return new Vector3(
             ((viewportPos.x * canvasRect.sizeDelta.x) - (canvasRect.sizeDelta.x * 0.5f)),
