@@ -16321,6 +16321,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8139284549088538163, guid: a41cdb00675216e408f1682e4431e04c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 173d076d5ca29c84f8889afefafbadd8, type: 2}
+    - target: {fileID: 8139284549088538164, guid: a41cdb00675216e408f1682e4431e04c,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a41cdb00675216e408f1682e4431e04c, type: 3}
 --- !u!1 &8010778504490795307 stripped
@@ -16401,6 +16411,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040025716658977385, guid: 7e4a76358085d2044adbfe576ae68466,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d5060a2c4456214ca2d9c0d6e6359d9, type: 2}
+    - target: {fileID: 8040025716658977386, guid: 7e4a76358085d2044adbfe576ae68466,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e4a76358085d2044adbfe576ae68466, type: 3}
