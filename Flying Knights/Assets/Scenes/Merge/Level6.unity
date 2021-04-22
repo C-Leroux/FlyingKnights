@@ -21396,6 +21396,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHook4
       objectReference: {fileID: 0}
+    - target: {fileID: 5006966998476481477, guid: e1ff30a013c8d3642a288c2ced396817,
+        type: 3}
+      propertyPath: hookAcceleration
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006966999595537644, guid: e1ff30a013c8d3642a288c2ced396817,
+        type: 3}
+      propertyPath: detectionConeAngle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8453454650609670734, guid: e1ff30a013c8d3642a288c2ced396817,
         type: 3}
       propertyPath: m_LocalPosition.z

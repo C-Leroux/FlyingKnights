@@ -15,7 +15,7 @@ public class ReticleChanger : MonoBehaviour
     public Sprite untargettingSprite;
     public Sprite targettingSprite;
 
-    //public GameObject DebugObject;
+    [SerializeField] private float detectionConeAngle = 1f;
 
     public float maxRange;
     private RaycastHit raycastHit;
@@ -49,10 +49,52 @@ public class ReticleChanger : MonoBehaviour
     {
         if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward, out raycastHit, maxRange,~IgnoreInRaycast))
         {
+            Debug.DrawRay(transform.position,localCamera.transform.forward,Color.blue,1f);
+            return raycastHit.point;
+        }
+        else if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right, out raycastHit, maxRange,~IgnoreInRaycast))
+        {
+            Debug.DrawRay(transform.position, localCamera.transform.forward+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right,Color.red,1f);
+            return raycastHit.point;
+        }
+        else if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up, out raycastHit, maxRange,~IgnoreInRaycast))
+        {
+            Debug.DrawRay(transform.position,localCamera.transform.forward+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up,Color.red,1f);
+            return raycastHit.point;
+        }
+        else if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up, out raycastHit, maxRange,~IgnoreInRaycast))
+        {
+            Debug.DrawRay(transform.position,localCamera.transform.forward+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up,Color.red,1f);
+            return raycastHit.point;
+        }
+        else if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up, out raycastHit, maxRange,~IgnoreInRaycast))
+        {
+            Debug.DrawRay(transform.position, localCamera.transform.forward-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up,Color.red,1f);
+            return raycastHit.point;
+        }
+        else if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right, out raycastHit, maxRange,~IgnoreInRaycast))
+        {
+            Debug.DrawRay(transform.position,localCamera.transform.forward-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right,Color.red,1f);
+            return raycastHit.point;
+        }
+        else if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up, out raycastHit, maxRange,~IgnoreInRaycast))
+        {
+            Debug.DrawRay(transform.position,localCamera.transform.forward-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up,Color.red,1f);
+            return raycastHit.point;
+        }
+        else if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up, out raycastHit, maxRange,~IgnoreInRaycast))
+        {
+            Debug.DrawRay(transform.position,localCamera.transform.forward-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up,Color.red,1f);
+            return raycastHit.point;
+        }
+        else if(Physics.Raycast(localCamera.transform.position, localCamera.transform.forward+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up, out raycastHit, maxRange,~IgnoreInRaycast))
+        {
+            Debug.DrawRay(transform.position,localCamera.transform.forward+Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.right-Mathf.Tan((Mathf.PI/180)*detectionConeAngle)*localCamera.transform.up,Color.red,1f);
             return raycastHit.point;
         }
         else
         {
+            Debug.Log("nohit");
             return localCamera.transform.position + 100*(localCamera.transform.forward);
         }
     }
