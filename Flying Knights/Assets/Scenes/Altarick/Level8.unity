@@ -2776,6 +2776,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 195860344}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &206583927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5775989902436080375, guid: e1ff30a013c8d3642a288c2ced396817,
+    type: 3}
+  m_PrefabInstance: {fileID: 2294738729897782964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &210399040 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9116525936499430684, guid: a7caaa7d4c72a67429f9d0e857283621,
@@ -8398,6 +8404,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0afa580c5ee8484183dafdc704e8768, type: 3}
+--- !u!1 &519379300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8738875152488008359, guid: e1ff30a013c8d3642a288c2ced396817,
+    type: 3}
+  m_PrefabInstance: {fileID: 2294738729897782964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &523443583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26794,6 +26806,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1530233668}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1665113791 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7100022473772871274, guid: e1ff30a013c8d3642a288c2ced396817,
+    type: 3}
+  m_PrefabInstance: {fileID: 2294738729897782964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1670529175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34521,6 +34539,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerHook4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006966998476481477, guid: e1ff30a013c8d3642a288c2ced396817,
+        type: 3}
+      propertyPath: leftHand
+      value: 
+      objectReference: {fileID: 1665113791}
+    - target: {fileID: 5006966998476481477, guid: e1ff30a013c8d3642a288c2ced396817,
+        type: 3}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 519379300}
+    - target: {fileID: 5006966998476481478, guid: e1ff30a013c8d3642a288c2ced396817,
+        type: 3}
+      propertyPath: playerModel
+      value: 
+      objectReference: {fileID: 206583927}
+    - target: {fileID: 5006966998476481478, guid: e1ff30a013c8d3642a288c2ced396817,
+        type: 3}
+      propertyPath: playerTiltSpeed
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5006966998845017290, guid: e1ff30a013c8d3642a288c2ced396817,
         type: 3}

@@ -10,6 +10,9 @@ public class Hookshot : MonoBehaviour
     [SerializeField] public float maxDist = 250;     // Maximal distance of the hook
     [SerializeField] private GameObject hookSpawn = null;
     [SerializeField] private LayerMask IgnoreInRaycast;
+    [SerializeField] private GameObject rightHand = null;
+    [SerializeField] private GameObject leftHand = null;
+
 
     private LineRenderer lineRend = null;
     private bool isActive;     // True while the player hold the button
@@ -25,6 +28,7 @@ public class Hookshot : MonoBehaviour
     private Vector3 currentHookSpeed = Vector3.zero;
     private AudioSource hookSource;
     private Vector3 actualHookAcceleration;
+    private bool rightHandActive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +54,8 @@ public class Hookshot : MonoBehaviour
 
     void Update()
     {
+        
+
         // Moving the hook object
         // While hook is launched but hasn't encountered an obstacle
         if (isActive && !isHooked)
@@ -63,6 +69,22 @@ public class Hookshot : MonoBehaviour
                 Hooked(collisionDetector.collider);
             }
             
+        }
+        if(isActive)
+        {
+            //setting the hand holding the hook
+            if(Vector3.Cross( Vector3.ProjectOnPlane(transform.forward,Vector3.up) , Vector3.ProjectOnPlane(hookObject.transform.position - transform.position,Vector3.up) ).y > 0)
+            {
+                hookSpawn.transform.SetParent(rightHand.transform);
+                hookSpawn.transform.position = rightHand.transform.position;
+                rightHandActive = true;
+            }
+            else
+            {
+                hookSpawn.transform.SetParent(leftHand.transform);
+                hookSpawn.transform.position = leftHand.transform.position;
+                rightHandActive = false;
+            }
         }
         
         // Updates the display positions of the line renderer
@@ -170,6 +192,11 @@ public class Hookshot : MonoBehaviour
     public bool GetisActive()
     {
         return isActive;
+    }
+
+    public bool getRightHandActive()
+    {
+        return rightHandActive;
     }
 
 }

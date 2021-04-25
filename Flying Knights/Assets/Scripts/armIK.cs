@@ -43,8 +43,18 @@ public class armIK : MonoBehaviour
             }
         }
 
-        
+        //selecting the arm according to the direction
+        if(Vector3.Cross( Vector3.ProjectOnPlane(transform.forward,Vector3.up) , Vector3.ProjectOnPlane(HookObject.transform.position - transform.position,Vector3.up) ).y > 0)
+        {
             playerAnimator.SetIKPosition(AvatarIKGoal.RightHand,HookObject.transform.position);
             playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand,weight);
+        }
+        else
+        {
+            playerAnimator.SetIKPosition(AvatarIKGoal.LeftHand,HookObject.transform.position);
+            playerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand,weight);
+        }
+        
+            
     }
 }
