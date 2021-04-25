@@ -195,6 +195,7 @@ public class PlayerController : MonoBehaviour
             {
                 //setting the forward animation
                 velocityFactor = 0;
+                if(!onGround) desiredHeading = Vector3.ProjectOnPlane(localRigidBody.velocity.normalized,Vector3.up);
             }
         }
         
