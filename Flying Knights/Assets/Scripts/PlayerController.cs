@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CameraControler cam;
 
     [Tooltip("The particle system that makes the trail")]
-    [SerializeField] private GameObject trailParticleEmitter;
+    [SerializeField] private TrailRenderer trailParticleEmitter;
 
     [Tooltip("The particle system that makes the impact cloud")]
     [SerializeField] private ParticleSystem impactCloudParticleEmitter;
@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
     private spell Spell;
 
     private AudioSource sfxSource;
+    private AudioSource boosterSource;
     [SerializeField] private AudioSource GrapplingSource;
 
     void Start()
@@ -74,10 +75,11 @@ public class PlayerController : MonoBehaviour
         localRigidBody = GetComponent<Rigidbody>();
         hookShootScript = GetComponent<Hookshot>();
         raycastLayerToExclude = LayerMask.GetMask("Player");
-        trailParticleEmitter.SetActive(false);
+        trailParticleEmitter.emitting = false;
         sfxSource = impactCloudParticleEmitter.GetComponent<AudioSource>();
         Cursor.visible = false;
         Spell = GetComponent<spell>();
+        boosterSource = GetComponent<AudioSource>();
     }
 
     private bool checkGround()
@@ -104,7 +106,9 @@ public class PlayerController : MonoBehaviour
 
                 onGround = true;
                 //airAssisting = false;
-                trailParticleEmitter.SetActive(false);
+                //TODO trailParticleEmitter.SetActive(false);
+                trailParticleEmitter.emitting = false;
+                boosterSource.Stop();
             }
             else
             {
@@ -122,7 +126,7 @@ public class PlayerController : MonoBehaviour
             spaceTrigger = false;
             if(onGround&&spaceDown)
             {
-                trailParticleEmitter.SetActive(true);
+                trailParticleEmitter.emitting = false;
                 //airAssisting = true;
                 onGround = false;
                 localRigidBody.AddForce(Vector3.up * jumpForce * Physics.gravity.magnitude);
@@ -151,6 +155,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+
             //set the desired heading
             if(rightMoveValue*rightMoveValue >= 0.01 || forwardMoveValue*forwardMoveValue >= 0.01)
             {
@@ -158,7 +163,7 @@ public class PlayerController : MonoBehaviour
                 //adding the force depending on the current velocity and state
                 if(onGround)
                 {
-                    if(Vector3.Dot(desiredHeading,localRigidBody.velocity) < playerMaxGroundSpeed)
+                    if(Vector3.Dot(localRigidBody.velocity,desiredHeading) < playerMaxGroundSpeed +0.05f)
                     {
                         localRigidBody.AddForce(desiredHeading * playerGroundAcceleration);
                     }
@@ -194,6 +199,7 @@ public class PlayerController : MonoBehaviour
             {
                 //setting the forward animation
                 velocityFactor = 0;
+                if(!onGround) desiredHeading = Vector3.ProjectOnPlane(localRigidBody.velocity.normalized,Vector3.up);
             }
         }
         
@@ -211,10 +217,25 @@ public class PlayerController : MonoBehaviour
         //setting the direction of the animation
         if(onGround)
         {
-            directionFactor = Vector3.SignedAngle(desiredHeading,transform.forward,-Vector3.up)*1.5f;
-            if(directionFactor<-90f) directionFactor = -90f;
-            if(directionFactor>90f) directionFactor = 90f;
-            directionFactor/=90f;
+            //sliding ?
+            if(localRigidBody.velocity.magnitude > playerMaxGroundSpeed*1.5f)
+            {
+                if(localRigidBody.velocity.magnitude > playerMaxGroundSpeed*3.5f)
+                {
+                    velocityFactor = -1f;
+                }
+                else
+                {
+                    velocityFactor = -1f*((localRigidBody.velocity.magnitude-playerMaxGroundSpeed)/playerMaxGroundSpeed)/2f + velocityFactor * (1-(((localRigidBody.velocity.magnitude-playerMaxGroundSpeed)/playerMaxGroundSpeed)/2f) );
+                }
+            }
+            else
+            {
+                directionFactor = Vector3.SignedAngle(desiredHeading,transform.forward,-Vector3.up)*1.5f;
+                if(directionFactor<-90f) directionFactor = -90f;
+                if(directionFactor>90f) directionFactor = 90f;
+                directionFactor/=90f;
+            }
         }
 
     }
@@ -242,7 +263,14 @@ public class PlayerController : MonoBehaviour
     {
         spaceTrigger = !spaceTrigger;
         spaceDown = !spaceDown;
-        trailParticleEmitter.SetActive(spaceDown);
+        trailParticleEmitter.emitting = spaceDown;
+        if (spaceDown)
+        {
+            boosterSource.Play();
+        }else
+        {
+            boosterSource.Stop();
+        }
     }
 
     public void OnEvade()

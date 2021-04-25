@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Flying Knights/Assets/Graphics/Tuto.meta
 guid: 363f415d35e731d4597f98e9a5e9d088
+=======
+guid: d3842b97f4197f74b801c1288fbcafd0
+>>>>>>> 7b3e8c9e7b3f9e226f97b94c5cf50c9afde1c9b0:Flying Knights/Assets/Pixel Landing/3D ModelsEnvironmentsLandscapes.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
