@@ -34985,16 +34985,6 @@ PrefabInstance:
       propertyPath: mouvementSpeed
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 465198977960142458, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
-        type: 3}
-      propertyPath: walkSpeed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2569897053703260074, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
-        type: 3}
-      propertyPath: m_Speed
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 6675057041329673389, guid: 2b7d4d265a675a94cb7c4f8db2ea9f65,
         type: 3}
       propertyPath: m_Name
@@ -35212,6 +35202,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 626442126074634439, guid: d6091f803befa23418e281a0eca215cd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223686241719737358, guid: d6091f803befa23418e281a0eca215cd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4079544419625802037, guid: d6091f803befa23418e281a0eca215cd,
         type: 3}
       propertyPath: m_RootOrder
@@ -35271,6 +35271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerHook5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947566939826131718, guid: d6091f803befa23418e281a0eca215cd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7077874429532008777, guid: d6091f803befa23418e281a0eca215cd,
         type: 3}
