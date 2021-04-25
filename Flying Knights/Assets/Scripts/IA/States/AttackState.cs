@@ -48,11 +48,13 @@ public class AttackState : State<Colossus>
             {
                 // Attack left
                 Attack(colossus, leftTrig);
+                Debug.Log("LeftTriggering");
             }
             else if (colossus.DetectRight())
             {
                 // Attack right
                 Attack(colossus, rightTrig);
+                Debug.Log("RightTriggering");
             }
             else if (colossus.DetectBottom())
             {

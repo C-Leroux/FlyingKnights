@@ -3559,6 +3559,7 @@ MonoBehaviour:
   Paused: 0
   MenuPause: {fileID: 0}
   Settings: {fileID: 0}
+  Controls: {fileID: 0}
 --- !u!1 &4127667904890005899
 GameObject:
   m_ObjectHideFlags: 0
@@ -4928,10 +4929,10 @@ AudioSource:
   m_GameObject: {fileID: 5006966998476481475}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6127115889682711036, guid: cc83cca36f6407847b00c922f8039ead,
+  OutputAudioMixerGroup: {fileID: -451476270499077330, guid: cc83cca36f6407847b00c922f8039ead,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1d8750301d652b340ac8adffdee27bc6, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 2999e86cf583ab341bac9032eb3b7d7c, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 0.23
   m_Pitch: 1
   Loop: 1
@@ -5627,7 +5628,7 @@ MonoBehaviour:
     m_Bits: 260
   untargettingSprite: {fileID: 21300000, guid: 651fece48186c194289618cee4007188, type: 3}
   targettingSprite: {fileID: 21300000, guid: c8582c711e70b8d4aae251d5e6a0d4a9, type: 3}
-  detectionConeAngle: 1
+  sphereDetectorRadius: 5
   maxRange: 10
 --- !u!1 &5006966999660463197
 GameObject:
@@ -8379,6 +8380,7 @@ MonoBehaviour:
   Paused: 0
   MenuPause: {fileID: 0}
   Settings: {fileID: 0}
+  Controls: {fileID: 0}
 --- !u!1 &8472205315862506879
 GameObject:
   m_ObjectHideFlags: 0
@@ -14405,6 +14407,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a7fb939e522a542a35da6d88faed64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4594407821697451243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2313180210681186721, guid: f9f62b2505e51bd4fa48f474d31883df,
+    type: 3}
+  m_PrefabInstance: {fileID: 2294738727795166538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4594407821697451242 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2313180210681186720, guid: f9f62b2505e51bd4fa48f474d31883df,
@@ -14414,12 +14422,6 @@ RectTransform:
 --- !u!224 &4594407821088839754 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2313180210089350400, guid: f9f62b2505e51bd4fa48f474d31883df,
-    type: 3}
-  m_PrefabInstance: {fileID: 2294738727795166538}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4594407821697451243 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2313180210681186721, guid: f9f62b2505e51bd4fa48f474d31883df,
     type: 3}
   m_PrefabInstance: {fileID: 2294738727795166538}
   m_PrefabAsset: {fileID: 0}
