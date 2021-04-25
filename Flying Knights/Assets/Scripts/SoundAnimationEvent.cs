@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundAnimationEvent : MonoBehaviour
 {
-    AudioSource audio;
+    AudioSource sourceAudio;
     [SerializeField] AudioSource[] Sources;
     // Start is called before the first frame update
     void Start()
@@ -23,19 +23,19 @@ public class SoundAnimationEvent : MonoBehaviour
     //                                      2 - Saut
     public void PlayStepPlayer()
     {
-        audio = Sources[1];
-        audio.Play();
+        sourceAudio = Sources[1];
+        sourceAudio.Play();
     }
     public void PlaySlash()
     {
-        audio = Sources[0];
-        audio.Play();
+        sourceAudio = Sources[0];
+        sourceAudio.Play();
     }
 
     public void PlayJumpSound()
     {
-        audio = Sources[2];
-        audio.Play();
+        sourceAudio = Sources[2];
+        sourceAudio.Play();
     }
 
     //Sources du colosse possede 2 source : 0 - Bruit de pas
@@ -44,25 +44,25 @@ public class SoundAnimationEvent : MonoBehaviour
     //                                      3 - Cri d'attaque
     public void PlayStepColosse()
     {
-        audio = Sources[0];
-        audio.Play();
+        sourceAudio = Sources[0];
+        sourceAudio.Play();
     }
 
     public void PlayDieColosse()
     {
-        audio = Sources[1];
-        audio.Play();
+        sourceAudio = Sources[1];
+        sourceAudio.Play();
     }
 
     public void PlayAttackColosse()
     {
-        audio = Sources[2];
-        audio.Play();
+        sourceAudio = Sources[2];
+        sourceAudio.Play();
     }
     
     public void PlayAttackGrowlColosse()
     {
-        audio = Sources[3];
-        audio.Play();
+        sourceAudio = Sources[3];
+        sourceAudio.Play();
     }
 }

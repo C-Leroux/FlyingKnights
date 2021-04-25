@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Hookshot : MonoBehaviour
 {
-    [SerializeField] private float hookSpeed = 2000f;     // Initial speed of the hook
-    [SerializeField] private float hookAcceleration = 1500f;     // Initial speed of the hook
+    [SerializeField] private float hookSpeed = 2000f;     // Maximum speed of the hook
+    [SerializeField] private float hookAcceleration = 150f;     // Initial speed of the hook
     [SerializeField] private GameObject hookObject = null;         // Extremity of the hook
     [SerializeField] private ReticleChanger reticle = null; // Reference to the reticle
     [SerializeField] public float maxDist = 250;     // Maximal distance of the hook
@@ -18,6 +18,7 @@ public class Hookshot : MonoBehaviour
     private Collider target = null;   // Collider of the hooked object
     private CustomJoint joint = null;
     private Rigidbody hookRigidBody = null;
+    private Rigidbody selfRigidBody = null;
     private Vector3 dir = Vector3.zero;
     private Vector3 originalHookScale;
     private RaycastHit collisionDetector;
@@ -35,6 +36,7 @@ public class Hookshot : MonoBehaviour
         lineRend = GetComponent<LineRenderer>();
         lineRend.enabled = false;
         hookRigidBody = hookObject.GetComponent<Rigidbody>();
+        selfRigidBody = GetComponent<Rigidbody>();
         originalHookScale = hookObject.transform.lossyScale;
         hookSource = hookObject.GetComponent<AudioSource>();
     }
@@ -88,7 +90,21 @@ public class Hookshot : MonoBehaviour
         Vector3 targetVect = reticle.GetRaycastHit();
         dir = (targetVect - hookSpawn.transform.position).normalized;
 
+    
+        //float impactTime = -( Vector3.Dot(selfRigidBody.velocity,dir) + Mathf.Sqrt( Mathf.Pow(Vector3.Dot(selfRigidBody.velocity,dir),2) - 2*hookAcceleration*( Vector3.Dot(selfRigidBody.position,dir) - Vector3.Dot(targetVect,dir)) ) )/(2*hookAcceleration);
+        //Debug.Log(impactTime);
+
+        /*
+        dir = new Vector3(
+            2*(targetVect.x - selfRigidBody.position.x - (selfRigidBody.velocity.x * impactTime))/(impactTime*impactTime),
+            2*(targetVect.y - selfRigidBody.position.y - (selfRigidBody.velocity.y * impactTime))/(impactTime*impactTime),
+            2*(targetVect.z - selfRigidBody.position.z - (selfRigidBody.velocity.z * impactTime))/(impactTime*impactTime)
+        ).normalized;
         
+
+        currentHookSpeed = selfRigidBody.velocity;
+        */
+
         // Set the hook active
         isHooked = false;
         isActive = true;

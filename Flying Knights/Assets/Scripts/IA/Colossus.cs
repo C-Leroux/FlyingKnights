@@ -4,21 +4,16 @@ using UnityEngine;
 using UnityEngine.VFX;
 public class Colossus : MonoBehaviour
 {
-
-    [SerializeField] private Wandering wandering;
-    [SerializeField] private Attacking attacking;
     [SerializeField] private float rangeDetection;
     [SerializeField] private DetectPlayer leftDetect;
     [SerializeField] private DetectPlayer rightDetect;
     [SerializeField] private ParticleSystem HitFX;
 
     [HideInInspector] public bool isAttacking = false;
-    [SerializeField] private Animator colossusAnim;
    
 
     [HideInInspector] private bool frozen = false;
     [HideInInspector] private float frozenTimer = 0;
-    [SerializeField] private Animator anim;
     [HideInInspector] private State<Colossus> OldState;
     Rigidbody rb;
 
@@ -32,14 +27,19 @@ public class Colossus : MonoBehaviour
 
     #region Statistiques
     [SerializeField]
-    private float HP;
+    private float maxHP;
     [SerializeField]
     private float Attack;
     [SerializeField]
-    private float mouvementSpeed;
-    [SerializeField]
     private float reactionTime;
     #endregion
+
+    private Animator colossusAnim = null;
+    private Wandering wandering;
+    private Attacking attacking;
+    private EnnemySpawn spawner;
+    private float HP;
+    [SerializeField] public readonly float despawnDistance = 250f;
 
     public StateMachine<Colossus> FSM
     {
@@ -55,10 +55,15 @@ public class Colossus : MonoBehaviour
 
     private void Start()
     {
-        fsm = new StateMachine<Colossus>(this); ;
+        colossusAnim = this.GetComponent<Animator>();  
+        wandering = this.GetComponent<Wandering>();  
+        attacking = this.GetComponent<Attacking>();
+        spawner = this.GetComponent<EnnemySpawn>();
+        HP = maxHP;
+
+        ///
+        fsm = new StateMachine<Colossus>(this);
         fsm.ChangeState(WanderState.Instance);
-        colossusAnim = this.GetComponent<Animator>();    // bool: Walk; trigger: Die, Attack;
-        
     }
 
     private void FixedUpdate()
@@ -181,12 +186,20 @@ public class Colossus : MonoBehaviour
 
     //Fonction appelee a la mort du colosse
     public void Die()
-    {
-        //TODO Apply Death function
-        //Destroy(this.gameObject);     
+    {    
         colossusAnim.SetTrigger("Die");
+        colossusAnim.SetBool("Dead",true);
         scoreCounter.addScore(500);
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void Ressurect()
+    {
+        HP = maxHP;
+        colossusAnim.ResetTrigger("Die");
+        colossusAnim.SetBool("Dead",false);
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        spawner.Spawn();
     }
 
     public bool IsDead()
@@ -201,7 +214,7 @@ public class Colossus : MonoBehaviour
         if (!frozen)
         {
             frozen = true;
-            anim.enabled = false;
+            colossusAnim.enabled = false;
            
             OldState = fsm.CurrentState;
             if (OldState == WanderState.Instance)
@@ -226,7 +239,7 @@ public class Colossus : MonoBehaviour
     {
         frozen = false;
 
-        anim.enabled = true;
+        colossusAnim.enabled = true;
         if (OldState == WanderState.Instance)
         {
             StartWandering();

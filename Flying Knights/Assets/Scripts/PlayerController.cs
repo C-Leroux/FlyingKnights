@@ -47,9 +47,6 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The animator for the player model")]
     [SerializeField] private Animator playerAnimator;
 
-    [Tooltip("The script to shoot a spell")]
-    [SerializeField] private spell Spell;
-
     [SerializeField] private Pause pause;
     
     float rightMoveValue, forwardMoveValue; //this is updated via the input 
@@ -67,6 +64,7 @@ public class PlayerController : MonoBehaviour
     private RaycastHit groundHit;
     private float directionFactor = 0f;
     private float velocityFactor = 0f;
+    private spell Spell;
 
     private AudioSource sfxSource;
     [SerializeField] private AudioSource GrapplingSource;
@@ -79,6 +77,7 @@ public class PlayerController : MonoBehaviour
         trailParticleEmitter.SetActive(false);
         sfxSource = impactCloudParticleEmitter.GetComponent<AudioSource>();
         Cursor.visible = false;
+        Spell = GetComponent<spell>();
     }
 
     private bool checkGround()

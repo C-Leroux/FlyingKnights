@@ -2146,6 +2146,7 @@ GameObject:
   - component: {fileID: 3977164438998263194}
   - component: {fileID: 6676033728809593009}
   - component: {fileID: 486438636166629538}
+  - component: {fileID: 351125816}
   m_Layer: 0
   m_Name: Colossus
   m_TagString: Colossus
@@ -2247,20 +2248,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c77c54b7462d304eb378870be799f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wandering: {fileID: 465198977960142458}
-  attacking: {fileID: 3977164438998263194}
   rangeDetection: 60
   leftDetect: {fileID: 719494033943991831}
   rightDetect: {fileID: 5754975081097899476}
   HitFX: {fileID: 7368608635819494049}
   isAttacking: 0
-  colossusAnim: {fileID: 6769586264113360491}
-  anim: {fileID: 0}
   scoreCounter: {fileID: 0}
   attackAOE: {fileID: 6676033730075443899}
   attackDelay: 1.3
   attackEndDelay: 1.8
-  HP: 500
+  maxHP: 500
   Attack: 60
   mouvementSpeed: 0
   reactionTime: 4
@@ -2312,6 +2309,22 @@ MonoBehaviour:
   - {fileID: 2001611946594096699}
   - {fileID: 4385119110298614945}
   - {fileID: 416648765711051271}
+--- !u!114 &351125816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675057041329673389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d423fc9a1ca1c04f88ffe5363f55fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnList: {fileID: 0}
+  skipSpawn: 0
+  spawnRadius: 50
+  safeDistance: 500
 --- !u!1 &6675079562228779677
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class RadarPrint : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (!radar.IsColossus())
         {

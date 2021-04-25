@@ -51,13 +51,23 @@ public class CustomJoint : MonoBehaviour
         if(active && jointBase != null)
         {
             rValue = jointBase.transform.position-transform.position;
-            mRigidBody.AddForce(rValue.normalized*TractionForce);
+            float  length = rValue.magnitude;
+            //mRigidBody.AddForce(rValue.normalized*TractionForce);
 
             
             //shamelessly changing velocity to make it look like there is a limit
-            if(rValue.magnitude >= maxDistance)
+            if(length >= maxDistance)
             {
-                mRigidBody.velocity = (Vector3.ProjectOnPlane(mRigidBody.velocity,rValue));
+                //mRigidBody.velocity = (Vector3.ProjectOnPlane(mRigidBody.velocity,rValue));
+                mRigidBody.AddForce(rValue.normalized*TractionForce*(1f+((length-maxDistance)/maxDistance)));
+            }
+            else
+            {
+                mRigidBody.AddForce(rValue.normalized*TractionForce);
+                if(length <= 0.9f*maxDistance)
+                {
+                    maxDistance = 0.9f*maxDistance;
+                }
             }
             
         }

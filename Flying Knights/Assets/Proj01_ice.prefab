@@ -4753,7 +4753,7 @@ MonoBehaviour:
   rb: {fileID: -6270003215515978897}
   c: {fileID: 5116116648094060523}
   Impact: {fileID: 100004, guid: 2d93b2f3c4dcfb94d9b93ef4889fc7d6, type: 3}
-  maxTime: 0.6
+  maxTime: 2.5
   speed: 8
 --- !u!82 &1197781435453555852
 AudioSource:
@@ -4767,7 +4767,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 17bc6c4d18a52ba40be9d478b9617cab, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4811,7 +4811,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4826,7 +4826,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4866,7 +4866,7 @@ MonoBehaviour:
   rb: {fileID: -6270003215515978897}
   c: {fileID: 5116116648094060523}
   Impact: {fileID: 100004, guid: 2d93b2f3c4dcfb94d9b93ef4889fc7d6, type: 3}
-  maxTime: 0.6
+  maxTime: 0.7
   speed: 40
 --- !u!1 &100002
 GameObject:
