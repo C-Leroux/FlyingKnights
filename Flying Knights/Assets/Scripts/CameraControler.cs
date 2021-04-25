@@ -9,13 +9,20 @@ public class CameraControler : MonoBehaviour
     [SerializeField] private float ySensitivity = 60;
     [SerializeField] private float yLimit = 5;
     [SerializeField] private float defaultZoomLevel = 5;
+    [SerializeField] private float zoomVelocityFactor = 0.3f;
+    [SerializeField] private float zoomVelocityFactorThreshold = 20f;
+    [SerializeField] private float zoomVelocityFactorMaxDeZoom = 15f;
+    [SerializeField] private float zoomSpeed = 5f;
+    [SerializeField] private Rigidbody playerRigidBody = null;
 
     private float xAngle = 0;
     private float yAngle = 0;
     private Vector3 lookDirection = new Vector3(1,0,0);
     private Vector3 lateralDirection = new Vector3(0,1,0);
     private float currentZoomLevel = 3;
+    private float currentZoomTarget = 3;
     private RaycastHit cameraObstructionChecker;
+    
 
 
     // Start is called before the first frame update
@@ -47,7 +54,16 @@ public class CameraControler : MonoBehaviour
         }
         else
         {
-            currentZoomLevel = defaultZoomLevel;
+            if(playerRigidBody.velocity.magnitude > zoomVelocityFactorThreshold)
+            {
+                currentZoomTarget = defaultZoomLevel + (playerRigidBody.velocity.magnitude-zoomVelocityFactorThreshold)*zoomVelocityFactor;
+            }
+            else
+            {
+                currentZoomTarget = defaultZoomLevel;
+            }
+            if(currentZoomTarget > zoomVelocityFactorMaxDeZoom) currentZoomTarget = zoomVelocityFactorMaxDeZoom;
+            currentZoomLevel = Mathf.MoveTowards(currentZoomLevel,currentZoomTarget,zoomSpeed*Time.deltaTime);
         }
 
         //positioning and orienting camera according to look direction

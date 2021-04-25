@@ -30,7 +30,7 @@ public class armIK : MonoBehaviour
     void OnAnimatorIK(int layerIndex)
     {
         //setting the IK
-        if(hookShootScript.GetisHooked())
+        if(hookShootScript.GetisActive())
         {
             weight = 1f;
         }

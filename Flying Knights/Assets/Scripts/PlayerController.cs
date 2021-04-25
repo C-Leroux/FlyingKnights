@@ -154,6 +154,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+
             //set the desired heading
             if(rightMoveValue*rightMoveValue >= 0.01 || forwardMoveValue*forwardMoveValue >= 0.01)
             {
@@ -161,7 +162,7 @@ public class PlayerController : MonoBehaviour
                 //adding the force depending on the current velocity and state
                 if(onGround)
                 {
-                    if(Vector3.Dot(desiredHeading,localRigidBody.velocity) < playerMaxGroundSpeed)
+                    if(Vector3.Dot(localRigidBody.velocity,desiredHeading) < playerMaxGroundSpeed +0.05f)
                     {
                         localRigidBody.AddForce(desiredHeading * playerGroundAcceleration);
                     }
@@ -197,6 +198,7 @@ public class PlayerController : MonoBehaviour
             {
                 //setting the forward animation
                 velocityFactor = 0;
+                if(!onGround) desiredHeading = Vector3.ProjectOnPlane(localRigidBody.velocity.normalized,Vector3.up);
             }
         }
         
@@ -214,10 +216,25 @@ public class PlayerController : MonoBehaviour
         //setting the direction of the animation
         if(onGround)
         {
-            directionFactor = Vector3.SignedAngle(desiredHeading,transform.forward,-Vector3.up)*1.5f;
-            if(directionFactor<-90f) directionFactor = -90f;
-            if(directionFactor>90f) directionFactor = 90f;
-            directionFactor/=90f;
+            //sliding ?
+            if(localRigidBody.velocity.magnitude > playerMaxGroundSpeed*1.5f)
+            {
+                if(localRigidBody.velocity.magnitude > playerMaxGroundSpeed*3.5f)
+                {
+                    velocityFactor = -1f;
+                }
+                else
+                {
+                    velocityFactor = -1f*((localRigidBody.velocity.magnitude-playerMaxGroundSpeed)/playerMaxGroundSpeed)/2f + velocityFactor * (1-(((localRigidBody.velocity.magnitude-playerMaxGroundSpeed)/playerMaxGroundSpeed)/2f) );
+                }
+            }
+            else
+            {
+                directionFactor = Vector3.SignedAngle(desiredHeading,transform.forward,-Vector3.up)*1.5f;
+                if(directionFactor<-90f) directionFactor = -90f;
+                if(directionFactor>90f) directionFactor = 90f;
+                directionFactor/=90f;
+            }
         }
 
     }
