@@ -23,9 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Merge/Menu.unity
     guid: 0a2de13c58f0d3e4394dbe50af5d6154
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Merge/Level6.unity
     guid: 8c266ade1ff89844db1c7892e5fa2cad
+  - enabled: 1
+    path: Assets/Scenes/Altarick/Level8.unity
+    guid: 542822c21594d6f4b903ea49e3a4e603
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a835bea1ca35b59428edea28afaa29e8,
       type: 2}
