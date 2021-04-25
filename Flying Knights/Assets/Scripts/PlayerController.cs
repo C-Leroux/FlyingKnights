@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
     private spell Spell;
 
     private AudioSource sfxSource;
+    private AudioSource boosterSource;
     [SerializeField] private AudioSource GrapplingSource;
 
     void Start()
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
         sfxSource = impactCloudParticleEmitter.GetComponent<AudioSource>();
         Cursor.visible = false;
         Spell = GetComponent<spell>();
+        boosterSource = GetComponent<AudioSource>();
     }
 
     private bool checkGround()
@@ -105,6 +107,7 @@ public class PlayerController : MonoBehaviour
                 onGround = true;
                 //airAssisting = false;
                 trailParticleEmitter.SetActive(false);
+                boosterSource.Stop();
             }
             else
             {
@@ -243,6 +246,13 @@ public class PlayerController : MonoBehaviour
         spaceTrigger = !spaceTrigger;
         spaceDown = !spaceDown;
         trailParticleEmitter.SetActive(spaceDown);
+        if (spaceDown)
+        {
+            boosterSource.Play();
+        }else
+        {
+            boosterSource.Stop();
+        }
     }
 
     public void OnEvade()
