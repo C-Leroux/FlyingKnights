@@ -17,12 +17,15 @@ public class CustomJoint : MonoBehaviour
     private Vector3 rValue; //direction toward the base
     private bool active = false; // whether the joint is active
     private float defaultDrag; //the drag that will be restored when the joint is off
+    private PlayerController mHookShoot = null;
+    private Vector3 forceToApply = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
         mRigidBody = GetComponent<Rigidbody>();
         defaultDrag = mRigidBody.drag;
+        mHookShoot = GetComponent<PlayerController>();
     }
 
     //setter for activating the joint, distance is the hard limit distance
@@ -37,6 +40,7 @@ public class CustomJoint : MonoBehaviour
         else
         {
             mRigidBody.drag = defaultDrag;
+            mHookShoot.setForceEffect(Vector3.zero);
         }
     }
 
@@ -58,12 +62,15 @@ public class CustomJoint : MonoBehaviour
             //shamelessly changing velocity to make it look like there is a limit
             if(length >= maxDistance)
             {
-                //mRigidBody.velocity = (Vector3.ProjectOnPlane(mRigidBody.velocity,rValue));
-                mRigidBody.AddForce(rValue.normalized*TractionForce*(1f+((length-maxDistance)/maxDistance)));
+                forceToApply = rValue.normalized*TractionForce*(1f+((length-maxDistance)/maxDistance));
+                mRigidBody.AddForce(forceToApply);
+                mHookShoot.setForceEffect(forceToApply);
             }
             else
             {
-                mRigidBody.AddForce(rValue.normalized*TractionForce);
+                forceToApply = rValue.normalized*TractionForce;
+                mRigidBody.AddForce(forceToApply);
+                mHookShoot.setForceEffect(forceToApply);
                 if(length <= 0.9f*maxDistance)
                 {
                     maxDistance = 0.9f*maxDistance;

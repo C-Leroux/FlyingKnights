@@ -47,6 +47,21 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The animator for the player model")]
     [SerializeField] private Animator playerAnimator;
 
+    [Tooltip("The player model")]
+    [SerializeField] private GameObject playerModel;
+
+    [Tooltip("The player tilt speed")]
+    [SerializeField] private float playerTiltSpeed;
+
+    [Tooltip("The player maximum tilt angle on each side ")]
+    [SerializeField] private float playerMaxTiltAngle = 50;
+
+    [Tooltip("The ratio of force/gravity above which no more tilt is added to the player, tilt scales linearly from zero to this value of ratio")]
+    [SerializeField] private float tiltSaturationFactor = 1500f;
+
+    [Tooltip("The player attack script")]
+    [SerializeField] private PlayerAttack attackScript = null;
+
     [SerializeField] private Pause pause;
     
     float rightMoveValue, forwardMoveValue; //this is updated via the input 
@@ -65,6 +80,8 @@ public class PlayerController : MonoBehaviour
     private float directionFactor = 0f;
     private float velocityFactor = 0f;
     private spell Spell;
+    private float targetPlayerTilt = 0; // the current force not due to gravity that is being applied to the player, for tilting effect
+    private float currentPlayerTilt =0;
 
     private AudioSource sfxSource;
     private AudioSource boosterSource;
@@ -213,6 +230,11 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,desiredHeading,rotationSpeed*Time.deltaTime,0),Vector3.up).normalized,Vector3.up);
         }
+
+        //rotating model to reflect tilt
+        currentPlayerTilt = Mathf.MoveTowards(currentPlayerTilt,targetPlayerTilt,playerTiltSpeed);
+        playerModel.transform.localRotation = Quaternion.Euler(0,0,currentPlayerTilt);
+ 
         
         //setting the direction of the animation
         if(onGround)
@@ -237,6 +259,7 @@ public class PlayerController : MonoBehaviour
                 directionFactor/=90f;
             }
         }
+        
 
     }
 
@@ -308,5 +331,32 @@ public class PlayerController : MonoBehaviour
     {
         Spell.Shoot();
     }
+
+    public void setForceEffect(Vector3 Force)
+    {
+        float forceRatio = Force.magnitude/Physics.gravity.magnitude;
+        if(hookShootScript.getRightHandActive())
+        {
+            if(forceRatio < tiltSaturationFactor)
+            {
+                targetPlayerTilt = - Vector3.Dot(transform.right,Force.normalized) * playerMaxTiltAngle * forceRatio / tiltSaturationFactor;
+            }
+            else targetPlayerTilt = - playerMaxTiltAngle;
+        }
+        else
+        {
+            if(forceRatio < tiltSaturationFactor)
+            {
+                targetPlayerTilt = Vector3.Dot(-transform.right,Force.normalized) * playerMaxTiltAngle * forceRatio / tiltSaturationFactor;
+            }
+            else targetPlayerTilt = playerMaxTiltAngle;
+        }
+        
+    }
+
+    public void OnAttack()
+    {
+        attackScript.OnAttack();
+    } 
 
 }

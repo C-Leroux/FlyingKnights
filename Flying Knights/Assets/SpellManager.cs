@@ -32,7 +32,6 @@ public class SpellManager : MonoBehaviour
         if(!(other.gameObject.tag=="Player"|| other.gameObject.tag == "Detection" ))
         {
             Explosion();
-            //Debug.Log(other.name);
            
         }
        

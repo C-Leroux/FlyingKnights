@@ -47,23 +47,22 @@ public class CameraControler : MonoBehaviour
         lateralDirection = Vector3.Cross(Vector3.up,lookDirection).normalized;
         lookDirection = Quaternion.AngleAxis(yAngle,lateralDirection) * lookDirection;
 
-        //managing camera obstruction by making the camera closer to the player
-        if(Physics.Raycast(cameraPivot.transform.position,-lookDirection,out cameraObstructionChecker,defaultZoomLevel+0.1f))
+        
+        
+        if(playerRigidBody.velocity.magnitude > zoomVelocityFactorThreshold)
         {
-            currentZoomLevel = cameraObstructionChecker.distance - 0.3f;
+            currentZoomTarget = defaultZoomLevel + (playerRigidBody.velocity.magnitude-zoomVelocityFactorThreshold)*zoomVelocityFactor;
         }
         else
         {
-            if(playerRigidBody.velocity.magnitude > zoomVelocityFactorThreshold)
-            {
-                currentZoomTarget = defaultZoomLevel + (playerRigidBody.velocity.magnitude-zoomVelocityFactorThreshold)*zoomVelocityFactor;
-            }
-            else
-            {
-                currentZoomTarget = defaultZoomLevel;
-            }
-            if(currentZoomTarget > zoomVelocityFactorMaxDeZoom) currentZoomTarget = zoomVelocityFactorMaxDeZoom;
-            currentZoomLevel = Mathf.MoveTowards(currentZoomLevel,currentZoomTarget,zoomSpeed*Time.deltaTime);
+            currentZoomTarget = defaultZoomLevel;
+        }
+        if(currentZoomTarget > zoomVelocityFactorMaxDeZoom) currentZoomTarget = zoomVelocityFactorMaxDeZoom;
+        currentZoomLevel = Mathf.MoveTowards(currentZoomLevel,currentZoomTarget,zoomSpeed*Time.deltaTime);
+        //managing camera obstruction by making the camera closer to the player
+        if(Physics.Raycast(cameraPivot.transform.position,-lookDirection,out cameraObstructionChecker,currentZoomLevel+0.1f))
+        {
+            currentZoomLevel = cameraObstructionChecker.distance - 0.2f;
         }
 
         //positioning and orienting camera according to look direction
