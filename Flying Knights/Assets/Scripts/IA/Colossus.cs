@@ -161,17 +161,6 @@ public class Colossus : MonoBehaviour
         curReaction = reactionTime;
     }
 
-    public void AttackTopRight()
-    {
-        colossusAnim.SetTrigger("HighRight");
-        curReaction = reactionTime;
-    }
-
-    public void AttackTopLeft()
-    {
-        colossusAnim.SetTrigger("HighLeft");
-        curReaction = reactionTime;
-    }
     private void activateAOE()
     {
         attackAOE.SetActive(true);

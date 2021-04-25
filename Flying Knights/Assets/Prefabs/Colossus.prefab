@@ -2309,6 +2309,7 @@ MonoBehaviour:
   rangeDetection: 60
   leftDetect: {fileID: 719494033943991831}
   rightDetect: {fileID: 5754975081097899476}
+  bottomDetect: {fileID: 9139867134173027529}
   HitFX: {fileID: 7368608635819494049}
   isAttacking: 0
   scoreCounter: {fileID: 0}
