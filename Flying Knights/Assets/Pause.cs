@@ -30,6 +30,7 @@ public class Pause : MonoBehaviour
     {
         MenuPause.SetActive(false);
         Settings.SetActive(false);
+        Controls.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1f;
