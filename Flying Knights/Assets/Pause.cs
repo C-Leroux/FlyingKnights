@@ -9,6 +9,8 @@ public class Pause : MonoBehaviour
     public  bool Paused=false;
     public GameObject MenuPause;
     public GameObject Settings;
+    public GameObject Controls;
+    
     void Start()
     {
         Paused = false;
@@ -64,5 +66,11 @@ public class Pause : MonoBehaviour
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
+    }
+
+    public void ControlMenu()
+    {
+        MenuPause.SetActive(false);
+        Controls.SetActive(true);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -7,6 +7,7 @@ public class Colossus : MonoBehaviour
     [SerializeField] private float rangeDetection;
     [SerializeField] private DetectPlayer leftDetect;
     [SerializeField] private DetectPlayer rightDetect;
+    [SerializeField] private DetectPlayer bottomDetect;
     [SerializeField] private ParticleSystem HitFX;
 
     [HideInInspector] public bool isAttacking = false;
@@ -39,6 +40,7 @@ public class Colossus : MonoBehaviour
     private Attacking attacking;
     private EnnemySpawn spawner;
     private float HP;
+    private string AtkAnimTrigger = "Attack";
     [SerializeField] public readonly float despawnDistance = 250f;
 
     public StateMachine<Colossus> FSM
@@ -113,6 +115,11 @@ public class Colossus : MonoBehaviour
     {
         return rightDetect.IsPlayerDetected();
     }
+
+    public bool DetectBottom()
+    {
+        return bottomDetect.IsPlayerDetected();
+    }
     #endregion
 
     #region Wandering
@@ -136,6 +143,7 @@ public class Colossus : MonoBehaviour
     {
         colossusAnim.SetBool("Walk", true);
         attacking.EnterAttackMode();
+        Debug.Log(FSM.CurrentState);
         
     }
 
@@ -147,7 +155,7 @@ public class Colossus : MonoBehaviour
 
     public void AttackAnim()
     {
-        colossusAnim.SetTrigger("Attack");
+        colossusAnim.SetTrigger(AtkAnimTrigger);
         Invoke("activateAOE",attackDelay);
         Invoke("deActivateAOE",attackEndDelay);
         curReaction = reactionTime;
@@ -206,6 +214,11 @@ public class Colossus : MonoBehaviour
         return HP == 0;
     }
 
+    public void SetAtkAnim(string trigger)
+    {
+        AtkAnimTrigger = trigger;
+    }
+
     #endregion
 
     public void Freeze()
@@ -230,6 +243,7 @@ public class Colossus : MonoBehaviour
             Rigidbody m_Rigidbody = GetComponent<Rigidbody>();
             m_Rigidbody.freezeRotation = true;
             m_Rigidbody.velocity = Vector3.zero;
+            //Debug.Log(FSM.CurrentState);
         }   
     }
 

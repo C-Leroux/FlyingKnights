@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CameraControler cam;
 
     [Tooltip("The particle system that makes the trail")]
-    [SerializeField] private GameObject trailParticleEmitter;
+    [SerializeField] private TrailRenderer trailParticleEmitter;
 
     [Tooltip("The particle system that makes the impact cloud")]
     [SerializeField] private ParticleSystem impactCloudParticleEmitter;
@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
     private float currentPlayerTilt =0;
 
     private AudioSource sfxSource;
+    private AudioSource boosterSource;
     [SerializeField] private AudioSource GrapplingSource;
 
     void Start()
@@ -91,10 +92,11 @@ public class PlayerController : MonoBehaviour
         localRigidBody = GetComponent<Rigidbody>();
         hookShootScript = GetComponent<Hookshot>();
         raycastLayerToExclude = LayerMask.GetMask("Player");
-        trailParticleEmitter.SetActive(false);
+        trailParticleEmitter.emitting = false;
         sfxSource = impactCloudParticleEmitter.GetComponent<AudioSource>();
         Cursor.visible = false;
         Spell = GetComponent<spell>();
+        boosterSource = GetComponent<AudioSource>();
     }
 
     private bool checkGround()
@@ -121,7 +123,9 @@ public class PlayerController : MonoBehaviour
 
                 onGround = true;
                 //airAssisting = false;
-                trailParticleEmitter.SetActive(false);
+                //TODO trailParticleEmitter.SetActive(false);
+                trailParticleEmitter.emitting = false;
+                boosterSource.Stop();
             }
             else
             {
@@ -139,7 +143,7 @@ public class PlayerController : MonoBehaviour
             spaceTrigger = false;
             if(onGround&&spaceDown)
             {
-                trailParticleEmitter.SetActive(true);
+                trailParticleEmitter.emitting = false;
                 //airAssisting = true;
                 onGround = false;
                 localRigidBody.AddForce(Vector3.up * jumpForce * Physics.gravity.magnitude);
@@ -282,7 +286,14 @@ public class PlayerController : MonoBehaviour
     {
         spaceTrigger = !spaceTrigger;
         spaceDown = !spaceDown;
-        trailParticleEmitter.SetActive(spaceDown);
+        trailParticleEmitter.emitting = spaceDown;
+        if (spaceDown)
+        {
+            boosterSource.Play();
+        }else
+        {
+            boosterSource.Stop();
+        }
     }
 
     public void OnEvade()

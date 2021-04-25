@@ -42,7 +42,9 @@
           <e p="armIK.cs" t="Include" />
           <e p="Attacking.cs" t="Include" />
           <e p="CameraControler.cs" t="Include" />
+          <e p="ControlMenu.cs" t="Include" />
           <e p="CustomJoint.cs" t="Include" />
+          <e p="EnnemySpawn.cs" t="Include" />
           <e p="GrapplingCooldown.cs" t="Include" />
           <e p="Hookshot.cs" t="Include" />
           <e p="IA" t="Include">
@@ -61,6 +63,9 @@
           <e p="PlayerAttack.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="PlayerInputAction.cs" t="Include" />
+          <e p="PlayerSpawn.cs" t="Include" />
+          <e p="Radar.cs" t="Include" />
+          <e p="RadarPrint.cs" t="Include" />
           <e p="ReticleChanger.cs" t="Include" />
           <e p="SFXPlayerAttack.cs" t="Include" />
           <e p="SoundAnimationEvent.cs" t="Include" />

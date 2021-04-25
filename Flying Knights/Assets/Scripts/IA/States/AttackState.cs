@@ -12,6 +12,11 @@ public class AttackState : State<Colossus>
 {
     private static AttackState instance = null;
 
+    // Trigger name of the animation to play
+    private const string leftTrig = "HighLeft";
+    private const string rightTrig = "HighRight";
+    private const string bottomTrig = "Attack";
+
     public static AttackState Instance
     {
         get
@@ -42,12 +47,17 @@ public class AttackState : State<Colossus>
             if (colossus.DetectLeft())
             {
                 // Attack left
-                Attack(colossus);
+                Attack(colossus, leftTrig);
             }
             else if (colossus.DetectRight())
             {
                 // Attack right
-                Attack(colossus);
+                Attack(colossus, rightTrig);
+            }
+            else if (colossus.DetectBottom())
+            {
+                // Attack bottom
+                Attack(colossus, bottomTrig);
             }
 
             // Check if colossus is dead
@@ -60,8 +70,9 @@ public class AttackState : State<Colossus>
     // If the colossus is not in an attack animation, start a new one
     // If dir == 0 : left
     // If dir == 1 : right
-    public void Attack(Colossus colossus)
+    private void Attack(Colossus colossus, string trigger)
     {
+        colossus.SetAtkAnim(trigger);
         colossus.FSM.ChangeState(AttackAnimState.Instance);
     }
 
