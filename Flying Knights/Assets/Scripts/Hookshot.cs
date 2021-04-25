@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Hookshot : MonoBehaviour
 {
-    [SerializeField] private float hookSpeed = 2000f;     // Maximum speed of the hook
-    [SerializeField] private float hookAcceleration = 150f;     // Initial speed of the hook
+    [SerializeField] private float hookAcceleration = 150f;     // Acceleration of the hook
     [SerializeField] private GameObject hookObject = null;         // Extremity of the hook
     [SerializeField] private ReticleChanger reticle = null; // Reference to the reticle
     [SerializeField] public float maxDist = 250;     // Maximal distance of the hook
@@ -25,6 +24,7 @@ public class Hookshot : MonoBehaviour
     private Vector3 previousPos;
     private Vector3 currentHookSpeed = Vector3.zero;
     private AudioSource hookSource;
+    private Vector3 actualHookAcceleration;
 
     // Start is called before the first frame update
     void Start()
@@ -90,20 +90,23 @@ public class Hookshot : MonoBehaviour
         Vector3 targetVect = reticle.GetRaycastHit();
         dir = (targetVect - hookSpawn.transform.position).normalized;
 
-    
-        //float impactTime = -( Vector3.Dot(selfRigidBody.velocity,dir) + Mathf.Sqrt( Mathf.Pow(Vector3.Dot(selfRigidBody.velocity,dir),2) - 2*hookAcceleration*( Vector3.Dot(selfRigidBody.position,dir) - Vector3.Dot(targetVect,dir)) ) )/(2*hookAcceleration);
-        //Debug.Log(impactTime);
-
-        /*
-        dir = new Vector3(
-            2*(targetVect.x - selfRigidBody.position.x - (selfRigidBody.velocity.x * impactTime))/(impactTime*impactTime),
-            2*(targetVect.y - selfRigidBody.position.y - (selfRigidBody.velocity.y * impactTime))/(impactTime*impactTime),
-            2*(targetVect.z - selfRigidBody.position.z - (selfRigidBody.velocity.z * impactTime))/(impactTime*impactTime)
-        ).normalized;
+        //getting the basis we need
+        Vector3 normalDirPlane = (Vector3.Cross(dir,selfRigidBody.velocity)).normalized;
+        Vector3 perpToDir = (Vector3.Cross(normalDirPlane,dir)).normalized;
+        //dir and perpToDir are now an orthogonal basis of the plane defined by our velocity and our target point, with dir being the direction to our target
         
+        //the time to the impact assuming the hook moves in a straight line at constant acceleration
+        float dirVelocity = Vector3.Dot(selfRigidBody.velocity,dir);
+        float dirInitialPosition = Vector3.Dot(hookSpawn.transform.position,dir);
+        float dirTargetPosition = Vector3.Dot(targetVect,dir);
+        float impactTime = (-dirVelocity + Mathf.Sqrt((dirVelocity*dirVelocity) - (2 * hookAcceleration*(dirInitialPosition - dirTargetPosition ))))/hookAcceleration;
 
+        //now we calculate the perpendicular acceleration required to return to the initial perpendicular position at impact time
+        float perpVelocity = Vector3.Dot(selfRigidBody.velocity,perpToDir);
+        float lambdaAcceleration = - 2 * perpVelocity / impactTime;
+
+        actualHookAcceleration = hookAcceleration * dir + lambdaAcceleration * perpToDir;
         currentHookSpeed = selfRigidBody.velocity;
-        */
 
         // Set the hook active
         isHooked = false;
@@ -149,8 +152,7 @@ public class Hookshot : MonoBehaviour
     // Once the hook is launched, this method is called each frame to move it
     private void MoveForward()
     {
-        currentHookSpeed += dir*hookAcceleration*Time.deltaTime;
-        if(currentHookSpeed.magnitude > hookSpeed) currentHookSpeed = hookSpeed*currentHookSpeed.normalized;
+        currentHookSpeed += actualHookAcceleration*Time.deltaTime;
 
         hookObject.transform.position += currentHookSpeed*Time.deltaTime;
         // If max distance is reached, the hook stop
@@ -163,6 +165,11 @@ public class Hookshot : MonoBehaviour
     public bool GetisHooked()
     {
         return isHooked;
+    }
+
+    public bool GetisActive()
+    {
+        return isActive;
     }
 
 }

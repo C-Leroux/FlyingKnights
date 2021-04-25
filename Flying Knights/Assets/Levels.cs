@@ -15,7 +15,7 @@ public class Levels : MonoBehaviour
     }
     public void Level1()
     {
-        SceneManager.LoadScene("Level6");
+        SceneManager.LoadScene("Level8");
   
 
     }
