@@ -24,8 +24,6 @@ public class SpellImpact : MonoBehaviour
         if (other.gameObject.tag == "Spell"&&this.gameObject.tag!="Detection")
         {
             colossus.Freeze();
-           Debug.Log(this.gameObject.tag);
-            Debug.Log(this.gameObject.name);
         }
             
         

@@ -20,7 +20,6 @@ public class Settings : MonoBehaviour
 
     public void setQuality (int quality)
     {
-        Debug.Log(quality);
         QualitySettings.SetQualityLevel(quality);
     }
     public void Back()

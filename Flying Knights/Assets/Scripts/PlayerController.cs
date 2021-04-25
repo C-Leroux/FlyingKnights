@@ -59,6 +59,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The ratio of force/gravity above which no more tilt is added to the player, tilt scales linearly from zero to this value of ratio")]
     [SerializeField] private float tiltSaturationFactor = 1500f;
 
+    [Tooltip("The player attack script")]
+    [SerializeField] private PlayerAttack attackScript = null;
+
     [SerializeField] private Pause pause;
     
     float rightMoveValue, forwardMoveValue; //this is updated via the input 
@@ -339,5 +342,10 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    public void OnAttack()
+    {
+        attackScript.OnAttack();
+    } 
 
 }

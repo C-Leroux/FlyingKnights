@@ -22,8 +22,6 @@ using UnityEngine.InputSystem;
                 if(!attackCollider.isActive())
                 {
                     playerAnimator.SetTrigger("AttackTrigger");
-                    attackCollider.SetActive(true);
-                    Invoke("DisableAttack", attackCooldownTime);
                     isAttacking = false;
                 }
                 else
@@ -33,11 +31,16 @@ using UnityEngine.InputSystem;
             }
         }
 
-        private void DisableAttack()
+        public void attackBoxEventEnable()
+        {
+            attackCollider.SetActive(true);
+        }
+        public void attackBoxEventDisable()
         {
             attackCollider.SetActive(false);
             playerAnimator.ResetTrigger("AttackTrigger");
         }
+
 
         public void OnAttack()
         {

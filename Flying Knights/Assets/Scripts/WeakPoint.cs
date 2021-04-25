@@ -13,7 +13,6 @@ public class WeakPoint : MonoBehaviour
     {
         if(collision.tag == "PlayerAttack")
         {
-            Debug.Log("Critical hit !");
             colossus.TakeDamage(600);
             this.gameObject.GetComponent<AudioSource>().Play();
 

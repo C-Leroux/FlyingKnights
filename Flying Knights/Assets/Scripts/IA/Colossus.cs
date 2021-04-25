@@ -136,7 +136,6 @@ public class Colossus : MonoBehaviour
     {
         colossusAnim.SetBool("Walk", true);
         attacking.EnterAttackMode();
-        Debug.Log(FSM.CurrentState);
         
     }
 
@@ -231,7 +230,6 @@ public class Colossus : MonoBehaviour
             Rigidbody m_Rigidbody = GetComponent<Rigidbody>();
             m_Rigidbody.freezeRotation = true;
             m_Rigidbody.velocity = Vector3.zero;
-            //Debug.Log(FSM.CurrentState);
         }   
     }
 
