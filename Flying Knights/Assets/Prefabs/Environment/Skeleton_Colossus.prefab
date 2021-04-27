@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Skeleton_Ground_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1330193041299404, guid: 8ec29696c3f5cc04faf6c4c6a5ffb0ea, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330193041299404, guid: 8ec29696c3f5cc04faf6c4c6a5ffb0ea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4165618951862630, guid: 8ec29696c3f5cc04faf6c4c6a5ffb0ea, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -7,6 +7,7 @@ public class SpellManager : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] CapsuleCollider c;
     [SerializeField] GameObject Impact;
+    [SerializeField] GameObject Miss;
     [SerializeField] double maxTime = 0.7;
     private float Timer = 0;
     [SerializeField] int speed = 2;
@@ -23,6 +24,7 @@ public class SpellManager : MonoBehaviour
         Timer += Time.deltaTime;
         if (Timer >= maxTime)
         {
+            //Instantiate(Miss, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
         }
     }

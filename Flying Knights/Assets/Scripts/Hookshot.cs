@@ -137,16 +137,20 @@ public class Hookshot : MonoBehaviour
 
     public void Hooked(Collider col)
     {
-        isHooked = true;
-        target = col;
-        hookObject.transform.SetParent(target.transform,true);
-        setHookGlobalScale();
-        Physics.IgnoreCollision(hookObject.GetComponent<Collider>(), target);
-        hookObject.transform.position = collisionDetector.point;
-        hookRigidBody.velocity = Vector3.zero;
-        hookSource.Play();
-        //traction force/rope
-        joint.SetActive(true,(transform.position - hookObject.transform.position).magnitude + 1);
+        if (col.gameObject.tag != "Boundary")
+        {
+            isHooked = true;
+            target = col;
+            hookObject.transform.SetParent(target.transform, true);
+            setHookGlobalScale();
+            Physics.IgnoreCollision(hookObject.GetComponent<Collider>(), target);
+            hookObject.transform.position = collisionDetector.point;
+            hookRigidBody.velocity = Vector3.zero;
+            hookSource.Play();
+            //traction force/rope
+            joint.SetActive(true, (transform.position - hookObject.transform.position).magnitude + 1);
+        }
+        
     }
 
     public void StopHook()

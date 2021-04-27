@@ -3,7 +3,11 @@ guid: 193e1d9dee264ce4893dbdff4cfbad34
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - reticle: {instanceID: 0}
+  - SpellPrefab: {fileID: 100000, guid: 6d8faf2cc55b5ce45854bf89bebeb62d, type: 3}
+  - fireObject: {instanceID: 0}
+  - coolDownImage: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

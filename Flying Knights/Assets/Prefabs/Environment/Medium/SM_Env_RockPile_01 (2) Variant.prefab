@@ -25,6 +25,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_RockPile_01 (2) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 113602, guid: 2b1cd4ec8dfee7041b5bc5767613d249, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 113602, guid: 2b1cd4ec8dfee7041b5bc5767613d249, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 415022, guid: 2b1cd4ec8dfee7041b5bc5767613d249, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -43,15 +51,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 415022, guid: 2b1cd4ec8dfee7041b5bc5767613d249, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -366.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 415022, guid: 2b1cd4ec8dfee7041b5bc5767613d249, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -29.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 415022, guid: 2b1cd4ec8dfee7041b5bc5767613d249, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -438.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 415022, guid: 2b1cd4ec8dfee7041b5bc5767613d249, type: 3}
       propertyPath: m_LocalRotation.w

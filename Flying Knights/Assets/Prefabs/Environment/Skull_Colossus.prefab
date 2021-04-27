@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Skull_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1804667845376260, guid: 4005b9a03d8625b4990b7a567bf6faa1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1804667845376260, guid: 4005b9a03d8625b4990b7a567bf6faa1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4820193825655414, guid: 4005b9a03d8625b4990b7a567bf6faa1, type: 3}
       propertyPath: m_RootOrder
       value: 0

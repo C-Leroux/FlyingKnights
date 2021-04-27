@@ -44,6 +44,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Pillar_Moss_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1013901925612630, guid: 73d880901c12d664980905b94a6eca68, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013901925612630, guid: 73d880901c12d664980905b94a6eca68, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967263
+      objectReference: {fileID: 0}
     - target: {fileID: 4116742662350638, guid: 73d880901c12d664980905b94a6eca68, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -107,6 +115,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Pillar_Arch_Moss_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1001883008726876, guid: 4342163624475ef408cb710d8a9db2e1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001883008726876, guid: 4342163624475ef408cb710d8a9db2e1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967263
+      objectReference: {fileID: 0}
     - target: {fileID: 4963002153172976, guid: 4342163624475ef408cb710d8a9db2e1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -169,6 +185,14 @@ PrefabInstance:
     - target: {fileID: 1013901925612630, guid: 73d880901c12d664980905b94a6eca68, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Pillar_Moss_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013901925612630, guid: 73d880901c12d664980905b94a6eca68, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013901925612630, guid: 73d880901c12d664980905b94a6eca68, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 4116742662350638, guid: 73d880901c12d664980905b94a6eca68, type: 3}
       propertyPath: m_RootOrder

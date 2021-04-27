@@ -25,7 +25,21 @@ public class timer : MonoBehaviour
         int currentTime= (int)Mathf.Round(timeStart);
         int min = currentTime / 60;
         int seconds = currentTime - (60 * min);
-        textScore.text = min + ":" + seconds;
+		string minDisplay;
+		if(min<10){
+			minDisplay="0"+min.ToString();
+		}
+		else{
+			minDisplay=min.ToString();
+		}
+		string secDisplay;
+		if(seconds<10){
+			secDisplay="0"+seconds.ToString();
+		}
+		else{
+			secDisplay=seconds.ToString();
+		}
+        textScore.text = minDisplay + ":" + secDisplay;
         if (timeStart <= 0)
         {
             endScreen.SetActive(true);

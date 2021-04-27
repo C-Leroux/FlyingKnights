@@ -12,6 +12,7 @@ TagManager:
   - ColossusPart
   - Spell
   - WeakPoint
+  - Boundary
   layers:
   - Default
   - TransparentFX
