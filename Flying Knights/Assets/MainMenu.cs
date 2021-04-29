@@ -10,7 +10,8 @@ public class MainMenu : MonoBehaviour
     public GameObject Settings;
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
     }
     public void LevelSelection()
