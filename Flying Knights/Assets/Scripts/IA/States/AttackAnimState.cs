@@ -24,12 +24,17 @@ public class AttackAnimState : State<Colossus>
 
     public void Enter(Colossus colossus)
     {
+        // Check if colossus is dead
+        if (colossus.IsDead())
+            colossus.FSM.ChangeState(DeathState.Instance);
         colossus.AttackAnim();
         colossus.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 
     public void Execute(Colossus colossus)
-    {
+    {// Check if colossus is dead
+            if (colossus.IsDead())
+                colossus.FSM.ChangeState(DeathState.Instance);
         if (colossus.IsRecovered())
             colossus.FSM.ChangeState(AttackState.Instance);
     }

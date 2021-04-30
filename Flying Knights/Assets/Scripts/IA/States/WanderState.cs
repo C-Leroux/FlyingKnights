@@ -26,7 +26,9 @@ public class WanderState : State<Colossus>
     public void Enter(Colossus colossus)
     {
         // Return to a valid point on the navmesh if necessary
-
+        // Check if colossus is dead
+            if (colossus.IsDead())
+                colossus.FSM.ChangeState(DeathState.Instance);
         // Start Wandering
         colossus.StartWandering();
     }
@@ -34,7 +36,9 @@ public class WanderState : State<Colossus>
     public void Execute(Colossus colossus)
     {
         // The colossus moves according to the Navmesh
-
+        // Check if colossus is dead
+            if (colossus.IsDead())
+                colossus.FSM.ChangeState(DeathState.Instance);
         // If a player is detected nearby, enter Attack state
         if (colossus.DetectPlayer())
             colossus.FSM.ChangeState(AttackState.Instance);
